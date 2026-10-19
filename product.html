@@ -513,7 +513,7 @@
   const viewers = 6 + (id * 13) % 23;
   const urgency = stk.pre
     ? `<div class="preinfo"><i class="fa-solid fa-circle-info"></i><span><b>Pre-order item.</b> Book now and get it in 7–10 working days. Only a small advance is needed; the rest is paid on delivery.</span></div>`
-    : stk.low ? `<div class="urg"><div class="urg-h"><b><i class="fa-solid fa-fire-flame-curved"></i>Hurry! Only ${stk.left} left in stock</b><span><em></em>${viewers} people are viewing this</span></div><div class="urg-bar"><span style="width:${Math.max(10, stk.left * 9)}%"></span></div></div>` : "";
+    : "";
   const waText = `Hi TechStore, I'm interested in: ${x.n} (${tk(x.p)}) – ${location.href}`;
 
   /* ---------- Bundle: product + 2 complementary items ---------- */
