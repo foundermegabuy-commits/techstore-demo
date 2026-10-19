@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="home">
+<div id="site-header"></div>
+
+<main class="wrap">
+
+  <!-- Hero -->
+  <div class="hero full">
+    <div class="slider" id="slider">
+      <div class="slides">
+        <img src="img/hero1.png" alt="">
+        <img src="img/hero2.png" alt="">
+        <img src="img/hero3.png" alt="">
+        <img src="img/hero4.png" alt="">
+      </div>
+      <button class="sl-arrow prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="sl-arrow next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+      <div class="dots"></div>
+    </div>
+  </div>
+
+  <!-- Trust -->
+  <div class="trust">
+    <a href="policy.html?p=original"><i class="fa-solid fa-certificate"></i><p><b>100% Original</b><span>Official products</span></p></a>
+    <a href="policy.html?p=emi"><i class="fa-solid fa-credit-card"></i><p><b>0% EMI</b><span>Up to 12 months</span></p></a>
+    <a href="policy.html?p=delivery"><i class="fa-solid fa-truck-fast"></i><p><b>Fast Delivery</b><span>All over Bangladesh</span></p></a>
+    <a href="policy.html?p=warranty"><i class="fa-solid fa-shield-halved"></i><p><b>Official Warranty</b><span>Hassle-free claim</span></p></a>
+    <a href="policy.html?p=refund"><i class="fa-solid fa-rotate"></i><p><b>Easy Exchange</b><span>7-day policy</span></p></a>
+    <a href="policy.html?p=payment"><i class="fa-solid fa-lock"></i><p><b>Secure Payment</b><span>bKash, Nagad, Card</span></p></a>
+  </div>
+
+  <!-- Featured Categories -->
+  <section>
+    <div class="shead"><div><h2>Featured Categories</h2><p>Get your desired product from featured category</p></div><a href="category.html" class="show-all">View All <i class="fa-solid fa-arrow-right"></i></a></div>
+    <div class="catgrid" id="catgrid"></div>
+  </section>
+
+  <!-- Flash Deal -->
+  <section class="flash">
+    <div class="shead">
+      <div><h2>Exclusive Deals</h2><p>Limited-time prices on top picks</p></div>
+      <div class="right">
+        <div class="timer">Ends in
+          <span><b id="th">00</b>Hrs</span><span><b id="tm">00</b>Min</span><span><b id="ts">00</b>Sec</span>
+        </div>
+        <button class="nav-arr" data-row="r-flash" data-dir="-1" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="nav-arr" data-row="r-flash" data-dir="1" aria-label="Right"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="row" id="r-flash"></div>
+  </section>
+
+  <!-- Top Selling w/ tabs -->
+  <section>
+    <div class="shead">
+      <div><h2>Top Selling</h2><p>Most loved by our customers</p></div>
+      <div class="tabs" id="tabs">
+        <button class="on" data-tab="laptop">Laptops</button>
+        <button data-tab="desktop">Desktop PC</button>
+        <button data-tab="monitor">Monitors</button>
+        <button data-tab="gaming">Gaming</button>
+      </div>
+    </div>
+    <div class="grid" id="g-top"></div>
+  </section>
+
+  <!-- Banners -->
+  <section class="duo">
+    <a href="category.html?c=accessories" class="pbn"><img src="img/promo1.png" alt="Gaming gear – keyboards and mice" loading="lazy"></a>
+    <a href="category.html?c=projector" class="pbn"><img src="img/promo2.png" alt="Portable projectors" loading="lazy"></a>
+  </section>
+
+  <!-- New Arrival -->
+  <section>
+    <div class="shead">
+      <div><h2>New Arrival</h2><p>Fresh tech, just landed</p></div>
+      <div class="right">
+        <a href="category.html" class="show-all">Show All <i class="fa-solid fa-arrow-right"></i></a>
+        <button class="nav-arr" data-row="r-new" data-dir="-1" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="nav-arr" data-row="r-new" data-dir="1" aria-label="Right"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="row" id="r-new"></div>
+  </section>
+
+  <!-- PC Builder CTA -->
+  <section class="builder">
+    <div style="position:relative;z-index:1">
+      <small>PC BUILDER</small>
+      <h2>Build Your <em>Dream PC</em><br>Part by Part</h2>
+      <p>Pick your processor, motherboard, GPU and more. We check compatibility, assemble and deliver it ready to play.</p>
+      <div class="btns"><a href="pc-builder.html" class="btn-o">Start Building</a><a href="category.html?c=desktop" class="btn-g">Pre-built PCs</a></div>
+    </div>
+    <div class="pcs">
+      <div><i class="fa-solid fa-microchip"></i><p><b>Processor</b><span>Intel &amp; AMD</span></p></div>
+      <div><i class="fa-solid fa-memory"></i><p><b>RAM</b><span>DDR4 / DDR5</span></p></div>
+      <div><i class="fa-solid fa-display"></i><p><b>Graphics Card</b><span>RTX, Arc, Radeon</span></p></div>
+      <div><i class="fa-solid fa-hard-drive"></i><p><b>Storage</b><span>NVMe SSD &amp; HDD</span></p></div>
+    </div>
+  </section>
+
+  <!-- Gaming Mania -->
+  <section>
+    <div class="shead">
+      <div><h2>Gaming Mania</h2><p>Gear up for the win</p></div>
+      <div class="right">
+        <a href="category.html?c=gaming" class="show-all">Show All <i class="fa-solid fa-arrow-right"></i></a>
+        <button class="nav-arr" data-row="r-gaming" data-dir="-1" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="nav-arr" data-row="r-gaming" data-dir="1" aria-label="Right"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="row" id="r-gaming"></div>
+  </section>
+
+  <!-- Wide banner -->
+  <section class="wide pbn"><a href="category.html?c=tablet"><img src="img/hero5.png" alt="Drawing tablets for creators" loading="lazy"></a></section>
+
+  <!-- Desktop PCs -->
+  <section>
+    <div class="shead">
+      <div><h2>Ready-to-Go Desktop PC</h2><p>Tested builds at the best price</p></div>
+      <a href="category.html?c=desktop" class="show-all">Show All <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="grid" id="g-desktop"></div>
+  </section>
+
+  <!-- Recently viewed (shown only when there is history) -->
+  <section id="recentHome" hidden>
+    <div class="shead">
+      <div><h2>Recently Viewed</h2><p>Pick up where you left off</p></div>
+      <div class="right">
+        <button class="nav-arr" data-row="r-recent-home" data-dir="-1" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="nav-arr" data-row="r-recent-home" data-dir="1" aria-label="Right"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="row" id="r-recent-home"></div>
+  </section>
+
+  <!-- Brands -->
+  <section>
+    <div class="shead"><div><h2>Shop By Brands</h2><p>Official partners</p></div><a href="brands.html" class="show-all">Show All <i class="fa-solid fa-arrow-right"></i></a></div>
+    <div class="brands">
+      <div>ASUS</div><div>AMD</div><div>intel</div><div>Logitech</div><div>Xiaomi</div><div>AOC</div><div>HP</div><div>Wanbo</div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+fill("r-flash",[16,4,5,13,3,20,2,11,18],{16:"HOT",4:"LIMITED"});
+fill("r-new",[3,1,19,9,6,20,10,12],{3:"NEW",1:"NEW",19:"NEW"});
+fill("r-gaming",[5,6,7,8,9,10,4,15]);
+renderRecentHome();
+fill("g-desktop",[11,13,12,14],{13:"BEST SELLER"});
+
+const TABS = {laptop:[16,15,17,18],desktop:[11,13,12,14],monitor:[3,4,10,20],gaming:[5,6,8,9]};
+$("#tabs").addEventListener("click", e=>{
+  const b = e.target.closest("button"); if(!b) return;
+  $$("#tabs button").forEach(x=>x.classList.toggle("on", x===b));
+  fill("g-top", TABS[b.dataset.tab]);
+});
+fill("g-top", TABS.laptop);
+
+const CATS = [["fa-microchip","Processor","components"],["fa-server","Motherboard","components"],["fa-hard-drive","SSD","components"],["fa-laptop","Laptops","laptop"],["fa-display","Graphics Card","components"],["fa-computer-mouse","Mouse","accessories"],["fa-keyboard","Keyboard","accessories"],["fa-tv","Monitor","monitor"],["fa-headphones","Headphones","gadget"],["fa-battery-full","Power Bank","gadget"],["fa-clock","Smart Watch","gadget"],["fa-video","Projector","projector"],["fa-camera","Action Camera","cameras"],["fa-wifi","Networking","networking"],["fa-pen-nib","Graphics Tablet","tablet"],["fa-gamepad","Gaming","gaming"]];
+$("#catgrid").innerHTML = CATS.map(([i,n,c])=>`<a href="category.html?c=${c}" class="cat"><div class="ic"><i class="fa-solid ${i}"></i></div><b>${n}</b><span>Shop now</span></a>`).join("");
+
+// slider
+(()=>{
+  const s = $("#slider"), track = s.querySelector(".slides"), n = track.children.length, dots = s.querySelector(".dots");
+  let i = 0, t;
+  dots.innerHTML = Array.from({length:n},(_,k)=>`<button aria-label="Slide ${k+1}"></button>`).join("");
+  const go = k => { i = (k+n)%n; track.style.transform = `translateX(-${i*100}%)`; [...dots.children].forEach((d,j)=>d.classList.toggle("on",j===i)); clearInterval(t); t = setInterval(()=>go(i+1),5000); };
+  dots.addEventListener("click", e=>{ const k=[...dots.children].indexOf(e.target); if(k>=0) go(k); });
+  s.querySelector(".prev").onclick = ()=>go(i-1);
+  s.querySelector(".next").onclick = ()=>go(i+1);
+  go(0);
+})();
+
+// countdown to midnight
+(()=>{
+  const pad = v => String(v).padStart(2,"0");
+  const tick = ()=>{ const now = new Date(), end = new Date(now); end.setHours(24,0,0,0); const d = Math.floor((end-now)/1000);
+    $("#th").textContent = pad(Math.floor(d/3600)); $("#tm").textContent = pad(Math.floor(d%3600/60)); $("#ts").textContent = pad(d%60); };
+  tick(); setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>

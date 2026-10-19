@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compare Products – TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.page-hero{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.page-hero h1 i{color:var(--orange-2);margin-right:8px}
+.hero-acts{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.hero-acts .btn.ghost{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff;height:42px}
+.hero-acts .btn.ghost:hover{background:rgba(255,255,255,.14);color:#fff}
+.diff{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:#D5D9EE;cursor:pointer;user-select:none}
+.diff input{display:none}
+.diff .sw{width:40px;height:22px;border-radius:11px;background:rgba(255,255,255,.18);position:relative;transition:.2s}
+.diff .sw::after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:var(--card);transition:.2s}
+.diff input:checked+.sw{background:var(--orange)}
+.diff input:checked+.sw::after{left:21px}
+
+.cmp-wrap{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;min-width:calc(190px + var(--cols,2)*220px);font-size:13.5px}
+.cmp col.lab{width:190px}
+.cmp th,.cmp td{padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:middle;text-align:left}
+.cmp td+td,.cmp th+td,.cmp th+th{border-left:1px solid var(--line)}
+.cmp tbody th{font-weight:600;font-size:12.5px;color:var(--muted);background:var(--soft);position:sticky;left:0;z-index:2}
+.cmp tbody th i{width:18px;color:var(--orange);margin-right:6px;font-size:12px}
+.cmp tr:last-child>*{border-bottom:0}
+.cmp tbody tr:hover td{background:#FCFCFE}
+.cmp tr.sec th{background:var(--navy);color:#fff;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.cmp tr.sec td{background:var(--navy)}
+.cmp tr.sec>*{border-left-color:rgba(255,255,255,.06)!important}
+.hide-same .cmp tr.same{display:none}
+.cmp tr.differ td{font-weight:500}
+.cmp td.best{background:linear-gradient(180deg,#F1FBF5,#fff)!important}
+.cmp td.na{color:#B6BBD2}
+
+/* head cells */
+.cmp thead th{background:var(--card);position:relative;vertical-align:top;padding:18px}
+.cmp thead th.lab-h{position:sticky;left:0;z-index:3;background:var(--soft);vertical-align:bottom}
+.lab-h b{display:block;font-size:16px;color:var(--ink)}
+.lab-h span{font-size:12px;color:var(--muted);font-weight:400}
+.pc{display:flex;flex-direction:column;height:100%}
+.pc .rm{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--muted);z-index:1;transition:.2s}
+.pc .rm:hover{background:#FDECEC;color:#D33;border-color:#F6C9C9}
+.pc .im{aspect-ratio:1.15;border-radius:12px;background:var(--soft);display:grid;place-items:center;margin-bottom:12px;overflow:hidden}
+.pc .im img{width:78%;height:78%;object-fit:contain;mix-blend-mode:multiply;transition:transform .35s}
+.pc:hover .im img{transform:scale(1.06)}
+.pc h4{font-size:13.5px;font-weight:500;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:38px;margin:2px 0 8px}
+.pc h4 a:hover{color:var(--orange)}
+.pc .pr{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.pc .pr b{font-size:19px;font-weight:700;color:var(--ink)}
+.pc .pr s{font-size:12px;color:#9AA0BC}
+.pc .cta{margin-top:auto;display:flex;gap:8px}
+.pc .cta .btn{height:40px;font-size:13px;padding:0 12px}
+.pc .cta .btn.dark{flex:1}
+.pc .cta .ic{width:40px;padding:0}
+.bestb{position:absolute;top:12px;left:12px;z-index:1;background:linear-gradient(135deg,var(--green),#22B864);color:#fff;font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:7px;letter-spacing:.3px;box-shadow:0 6px 14px rgba(1,144,69,.3)}
+.add-slot{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;border:2px dashed #D5DAEA;border-radius:14px;min-height:300px;height:100%;color:var(--muted);padding:16px;transition:.2s}
+.add-slot:hover{border-color:var(--orange);color:var(--orange);background:var(--orange-soft)}
+.add-slot .plus{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--soft-2),#E2E7F6);font-size:20px;color:var(--ink);transition:.2s}
+.add-slot:hover .plus{background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff}
+.add-slot b{color:var(--text);font-size:14px}
+.add-slot span{font-size:12px}
+.stars{color:#F5A623;font-size:11.5px;white-space:nowrap}
+.stars em{font-style:normal;color:var(--muted);margin-left:4px}
+.save-txt{color:var(--orange);font-weight:600;font-size:12.5px}
+.scroll-hint{display:none;font-size:12px;color:var(--muted);margin-top:10px;align-items:center;gap:6px}
+
+@media (max-width:992px){
+  .cmp col.lab{width:150px}
+}
+@media (max-width:640px){
+  .cmp{min-width:calc(104px + var(--cols,2)*190px)}
+  .cmp col.lab{width:104px}
+  .cmp col.pcol{width:190px}
+  .cmp th,.cmp td{padding:11px 12px;font-size:12.5px}
+  .cmp thead th{padding:12px}
+  .cmp tbody th{font-size:11.5px}
+  .cmp tbody th i{display:none}
+  .lab-h b{font-size:14px}
+  .pc .pr b{font-size:16px}
+  .pc .cta .ic{display:none}
+  .add-slot{min-height:240px}
+  .scroll-hint{display:flex}
+  .hero-acts{width:100%;justify-content:space-between}
+}
+</style>
+</head>
+<body data-page="compare">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <div class="crumb"><a href="index.html">Home</a><i class="fa-solid fa-chevron-right"></i><span>Compare Products</span></div>
+
+  <div class="page-hero">
+    <div><h1><i class="fa-solid fa-code-compare"></i>Compare Products</h1><p id="sub">Compare up to 4 products side by side</p></div>
+    <div class="hero-acts" id="heroActs">
+      <label class="diff"><input type="checkbox" id="onlyDiff"><span class="sw"></span>Show differences only</label>
+      <button class="btn ghost" id="clearAll"><i class="fa-regular fa-trash-can"></i> Clear All</button>
+    </div>
+  </div>
+
+  <div id="area"></div>
+  <p class="scroll-hint" id="hint"><i class="fa-solid fa-arrows-left-right"></i> Swipe the table sideways to see all products</p>
+
+  <section id="recoSec">
+    <div class="shead"><div><h2>Add More to Compare</h2><p>Popular products customers compare</p></div><a href="category.html" class="show-all">Browse All <i class="fa-solid fa-arrow-right"></i></a></div>
+    <div class="grid" id="reco"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+/* ---------- Spec extraction from product names ---------- */
+const m = (s, re, f = x => x[1]) => { const r = s.match(re); return r ? f(r) : null; };
+const SPECS = [
+  ["Display", "fa-display", null],
+  ["Display Size", "fa-expand", n => m(n, /(\d{2}(?:\.\d)?)\s*(?:"|”|inch)/i, r => r[1] + " inch")],
+  ["Resolution", "fa-border-all", n => m(n, /\b(Dual FHD|UWQHD|WQHD|QHD|FHD|UHD|4K|2K|1080P|720P)\b/i, r => ({"1080P":"Full HD 1080p","FHD":"Full HD (1920×1080)","2K":"2K QHD (2560×1440)","UWQHD":"UWQHD (3440×1440)","DUAL FHD":"Dual FHD (5120×1440)","4K":"4K UHD"}[r[1].toUpperCase()] || r[1]))],
+  ["Refresh Rate", "fa-gauge-high", n => m(n, /(\d{2,3})\s*Hz/i, r => r[1] + " Hz")],
+  ["Panel", "fa-layer-group", n => [/\bIPS\b/i.test(n) && "IPS", /Curved/i.test(n) && "Curved", /Touch/i.test(n) && "Touch", /\b1ms\b/i.test(n) && "1ms response"].filter(Boolean).join(", ") || null],
+  ["Performance", "fa-microchip", null],
+  ["Processor", "fa-microchip", n => m(n, /((?:Intel\s+)?Core\s+i\d[-\s]?\w*|(?:AMD\s+)?Ryzen\s+\d(?:\s+PRO)?\s+\w+)/i, r => r[1].replace(/^(?!Intel|AMD)(Core)/i, "Intel $1").replace(/^(?!AMD)(Ryzen)/i, "AMD $1"))],
+  ["Graphics", "fa-vr-cardboard", n => m(n, /((?:RTX|GTX)\s*\d{4}(?:\s*Ti)?|Arc\s+[AB]\d{3}(?:\s+\d+GB)?|Radeon\s+\w+)/i, r => (/^Arc/i.test(r[1]) ? "Intel " : /^Radeon/i.test(r[1]) ? "AMD " : "NVIDIA GeForce ") + r[1])],
+  ["Memory (RAM)", "fa-memory", n => { const t = n.replace(/Arc\s+[AB]\d{3}\s+\d+GB/i, ""); return m(t, /(\d{1,2})GB\s*(DDR\d)?/i, r => r[1] + " GB" + (r[2] ? " " + r[2] : "")) || m(t, /\b(DDR\d)\b/i); }],
+  ["Features", "fa-star", null],
+  ["Brightness", "fa-sun", n => m(n, /(\d{3,4})\s*ANSI/i, r => r[1] + " ANSI Lumens")],
+  ["Connectivity", "fa-wifi", n => [/Wireless/i.test(n) && "Wireless", /Tri-mode/i.test(n) && "Tri-mode (2.4G / BT / Wired)", /\bLTE\b/i.test(n) && "4G LTE", /Android/i.test(n) && "Android OS"].filter(Boolean).join(", ") || null],
+  ["Switch / Input", "fa-keyboard", n => [/Magnetic/i.test(n) && "Magnetic switch", /Rapid Trigger/i.test(n) && "Rapid Trigger", /Mechanical/i.test(n) && "Mechanical", /Hot-swappable/i.test(n) && "Hot-swappable", /Gasket/i.test(n) && "Gasket mount", /TRUEFORCE/i.test(n) && "TRUEFORCE feedback"].filter(Boolean).join(", ") || null],
+  ["Highlights", "fa-bolt", n => [/Gaming/i.test(n) && "Gaming", /Portable/i.test(n) && "Portable", /Outdoor/i.test(n) && "Outdoor", /RGB/i.test(n) && "RGB", /White/i.test(n) && "White build", /Budget/i.test(n) && "Budget"].filter(Boolean).join(" · ") || null]
+];
+const ratingOf = id => pchRate(id).toFixed(1);
+const reviewsOf = pchReviews;
+const stars = r => { let s = ""; for (let k = 1; k <= 5; k++) s += `<i class="fa-${r >= k ? "solid fa-star" : r >= k - .5 ? "solid fa-star-half-stroke" : "regular fa-star"}"></i>`; return s; };
+
+const getCmp = () => store.get("compare", []).filter(id => P[id]).slice(0, 4);
+
+function render(){
+  const ids = getCmp();
+  $("#heroActs").style.display = ids.length ? "" : "none";
+  $("#sub").textContent = ids.length ? `Comparing ${ids.length} of 4 products` : "Compare up to 4 products side by side";
+  $("#hint").style.display = ids.length ? "" : "none";
+
+  if (!ids.length){
+    $("#area").innerHTML = `<div class="box empty" style="margin-top:20px"><i class="fa-solid fa-code-compare"></i><h3>No products to compare</h3><p>Click the <i class="fa-solid fa-code-compare" style="font-size:12px;color:var(--orange);margin:0"></i> compare icon on any product card to add it here (up to 4).</p><a href="category.html" class="btn primary" style="margin-top:18px"><i class="fa-solid fa-plus"></i> Add Products</a></div>`;
+  } else {
+    const min = Math.min(...ids.map(id => P[id].p));
+    const slots = ids.length < 4 ? 1 : 0, cols = ids.length + slots;
+    const best = id => ids.length > 1 && P[id].p === min;
+    const row = (label, icon, cells, cls = "") => `<tr class="${cls}"><th><i class="fa-solid ${icon}"></i>${label}</th>${cells.join("")}${slots ? "<td></td>" : ""}</tr>`;
+    const valRow = (label, icon, vals, opts = {}) => {
+      const raw = vals.map(v => v.text ?? v);
+      const same = ids.length > 1 && raw.every(v => v === raw[0]);
+      return row(label, icon, vals.map((v, k) => { const t = v.html ?? v; const isNa = raw[k] === "—"; return `<td class="${isNa ? "na" : ""} ${opts.best && best(ids[k]) ? "best" : ""}">${t}</td>`; }), same ? "same" : "differ");
+    };
+    let body = "";
+    body += `<tr class="sec"><th>Overview</th><td colspan="${cols}"></td></tr>`;
+    body += valRow("Price", "fa-tag", ids.map(id => ({text:String(P[id].p), html:`<b style="font-size:15px;color:${best(id) ? "var(--green)" : "var(--navy)"}">${tk(P[id].p)}</b>${best(id) ? ` <span class="pill ok" style="margin-left:4px"><i class="fa-solid fa-trophy"></i>Lowest</span>` : ""}`})), {best:true});
+    body += valRow("You Save", "fa-piggy-bank", ids.map(id => { const s = P[id].o - P[id].p; return s > 0 ? {text:String(s), html:`<span class="save-txt">${tk(s)} (${Math.round(s / P[id].o * 100)}%)</span>`} : "—"; }));
+    body += valRow("Brand", "fa-copyright", ids.map(id => esc(P[id].b)));
+    body += valRow("Category", "fa-folder", ids.map(id => `<a href="category.html?c=${P[id].c}" style="color:var(--orange);font-weight:500">${CATNAMES[P[id].c] || P[id].c}</a>`));
+    body += valRow("Rating", "fa-star", ids.map(id => ({text:ratingOf(id), html:`<span class="stars">${stars(+ratingOf(id))}<em>${ratingOf(id)} (${reviewsOf(id)})</em></span>`})));
+    body += valRow("Availability", "fa-box", ids.map(id => ({text:"in", html:`<span class="pill ok"><i class="fa-solid fa-circle-check"></i>In Stock</span>`})));
+    body += valRow("Warranty", "fa-shield-halved", ids.map(id => ({desktop:"3 Years (parts)", laptop:"2 Years", monitor:"3 Years"}[P[id].c] || "1 Year")));
+
+    let section = null, buf = [];
+    const flush = () => { if (section && buf.length) body += `<tr class="sec"><th>${section}</th><td colspan="${cols}"></td></tr>` + buf.join(""); buf = []; };
+    SPECS.forEach(([label, icon, fn]) => {
+      if (!fn) { flush(); section = label; return; }
+      const vals = ids.map(id => fn(P[id].n) || "—");
+      if (vals.every(v => v === "—")) return;   // nothing derivable for any product in this row
+      buf.push(valRow(label, icon, vals.map(v => esc(v))));
+    });
+    flush();
+    body += row("Action", "fa-cart-shopping", ids.map(id => `<td><div style="display:flex;gap:8px"><button class="btn dark" style="flex:1;height:40px;font-size:13px;padding:0 10px" onclick="addCart(${id})"><i class="fa-solid fa-cart-plus"></i> Add</button><button class="btn ghost" style="height:40px;font-size:13px;padding:0 12px" onclick="removeCmp(${id})" aria-label="Remove"><i class="fa-regular fa-trash-can"></i></button></div></td>`));
+
+    const head = `<tr><th class="lab-h"><b>Product<br>Comparison</b><span>${ids.length} item${ids.length > 1 ? "s" : ""} selected</span></th>
+      ${ids.map(id => { const x = P[id]; return `<th><div class="pc">
+        ${best(id) ? `<span class="bestb"><i class="fa-solid fa-trophy"></i> BEST PRICE</span>` : ""}
+        <button class="rm" onclick="removeCmp(${id})" aria-label="Remove"><i class="fa-solid fa-xmark"></i></button>
+        <a href="product.html?id=${id}" class="im"><img src="img/${x.i}" alt="${esc(x.n)}"></a>
+        <span class="brand">${esc(x.b)}</span>
+        <h4><a href="product.html?id=${id}" title="${esc(x.n)}">${esc(x.n)}</a></h4>
+        <div class="pr"><b>${tk(x.p)}</b>${x.o > x.p ? `<s>${tk(x.o)}</s>` : ""}</div>
+        <div class="cta"><button class="btn dark" onclick="addCart(${id})"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button><button class="btn ghost ic" title="Buy now" aria-label="Buy now" onclick="addCart(${id},1,true)"><i class="fa-solid fa-bolt"></i></button></div>
+      </div></th>`; }).join("")}
+      ${slots ? `<th><a href="category.html" class="add-slot"><span class="plus"><i class="fa-solid fa-plus"></i></span><b>Add Product</b><span>Pick from our catalogue<br>(${4 - ids.length} slot${4 - ids.length > 1 ? "s" : ""} left)</span></a></th>` : ""}
+    </tr>`;
+
+    $("#area").innerHTML = `<div class="cmp-wrap ${$("#onlyDiff").checked ? "hide-same" : "diff-on"}" id="wrap"><table class="cmp" style="--cols:${cols}">
+      <colgroup><col class="lab">${Array(cols).fill('<col class="pcol">').join("")}</colgroup>
+      <thead>${head}</thead><tbody>${body}</tbody></table></div>`;
+  }
+  const cur = getCmp();
+  const pool = Object.keys(P).map(Number).filter(id => !cur.includes(id));
+  const sameCat = cur.length ? pool.filter(id => cur.some(c => P[c].c === P[id].c)) : [];
+  fill("reco", [...new Set([...sameCat, 16, 15, 3, 10, 11, 13, ...pool])].filter(id => !cur.includes(id)).slice(0, 4));
+}
+
+function removeCmp(id){ store.set("compare", getCmp().filter(x => x !== id)); updateCounts(); render(); toast("Removed from compare"); }
+$("#clearAll").onclick = () => { store.set("compare", []); updateCounts(); render(); toast("Compare list cleared"); };
+$("#onlyDiff").onchange = e => { const w = $("#wrap"); if (w) { w.classList.toggle("hide-same", e.target.checked); w.classList.toggle("diff-on", !e.target.checked); } };
+
+// re-render when compare toggled from the suggestion cards
+const _tl = toggleList;
+toggleList = function(...a){ _tl(...a); if (a[0] === "compare") render(); };
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Wishlist – TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.page-hero{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.page-hero h1 i{color:var(--orange-2);margin-right:8px}
+.hero-acts{display:flex;gap:10px;flex-wrap:wrap}
+.hero-acts .btn.ghost{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
+.hero-acts .btn.ghost:hover{border-color:var(--orange-2);color:#fff;background:rgba(255,255,255,.14)}
+
+.wl{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.wl-head,.wrow{display:grid;grid-template-columns:44px 96px minmax(0,1fr) 150px 120px 200px;gap:18px;align-items:center;padding:14px 20px}
+.wl-head{background:var(--soft);border-bottom:1px solid var(--line);font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;padding-top:12px;padding-bottom:12px}
+.wrow{border-bottom:1px solid var(--line);transition:background .2s,opacity .3s,transform .3s}
+.wrow:last-child{border-bottom:0}
+.wrow:hover{background:#FCFCFE}
+.wrow.gone{opacity:0;transform:translateX(30px)}
+.x{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);color:var(--muted);transition:.2s}
+.x:hover{background:#FDECEC;border-color:#F6C9C9;color:#D33}
+.wimg{width:96px;height:96px;border-radius:12px;background:var(--soft);display:grid;place-items:center;overflow:hidden}
+.wimg img{width:84%;height:84%;object-fit:contain;mix-blend-mode:multiply;transition:transform .35s}
+.wrow:hover .wimg img{transform:scale(1.07)}
+.winfo h4{font-size:14px;font-weight:500;line-height:1.45;margin:3px 0 4px}
+.winfo h4 a:hover{color:var(--orange)}
+.winfo .meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.wprice b{display:block;font-size:17px;font-weight:700;color:var(--ink)}
+.wprice s{font-size:12.5px;color:#9AA0BC}
+.wprice .off{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;color:var(--orange)}
+.wact{display:flex;gap:8px;justify-content:flex-end}
+.wact .btn{height:42px;padding:0 16px;font-size:13px}
+.wact .ic{width:42px;padding:0}
+.wl-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
+.wl-foot .tot{font-size:13.5px;color:var(--muted)}
+.wl-foot .tot b{color:var(--ink);font-size:18px;margin-left:6px}
+.wl-foot .l{display:flex;gap:10px;flex-wrap:wrap}
+
+@media (max-width:1100px){
+  .wl-head,.wrow{grid-template-columns:40px 84px minmax(0,1fr) 130px 110px 160px;gap:14px}
+  .wimg{width:84px;height:84px}
+  .wact .add span{display:none}
+}
+/* Cards on tablet / mobile */
+@media (max-width:860px){
+  .wl{background:none;border:0;overflow:visible;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .wl-head{display:none}
+  .wrow{grid-template-columns:1fr;gap:6px;background:var(--card);border:1px solid var(--line)!important;border-radius:var(--radius);padding:12px;position:relative;align-content:start}
+  .wrow:hover{background:var(--card);box-shadow:var(--shadow-h)}
+  .wrow .xcell{position:absolute;top:18px;right:18px;z-index:2}
+  .x{background:var(--card);box-shadow:0 4px 12px rgba(0,0,0,.1);border:0}
+  .wimg{width:100%;height:auto;aspect-ratio:1;margin-bottom:6px}
+  .winfo h4{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13px;min-height:38px}
+  .wprice b{font-size:16px}
+  .wact{justify-content:stretch;margin-top:6px}
+  .wact .add{flex:1}
+  .wact .add span{display:inline}
+}
+@media (max-width:640px){
+  .wl{grid-template-columns:1fr 1fr;gap:12px}
+  .wrow{padding:10px}
+  .wrow .xcell{top:14px;right:14px}
+  .wact .add span{display:none}
+  .wact .btn{height:40px}
+  .hero-acts{width:100%}
+  .hero-acts .btn{flex:1;padding:0 12px;font-size:13px}
+  .wl-foot{flex-direction:column;align-items:stretch}
+  .wl-foot .l .btn{flex:1}
+}
+</style>
+</head>
+<body data-page="wishlist">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <div class="crumb"><a href="index.html">Home</a><i class="fa-solid fa-chevron-right"></i><a href="account.html">Account</a><i class="fa-solid fa-chevron-right"></i><span>Wishlist</span></div>
+
+  <div class="page-hero">
+    <div><h1><i class="fa-solid fa-heart"></i>My Wishlist</h1><p id="sub">Products you've saved for later</p></div>
+    <div class="hero-acts" id="heroActs">
+      <button class="btn ghost" id="share"><i class="fa-solid fa-share-nodes"></i> Share</button>
+      <button class="btn primary" id="addAll"><i class="fa-solid fa-cart-plus"></i> Add All to Cart</button>
+    </div>
+  </div>
+
+  <div id="wlArea"></div>
+
+  <section id="recoSec">
+    <div class="shead"><div><h2>You May Also Like</h2><p>Hand-picked based on popular choices</p></div><a href="category.html" class="show-all">Show All <i class="fa-solid fa-arrow-right"></i></a></div>
+    <div class="grid" id="reco"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+const stockOf = id => id % 9 === 0 ? ["warn","Only 2 left"] : ["ok","In Stock"];
+const getWish = () => store.get("wish", []).filter(id => P[id]);
+
+function render(){
+  const w = getWish();
+  $("#heroActs").style.display = w.length ? "" : "none";
+  $("#sub").textContent = w.length ? `${w.length} item${w.length > 1 ? "s" : ""} saved for later` : "Products you've saved for later";
+  if (!w.length){
+    $("#wlArea").innerHTML = `<div class="box empty" style="margin-top:20px"><i class="fa-regular fa-heart"></i><h3>Your wishlist is empty</h3><p>Tap the <i class="fa-regular fa-heart" style="font-size:13px;color:var(--orange);margin:0"></i> icon on any product to save it here for later.</p><a href="category.html" class="btn primary" style="margin-top:18px"><i class="fa-solid fa-bag-shopping"></i> Start Shopping</a></div>`;
+  } else {
+    const total = w.reduce((s, id) => s + P[id].p, 0);
+    $("#wlArea").innerHTML = `<div class="wl">
+      <div class="wl-head"><span></span><span>Product</span><span></span><span>Price</span><span>Stock</span><span style="text-align:right">Action</span></div>
+      ${w.map(id => { const x = P[id], [sc, st] = stockOf(id), off = x.o > x.p ? Math.round((x.o - x.p) / x.o * 100) : 0; return `
+      <div class="wrow" data-id="${id}">
+        <div class="xcell"><button class="x" data-rm="${id}" aria-label="Remove"><i class="fa-solid fa-xmark"></i></button></div>
+        <a href="product.html?id=${id}" class="wimg"><img src="img/${x.i}" alt="${esc(x.n)}" loading="lazy"></a>
+        <div class="winfo"><span class="brand">${esc(x.b)}</span><h4><a href="product.html?id=${id}">${esc(x.n)}</a></h4>
+          <div class="meta"><span class="rating">${pchStars(pchRate(id))} ${pchRate(id).toFixed(1)}</span><span>${CATNAMES[x.c] || x.c}</span></div></div>
+        <div class="wprice"><b>${tk(x.p)}</b>${off ? `<s>${tk(x.o)}</s><span class="off">-${off}%</span>` : ""}</div>
+        <div><span class="pill ${sc}"><i class="fa-solid ${sc === "ok" ? "fa-circle-check" : "fa-triangle-exclamation"}"></i>${st}</span></div>
+        <div class="wact"><button class="btn dark add" onclick="addCart(${id})"><i class="fa-solid fa-cart-plus"></i><span> Add to Cart</span></button><button class="btn ghost ic" title="Buy now" aria-label="Buy now" onclick="addCart(${id},1,true)"><i class="fa-solid fa-bolt"></i></button></div>
+      </div>`; }).join("")}
+    </div>
+    <div class="wl-foot">
+      <div class="tot">Total value of saved items: <b>${tk(total)}</b></div>
+      <div class="l"><a href="category.html" class="btn ghost"><i class="fa-solid fa-arrow-left"></i> Continue Shopping</a><button class="btn ghost" id="clearAll" style="color:#D33"><i class="fa-regular fa-trash-can"></i> Clear All</button></div>
+    </div>`;
+  }
+  const rec = Object.keys(P).map(Number).filter(id => !w.includes(id));
+  fill("reco", (w.length ? rec.filter(id => w.some(x => P[x].c === P[id].c)).concat(rec) : [16, 3, 11, 6, 5, 10, 15, 8]).filter((v, i, a) => a.indexOf(v) === i).slice(0, 4));
+}
+
+function remove(id){
+  const row = $(`.wrow[data-id="${id}"]`);
+  const go = () => { store.set("wish", getWish().filter(x => x !== id)); updateCounts(); render(); toast("Removed from wishlist"); };
+  if (row) { row.classList.add("gone"); setTimeout(go, 280); } else go();
+}
+
+$("#wlArea").addEventListener("click", e => {
+  const r = e.target.closest("[data-rm]"); if (r) return remove(+r.dataset.rm);
+  if (e.target.closest("#clearAll") && confirm("Remove all items from your wishlist?")) { store.set("wish", []); updateCounts(); render(); toast("Wishlist cleared"); }
+});
+$("#addAll").onclick = () => {
+  const w = getWish(); if (!w.length) return;
+  const c = getCart(); w.forEach(id => c[id] = (c[id] || 0) + 1); store.set("cart", c); updateCounts();
+  toast(`${w.length} item${w.length > 1 ? "s" : ""} added to cart`);
+};
+$("#share").onclick = () => {
+  const url = location.origin + location.pathname;
+  (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(() => toast("Wishlist link copied"), () => toast("Copy this page's link to share"));
+};
+// re-render when a heart in "You may also like" is toggled
+const _tl = toggleList;
+toggleList = function(...a){ _tl(...a); if (a[0] === "wish") render(); };
+
+render();
+</script>
+</body>
+</html>

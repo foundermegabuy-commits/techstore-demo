@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shopping Cart | TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.cart-hero{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.cart-hero .meta{display:flex;gap:10px;flex-wrap:wrap}
+.cart-hero .meta span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:8px 14px;font-size:12.5px;color:#D5D9EE;display:flex;gap:8px;align-items:center}
+.cart-hero .meta i{color:var(--orange-2)}
+.cart-layout{display:grid;grid-template-columns:1fr 370px;gap:22px;margin-top:22px;align-items:start}
+.items{padding:0;overflow:hidden}
+.items-head{display:grid;grid-template-columns:1fr 130px 130px 120px 40px;gap:14px;padding:14px 22px;background:var(--soft);border-bottom:1px solid var(--line);font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.citem{display:grid;grid-template-columns:1fr 130px 130px 120px 40px;gap:14px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line);transition:background .2s}
+.citem:last-child{border-bottom:0}
+.citem:hover{background:#FCFCFE}
+.citem .prod{display:flex;gap:14px;align-items:center;min-width:0}
+.citem .pimg{width:84px;height:84px;flex:none;border-radius:12px;background:var(--soft);display:grid;place-items:center;overflow:hidden;border:1px solid var(--line)}
+.citem .pimg img{width:84%;height:84%;object-fit:contain;mix-blend-mode:multiply}
+.citem .pinfo{min-width:0}
+.citem .pinfo a{font-size:14px;font-weight:500;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.citem .pinfo a:hover{color:var(--orange)}
+.citem .pinfo .stock{margin-top:4px}
+.citem .unit b{font-weight:600;color:var(--ink);display:block}
+.citem .unit s{font-size:12px;color:#9AA0BC}
+.citem .line-total{font-weight:700;color:var(--ink);font-size:15px;text-align:right}
+.citem .rm{width:36px;height:36px;border-radius:10px;color:#9AA0BC;transition:.2s}
+.citem .rm:hover{background:#FDECEC;color:#D33}
+.citem .lbl{display:none}
+.items-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:16px 22px;background:var(--soft);border-top:1px solid var(--line)}
+.items-foot .btn{height:42px;font-size:13px}
+.side{position:sticky;top:150px;display:grid;gap:16px}
+.coupon-form{display:flex;gap:8px}
+.coupon-form input{flex:1;min-width:0;height:46px;border:1px dashed #FFB896;border-radius:11px;padding:0 14px;font-family:inherit;font-size:14px;background:var(--orange-soft);outline:0;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.coupon-form input:focus{border-style:solid;border-color:var(--orange);background:var(--card)}
+.coupon-form .btn{padding:0 18px}
+.coupon-hint{font-size:12px;color:var(--muted);margin-top:10px}
+.coupon-hint b{color:var(--orange)}
+.applied{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#E6F6EE;border:1px dashed #8FD3AE;border-radius:12px;padding:12px 14px}
+.applied .c{display:flex;gap:10px;align-items:center}
+.applied i{color:var(--green);font-size:18px}
+.applied b{display:block;font-size:13px;letter-spacing:1px}
+.applied span{font-size:12px;color:var(--muted)}
+.applied button{font-size:12px;font-weight:600;color:#D33}
+.summary .line.disc b{color:var(--green)}
+.summary .line small{font-size:11.5px;color:var(--muted);font-weight:400}
+.summary .btn{margin-top:16px}
+.secure{display:flex;justify-content:center;gap:16px;margin-top:14px;font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.secure i{color:var(--green);margin-right:4px}
+.perks{display:grid;gap:12px}
+.perks div{display:flex;gap:12px;align-items:center}
+.perks i{width:38px;height:38px;flex:none;border-radius:11px;display:grid;place-items:center;background:var(--orange-soft);color:var(--orange)}
+.perks b{display:block;font-size:13px;font-weight:600}
+.perks span{font-size:11.5px;color:var(--muted)}
+.empty-cart{margin-top:22px;padding:60px 20px}
+.empty-cart .ill{width:130px;height:130px;margin:0 auto 18px;border-radius:50%;background:radial-gradient(circle,var(--orange-soft),#fff 70%);display:grid;place-items:center}
+.empty-cart .ill i{font-size:58px;color:var(--orange);margin:0}
+.empty-cart .acts{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.citem.out{opacity:0;transform:translateX(20px);transition:.3s}
+@media (max-width:1100px){
+  .cart-layout{grid-template-columns:1fr}
+  .side{position:static}
+}
+@media (max-width:760px){
+  .items-head{display:none}
+  .citem{grid-template-columns:1fr auto;grid-template-areas:"prod rm" "unit unit" "qty total";gap:12px;padding:16px}
+  .citem .prod{grid-area:prod}
+  .citem .rm{grid-area:rm;align-self:start}
+  .citem .unit{grid-area:unit;display:flex;gap:8px;align-items:baseline}
+  .citem .qtyc{grid-area:qty}
+  .citem .line-total{grid-area:total;align-self:center}
+  .citem .pimg{width:68px;height:68px}
+  .citem .pinfo a{font-size:13px}
+  .items-foot{padding:14px 16px}
+}
+@media (max-width:420px){
+  .items-foot .btn{flex:1}
+  .coupon-form .btn{padding:0 14px}
+}
+</style>
+</head>
+<body data-page="cart">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <nav class="crumb"><a href="index.html"><i class="fa-solid fa-house" style="font-size:12px;opacity:1"></i></a><i class="fa-solid fa-chevron-right"></i><span>Shopping Cart</span></nav>
+
+  <div class="page-hero cart-hero">
+    <div><h1>Shopping Cart</h1><p id="heroSub">Review your items before checkout</p></div>
+    <div class="meta"><span><i class="fa-solid fa-shield-halved"></i>Official warranty</span><span><i class="fa-solid fa-truck-fast"></i>Nationwide delivery</span><span><i class="fa-solid fa-credit-card"></i>0% EMI</span></div>
+  </div>
+
+  <div id="cartRoot"></div>
+
+  <section>
+    <div class="shead">
+      <div><h2>You May Also Like</h2><p>Hand-picked based on your cart</p></div>
+      <div class="right">
+        <button class="nav-arr" data-row="r-like" data-dir="-1" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="nav-arr" data-row="r-like" data-dir="1" aria-label="Right"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="row" id="r-like"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+const COUPONS = {SAVE5: 5, WELCOME5: 5, BUNDLE5: 5};
+const root = $("#cartRoot");
+
+function itemRow(id, q){
+  const x = P[id];
+  return `<div class="citem" data-id="${id}">
+    <div class="prod">
+      <a href="product.html?id=${id}" class="pimg"><img src="img/${x.i}" alt="${esc(x.n)}"></a>
+      <div class="pinfo"><span class="brand">${esc(x.b)}</span><a href="product.html?id=${id}">${esc(x.n)}</a><div class="stock">In Stock</div></div>
+    </div>
+    <div class="unit"><b>${tk(x.p)}</b>${x.o > x.p ? `<s>${tk(x.o)}</s>` : ""}</div>
+    <div class="qtyc"><div class="qty">
+      <button aria-label="Decrease" data-act="dec"><i class="fa-solid fa-minus"></i></button>
+      <input type="text" inputmode="numeric" value="${q}" aria-label="Quantity" data-act="set">
+      <button aria-label="Increase" data-act="inc"><i class="fa-solid fa-plus"></i></button>
+    </div></div>
+    <div class="line-total">${tk(x.p * q)}</div>
+    <button class="rm" aria-label="Remove" data-act="rm"><i class="fa-regular fa-trash-can"></i></button>
+  </div>`;
+}
+
+function render(){
+  const cart = getCart();
+  const ids = Object.keys(cart).filter(id => P[id]);
+  const count = cartCount();
+  $("#heroSub").textContent = ids.length ? `You have ${count} item${count > 1 ? "s" : ""} in your cart` : "Your cart is waiting to be filled";
+
+  if (!ids.length){
+    root.innerHTML = `<div class="box empty empty-cart">
+      <div class="ill"><i class="fa-solid fa-cart-shopping"></i></div>
+      <h3>Your cart is empty</h3>
+      <p>Looks like you haven't added anything yet. Explore our latest laptops, monitors and gaming gear.</p>
+      <div class="acts"><a href="category.html" class="btn primary"><i class="fa-solid fa-bag-shopping"></i>Start Shopping</a><a href="offers.html" class="btn ghost"><i class="fa-solid fa-tags"></i>View Offers</a></div>
+    </div>`;
+    updateCounts(); return;
+  }
+
+  const sub = cartTotal();
+  const code = store.get("coupon", null);
+  const pct = code && COUPONS[code] ? COUPONS[code] : 0;
+  const rc = code && !pct ? store.get("coupons", []).find(c => c.code === code) : null;   // reward coupon (flat ৳)
+  const disc = rc ? Math.min(rc.value, sub) : Math.round(sub * pct / 100);
+  const saved = ids.reduce((s, id) => s + Math.max(0, P[id].o - P[id].p) * cart[id], 0);
+
+  root.innerHTML = `<div class="cart-layout">
+    <div class="box items">
+      <div class="items-head"><span>Product</span><span>Unit Price</span><span>Quantity</span><span style="text-align:right">Total</span><span></span></div>
+      <div id="rows">${ids.map(id => itemRow(id, cart[id])).join("")}</div>
+      <div class="items-foot">
+        <a href="category.html" class="btn ghost"><i class="fa-solid fa-arrow-left"></i>Continue Shopping</a>
+        <button class="btn ghost" id="clearCart"><i class="fa-regular fa-trash-can"></i>Clear Cart</button>
+      </div>
+    </div>
+    <aside class="side">
+      <div class="box">
+        <h3><i class="fa-solid fa-ticket" style="color:var(--orange);margin-right:6px"></i>Coupon Code</h3>
+        ${(pct || rc) ? `<div class="applied"><div class="c"><i class="fa-solid fa-circle-check"></i><div><b>${esc(code)}</b><span>${rc ? tk(rc.value) + " reward" : pct + "%"} off applied</span></div></div><button id="rmCoupon">Remove</button></div>`
+        : `<form class="coupon-form" id="couponForm"><input id="couponIn" placeholder="Enter code" aria-label="Coupon code"><button class="btn dark">Apply</button></form><p class="coupon-hint">Try <b>SAVE5</b> for 5% off your order.</p>`}
+      </div>
+      <div class="box summary">
+        <h3>Order Summary</h3>
+        <div class="line"><span>Subtotal (${count} item${count > 1 ? "s" : ""})</span><b>${tk(sub)}</b></div>
+        ${disc ? `<div class="line disc"><span>Discount (${esc(code)})</span><b>− ${tk(disc)}</b></div>` : ""}
+        <div class="line"><span>Delivery</span><small>Calculated at checkout</small></div>
+        <div class="line total"><span>Total</span><b>${tk(sub - disc)}</b></div>
+        ${saved + disc > 0 ? `<div class="pill ok" style="margin-top:12px"><i class="fa-solid fa-piggy-bank"></i>You save ${tk(saved + disc)} on this order</div>` : ""}
+        <a href="checkout.html" class="btn primary block">Proceed to Checkout <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="secure"><span><i class="fa-solid fa-lock"></i>Secure checkout</span><span><i class="fa-solid fa-rotate"></i>7-day exchange</span></div>
+      </div>
+      <div class="box perks">
+        <div><i class="fa-solid fa-truck-fast"></i><p><b>Fast Delivery</b><span>Inside Dhaka within 24 hours</span></p></div>
+        <div><i class="fa-solid fa-credit-card"></i><p><b>0% EMI Available</b><span>Up to 12 months on selected cards</span></p></div>
+        <div><i class="fa-solid fa-headset"></i><p><b>Need help?</b><span>Call 01000000000</span></p></div>
+      </div>
+    </aside>
+  </div>`;
+  updateCounts();
+}
+
+root.addEventListener("click", e => {
+  const b = e.target.closest("[data-act]");
+  if (b && b.tagName === "BUTTON"){
+    const row = b.closest(".citem"), id = row.dataset.id, q = getCart()[id] || 0;
+    if (b.dataset.act === "inc") setQty(id, q + 1);
+    if (b.dataset.act === "dec") { if (q <= 1) return removeItem(row, id); setQty(id, q - 1); }
+    if (b.dataset.act === "rm") return removeItem(row, id);
+    render(); return;
+  }
+  if (e.target.closest("#clearCart")){ store.set("cart", {}); toast("Cart cleared"); render(); }
+  if (e.target.closest("#rmCoupon")){ store.set("coupon", null); toast("Coupon removed"); render(); }
+});
+root.addEventListener("change", e => {
+  if (e.target.dataset.act !== "set") return;
+  const id = e.target.closest(".citem").dataset.id, v = parseInt(e.target.value, 10);
+  setQty(id, isNaN(v) ? 1 : Math.min(Math.max(v, 0), 99)); render();
+});
+root.addEventListener("submit", e => {
+  if (e.target.id !== "couponForm") return;
+  e.preventDefault();
+  const v = $("#couponIn").value.trim().toUpperCase();
+  if (!v) return toast("Please enter a coupon code");
+  if (COUPONS[v]) { store.set("coupon", v); toast(`Coupon ${v} applied – ${COUPONS[v]}% off`); render(); }
+  else if (store.get("coupons", []).some(c => c.code === v)) { store.set("coupon", v); toast(`Reward coupon ${v} applied`); render(); }
+  else { toast("Invalid coupon code"); $("#couponIn").select(); }
+});
+function removeItem(row, id){
+  row.classList.add("out");
+  setTimeout(() => { setQty(id, 0); toast("Item removed from cart"); render(); }, 250);
+}
+
+render();
+const inCart = Object.keys(getCart()).map(Number);
+fill("r-like", [16, 3, 6, 8, 10, 11, 5, 20, 9, 1].filter(id => !inCart.includes(id)).slice(0, 8));
+// keep summary in sync when "You may also like" adds items
+const _add = addCart;
+addCart = function(id, qty = 1, go = false){ _add(id, qty, go); render(); };
+</script>
+</body>
+</html>

@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product | TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* ---------- Top product block ---------- */
+.pd{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:36px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;margin-top:14px;box-shadow:var(--shadow)}
+.gallery{display:flex;flex-direction:column;gap:14px;min-width:0}
+.gmain{position:relative;aspect-ratio:1;border-radius:18px;background:radial-gradient(circle at 50% 40%,#fff,var(--soft-2) 75%);border:1px solid var(--line);overflow:hidden;cursor:zoom-in}
+.gmain img{width:100%;height:100%;object-fit:contain;padding:8%;mix-blend-mode:multiply;transition:transform .25s ease,opacity .25s}
+.gmain.zoom img{transform:scale(2.1)}
+.gmain .badges{position:absolute;top:16px;left:16px;display:flex;flex-direction:column;gap:6px;z-index:2}
+.gmain .hint{position:absolute;right:14px;bottom:14px;background:rgba(5,12,46,.75);backdrop-filter:blur(6px);color:#fff;font-size:11.5px;padding:6px 11px;border-radius:20px;display:flex;gap:7px;align-items:center;transition:.2s;pointer-events:none}
+.gmain.zoom .hint{opacity:0}
+.gmain .garr{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:var(--card);box-shadow:0 6px 16px rgba(5,12,46,.12);color:var(--ink);z-index:2;opacity:0;transition:.2s}
+.gmain:hover .garr{opacity:1}
+.gmain .garr:hover{background:var(--orange);color:#fff}
+.gmain .garr.p{left:12px}.gmain .garr.n{right:12px}
+.gthumbs{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.gthumbs::-webkit-scrollbar{display:none}
+.gthumbs button{flex:none;width:84px;height:84px;border-radius:14px;border:2px solid var(--line);background:var(--soft);padding:6px;transition:.2s}
+.gthumbs button img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.gthumbs button:hover{border-color:#FFC3A8}
+.gthumbs button.on{border-color:var(--orange);box-shadow:0 6px 16px rgba(255,74,3,.18)}
+
+.info{min-width:0}
+.info .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bchip{display:inline-flex;align-items:center;gap:7px;background:var(--orange-soft);color:var(--orange);font-weight:600;font-size:12px;letter-spacing:.6px;text-transform:uppercase;padding:5px 12px;border-radius:20px}
+.info h1{font-size:25px;line-height:1.3;font-weight:700;letter-spacing:-.3px;margin:12px 0 10px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:12.5px;color:var(--muted)}
+.meta .rating{font-size:13px}
+.meta a:hover{color:var(--orange)}
+.meta b{color:var(--text);font-weight:500}
+.meta .sep{width:1px;height:14px;background:var(--line)}
+.pbox{margin:18px 0;padding:18px 20px;border-radius:16px;background:linear-gradient(135deg,#FFF7F2,#FFF1EA);border:1px solid #FFE0D0}
+.pbox .now{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.pbox .now b{font-size:32px;font-weight:800;color:var(--ink);letter-spacing:-.5px;line-height:1.1}
+.pbox .now s{font-size:16px;color:#9AA0BC}
+.pbox .now .save{font-size:12px}
+.pbox .emi{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:13px;color:#2A3150;flex-wrap:wrap}
+.pbox .emi i{color:var(--orange)}
+.pbox .emi b{color:var(--orange)}
+.pbox .emi a{color:var(--ink);font-weight:600;text-decoration:underline;font-size:12px}
+.kf h3{font-size:14px;font-weight:600;margin-bottom:10px}
+.kf ul{list-style:none;display:grid;gap:8px}
+.kf li{display:flex;gap:10px;font-size:13.5px;color:#2A3150}
+.kf li i{width:20px;height:20px;border-radius:6px;flex:none;display:grid;place-items:center;font-size:10px;background:#E6F6EE;color:var(--green);margin-top:1px}
+.kf li span b{font-weight:600;color:var(--text)}
+.kf .more{display:inline-flex;gap:6px;align-items:center;color:var(--orange);font-weight:600;font-size:12.5px;margin-top:10px;cursor:pointer}
+.buyrow{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;align-items:center}
+.buyrow .qty{height:50px}
+.buyrow .qty button{width:42px}
+.buyrow .btn{height:50px;flex:1;min-width:140px}
+.icon-btn{width:50px;height:50px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:16px;transition:.2s;flex:none}
+.icon-btn:hover{border-color:var(--orange);color:var(--orange)}
+.icon-btn.on{background:var(--orange);border-color:var(--orange);color:#fff}
+.secondary{display:flex;gap:18px;margin-top:14px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.secondary a{display:flex;gap:7px;align-items:center}
+.secondary a:hover{color:var(--orange)}
+.perks{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.perks div{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,#FFF6F1,var(--soft));border:1px solid #F1E6E0;transition:.2s}
+.perks div:hover{border-color:#FFC9AE;box-shadow:0 8px 20px rgba(255,74,3,.08)}
+.perks i{width:38px;height:38px;flex:none;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff;font-size:15px;box-shadow:0 6px 14px rgba(255,74,3,.25)}
+.perks b{display:block;font-size:13px;font-weight:600;line-height:1.3}
+.perks span{font-size:11.5px;color:var(--muted);line-height:1.4}
+@media (max-width:480px){.perks{grid-template-columns:1fr}}
+
+/* ---------- Tabs area ---------- */
+.detail{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:22px;margin-top:28px;align-items:start}
+.ptabs{position:sticky;top:136px;z-index:5;display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:5px;overflow-x:auto;scrollbar-width:none;box-shadow:0 8px 20px rgba(5,12,46,.05)}
+.ptabs::-webkit-scrollbar{display:none}
+.ptabs button{flex:none;padding:10px 18px;border-radius:10px;font-size:13.5px;font-weight:500;color:var(--muted);transition:.2s;display:flex;gap:8px;align-items:center}
+.ptabs button small{font-size:10.5px;background:var(--soft-2);color:var(--muted);border-radius:10px;padding:0 7px;font-weight:600}
+.ptabs button:hover{color:var(--ink)}
+.ptabs button.on{background:var(--navy);color:#fff}
+.ptabs button.on small{background:var(--orange);color:#fff}
+.pane{display:none;margin-top:14px}
+.pane.on{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pane h3{font-size:18px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.pane h3::before{content:"";width:5px;height:20px;border-radius:3px;background:linear-gradient(var(--orange),var(--orange-2))}
+.spec{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:13.5px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.spec th.g{background:var(--navy);color:#fff;text-align:left;padding:10px 16px;font-size:12.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase}
+.spec th.g i{color:var(--orange-2);margin-right:8px}
+.spec td{overflow-wrap:anywhere;padding:11px 16px;border-top:1px solid var(--line);vertical-align:top}
+.spec td:first-child{width:32%;color:var(--muted);background:var(--soft);font-weight:500}
+.spec tr.first td{border-top:0}
+.desc p{color:#3A4160;line-height:1.85;font-size:14px}
+.desc p+p{margin-top:12px}
+.desc h4{font-size:15px;margin:22px 0 10px}
+.hl{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.hl div{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:16px}
+.hl i{font-size:20px;color:var(--orange);margin-bottom:8px}
+.hl b{display:block;font-size:13.5px}
+.hl span{font-size:12px;color:var(--muted)}
+.wlist{list-style:none;display:grid;gap:12px}
+.wlist li{display:flex;gap:12px;font-size:13.5px;color:#3A4160}
+.wlist li i{color:var(--orange);margin-top:4px}
+.wcard{display:flex;gap:16px;align-items:center;background:linear-gradient(135deg,var(--navy),var(--navy-3));color:#fff;border-radius:16px;padding:20px;margin-bottom:20px}
+.wcard .big{font-size:34px;font-weight:800;color:var(--gold);line-height:1}
+.wcard small{display:block;font-size:11px;color:#9CA3C7;letter-spacing:1.5px;text-transform:uppercase}
+.wcard p{font-size:13px;color:#B4BAD8}
+
+/* reviews */
+.rsum{display:grid;grid-template-columns:200px 1fr auto;gap:28px;align-items:center;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.rsum .avg{text-align:center}
+.rsum .avg b{font-size:48px;font-weight:800;line-height:1;color:var(--ink)}
+.rsum .avg .rating{justify-content:center;font-size:15px;margin:6px 0 2px}
+.rsum .avg span{font-size:12px;color:var(--muted)}
+.bars{display:grid;gap:8px}
+.bars div{display:grid;grid-template-columns:40px 1fr 40px;gap:10px;align-items:center;font-size:12.5px;color:var(--muted)}
+.bars div i{color:#F5A623;font-size:10px}
+.bars .bar{height:8px;border-radius:4px;background:#EEF0F6;overflow:hidden}
+.bars .bar span{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#F5A623,#FFC24B)}
+.rvw{display:flex;gap:14px;padding:20px 0;border-bottom:1px solid var(--line)}
+.rvw .av{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--navy),var(--navy-3))}
+.rvw .hd{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.rvw .hd b{font-size:14px}
+.rvw .hd .pill{font-size:10.5px;padding:2px 8px}
+.rvw .hd time{font-size:12px;color:var(--muted);margin-left:auto}
+.rvw p{font-size:13.5px;color:#3A4160;margin-top:6px;line-height:1.7}
+.rvw .helpful{display:flex;gap:14px;margin-top:8px;font-size:12px;color:var(--muted)}
+.rvw .helpful button{color:var(--muted);font-size:12px;display:flex;gap:6px;align-items:center}
+.rvw .helpful button:hover{color:var(--orange)}
+.rform{margin-top:24px;background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:20px}
+.rform h4{font-size:15px;margin-bottom:4px}
+.rform>p{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.starpick{display:flex;gap:6px;margin-bottom:14px;align-items:center}
+.starpick button{font-size:22px;color:#D5DAEA;transition:.15s}
+.starpick button.on{color:#F5A623}
+.starpick span{font-size:12.5px;color:var(--muted);margin-left:8px}
+
+/* Q&A */
+.qa{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.qa summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;font-weight:500;font-size:14px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .q{width:26px;height:26px;border-radius:8px;flex:none;display:grid;place-items:center;background:var(--orange-soft);color:var(--orange);font-weight:700;font-size:12px}
+.qa summary .chev{margin-left:auto;color:var(--muted);font-size:12px;transition:.25s;margin-top:6px}
+.qa[open] summary .chev{transform:rotate(180deg)}
+.qa .a{display:flex;gap:12px;padding:0 16px 16px;font-size:13.5px;color:#3A4160;line-height:1.7}
+.qa .a .q{width:26px;height:26px;border-radius:8px;flex:none;display:grid;place-items:center;background:#E6F6EE;color:var(--green);font-weight:700;font-size:12px}
+.qa .a small{display:block;color:var(--muted);font-size:11.5px;margin-top:4px}
+.askf{display:flex;gap:10px;margin-top:18px}
+.askf input{flex:1;min-width:0;height:48px;border:1px solid var(--line);border-radius:12px;padding:0 16px;font-family:inherit;font-size:14px;outline:0;background:var(--soft)}
+.askf input:focus{border-color:var(--orange);background:var(--card)}
+
+/* side */
+.side{display:grid;gap:16px;position:sticky;top:136px}
+.help{background:linear-gradient(135deg,var(--navy),var(--navy-3));color:#fff;border-radius:var(--radius);padding:22px;position:relative;overflow:hidden}
+.help::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(rgba(255,74,3,.5),transparent 65%)}
+.help small{color:var(--gold);font-size:11px;letter-spacing:1.5px;font-weight:600}
+.help h4{font-size:18px;margin:4px 0 6px}
+.help p{color:#B4BAD8;font-size:12.5px}
+.help .btn{margin-top:14px;height:42px;position:relative;z-index:1}
+.minis{display:grid;gap:12px}
+.mini{display:flex;gap:12px;align-items:center}
+.mini img{width:62px;height:62px;border-radius:12px;background:var(--soft);object-fit:contain;padding:5px;flex:none;mix-blend-mode:multiply}
+.mini b{font-size:12.5px;font-weight:500;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mini span{font-size:13px;font-weight:700;color:var(--orange)}
+.mini:hover b{color:var(--orange)}
+
+.card .stock.pre{color:#C77700}.card .stock.pre::before{background:#F5A623}
+#notFound{margin-top:20px}
+
+@media (max-width:1200px){
+  .detail{grid-template-columns:minmax(0,1fr) 270px}
+}
+@media (max-width:992px){
+  .pd{grid-template-columns:1fr;gap:26px}
+  .gallery{max-width:560px;width:100%;margin:0 auto}
+  .detail{grid-template-columns:minmax(0,1fr)}
+  .side{position:static;grid-template-columns:1fr 1fr}
+  .rsum{grid-template-columns:160px 1fr}
+  .rsum>.btn{grid-column:1/-1}
+}
+@media (max-width:640px){
+  .pd{padding:14px;border-radius:18px}
+  .gthumbs button{width:66px;height:66px;border-radius:12px}
+  .gmain .garr{opacity:1;width:34px;height:34px}
+  .gmain .hint{display:none}
+  .info h1{font-size:19px}
+  .pbox{padding:14px 16px}
+  .pbox .now b{font-size:26px}
+  .buyrow .qty{order:0}
+  .buyrow .btn{flex:1 1 100%;order:2}
+  .buyrow .icon-btn{order:1}
+  .buyrow .qty{flex:1}
+  .buyrow .qty input{flex:1}
+  .ptabs{position:static}
+  .ptabs button{padding:9px 13px;font-size:12.5px}
+  .spec td{padding:9px 12px;font-size:12.5px}
+  .spec td:first-child{width:40%}
+  .hl{grid-template-columns:1fr}
+  .rsum{grid-template-columns:1fr;gap:16px}
+  .rvw .hd time{margin-left:0;flex-basis:100%}
+  .side{grid-template-columns:1fr}
+  .askf{flex-direction:column}
+}
+
+/* ---------- Dark-mode friendly surfaces ---------- */
+.pd,.ptabs,.icon-btn{background:var(--card)}
+.rform{background:var(--bg)}
+.card .stock.low{color:#D33}.card .stock.low::before{background:#D33}
+
+/* ---------- Stock urgency / pre-order ---------- */
+.urg{margin:-4px 0 18px;padding:12px 14px;border-radius:14px;border:1px solid rgba(221,51,51,.22);background:linear-gradient(135deg,rgba(221,51,51,.07),rgba(255,74,3,.04))}
+.urg-h{display:flex;align-items:center;gap:6px 14px;flex-wrap:wrap;font-size:13px}
+.urg-h b{color:#D33;display:flex;gap:7px;align-items:center;font-weight:600}
+.urg-h b i{animation:flick 1.6s ease-in-out infinite}
+.urg-h span{margin-left:auto;color:var(--muted);font-size:12px;display:flex;gap:7px;align-items:center}
+.urg-h span em{width:7px;height:7px;border-radius:50%;background:var(--green);animation:livedot 1.6s infinite}
+.urg-bar{height:7px;border-radius:5px;background:var(--line);margin-top:9px;overflow:hidden}
+.urg-bar span{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,#D33,var(--orange-2))}
+@keyframes flick{50%{transform:scale(1.18) rotate(-6deg)}}
+@keyframes livedot{0%{box-shadow:0 0 0 0 rgba(1,144,69,.5)}100%{box-shadow:0 0 0 7px rgba(1,144,69,0)}}
+.preinfo{margin:-4px 0 18px;padding:11px 14px;border-radius:14px;border:1px solid rgba(199,119,0,.25);background:rgba(245,166,35,.08);font-size:12.5px;color:var(--text);display:flex;gap:10px;align-items:flex-start}
+.preinfo i{color:#C77700;margin-top:3px}
+
+/* ---------- WhatsApp / notify / alert chip ---------- */
+.buy2{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.buy2 .btn{flex:1;min-width:190px;height:46px}
+.btn.wa{background:#25D366;color:#fff;box-shadow:0 8px 20px rgba(37,211,102,.25)}
+.btn.wa:hover{background:#1EBE5A;transform:translateY(-1px)}
+.btn.wa i{font-size:18px}
+.btn.notify{background:var(--card);border:1.5px dashed var(--orange);color:var(--orange)}
+.btn.notify:hover{background:rgba(255,74,3,.06)}
+.nchip{display:inline-flex;align-items:center;gap:8px;margin:12px 8px 0 0;padding:5px 6px 5px 12px;border-radius:20px;background:rgba(1,144,69,.1);color:var(--green);font-size:12px;font-weight:600}
+.nchip button{width:22px;height:22px;border-radius:50%;color:inherit;font-size:11px}
+.nchip button:hover{background:rgba(1,144,69,.18)}
+
+/* ---------- Alert modal ---------- */
+.al-prod{display:flex;gap:12px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:14px;margin-bottom:18px;background:var(--bg)}
+.al-prod img{width:52px;height:52px;object-fit:contain;border-radius:10px;background:var(--card);padding:4px;flex:none}
+.al-prod b{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;font-size:13px;font-weight:600}
+.al-prod span{font-size:12px;color:var(--muted)}
+.al-prod em{font-style:normal;color:var(--orange);font-weight:700}
+.al-in{display:flex;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--card);transition:.2s}
+.al-in:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,74,3,.12)}
+.al-in span{display:grid;place-items:center;padding:0 12px;background:var(--bg);color:var(--muted);font-weight:600;font-size:13px;border-right:1px solid var(--line)}
+.field .al-in input{border:0;border-radius:0;box-shadow:none;background:transparent;color:var(--text)}
+.al-in.bad{border-color:#D33}
+.field small{font-size:11.5px;color:var(--muted)}
+.field small.al-err{color:#D33}
+.field .opt{color:var(--muted);font-weight:400}
+.al-ch{display:flex;gap:10px;margin:6px 0 18px}
+.al-ch label{flex:1;display:flex;gap:9px;align-items:center;border:1.5px solid var(--line);border-radius:11px;padding:10px 12px;cursor:pointer;font-size:13px;font-weight:500;transition:.2s}
+.al-ch input{accent-color:var(--orange);width:16px;height:16px}
+.al-ch label .fa-whatsapp{color:#25D366}.al-ch label .fa-comment-sms{color:#0381C5}
+.al-ch label:has(input:checked){border-color:var(--orange);background:rgba(255,74,3,.06)}
+.al-ok{text-align:center;padding:16px 4px 4px}
+.al-ok>span{width:68px;height:68px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;font-size:28px;color:#fff;background:linear-gradient(135deg,#19B45F,var(--green));box-shadow:0 12px 26px rgba(1,144,69,.3);animation:pop .4s ease}
+.al-ok h3{font-size:19px;font-weight:700;margin-bottom:6px}
+.al-ok p{font-size:13px;color:var(--muted);margin-bottom:18px}
+@keyframes pop{from{transform:scale(.5);opacity:0}}
+
+/* ---------- Frequently bought together ---------- */
+.fbt{margin-top:22px;padding:22px 24px}
+.fbt-h{margin-bottom:16px}
+.fbt-h h3{font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px;margin:0 0 2px}
+.fbt-h h3::before{content:"";width:5px;height:20px;border-radius:3px;background:linear-gradient(var(--orange),var(--orange-2))}
+.fbt-h p{font-size:12.5px;color:var(--muted);padding-left:15px}
+.fbt-body{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:22px;align-items:center}
+.fbt-items{display:flex;align-items:stretch;min-width:0}
+.fbt-it{flex:1 1 0;min-width:0;position:relative;border:1.5px solid var(--line);border-radius:16px;padding:12px;background:var(--card);transition:.2s;display:flex;flex-direction:column;cursor:pointer}
+.fbt-it input{position:absolute;opacity:0;pointer-events:none}
+.fbt-it.on{border-color:var(--orange);box-shadow:0 8px 22px rgba(255,74,3,.1)}
+.fbt-it:not(.on) .fbt-img,.fbt-it:not(.on) .fbt-tx{opacity:.45}
+.fbt-it.main{cursor:default}
+.fbt-chk{position:absolute;top:10px;left:10px;z-index:1;width:24px;height:24px;border-radius:7px;border:2px solid var(--line);display:grid;place-items:center;color:transparent;background:var(--card);font-size:11px;transition:.2s}
+.fbt-it.on .fbt-chk{background:var(--orange);border-color:var(--orange);color:#fff}
+.fbt-it:focus-within{outline:2px solid rgba(255,74,3,.35);outline-offset:2px}
+.fbt-img{height:130px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--bg);margin-bottom:10px;padding:10px;transition:.2s;overflow:hidden}
+.fbt-img img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
+.fbt-tx{display:flex;flex-direction:column;gap:3px;transition:.2s}
+.fbt-tx small{font-size:10.5px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+.fbt-tx small.me{color:var(--orange)}
+.fbt-tx a{font-size:12.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fbt-tx a:hover{color:var(--orange)}
+.fbt-tx b{font-size:14px;color:var(--orange);font-weight:700}
+.fbt-plus{flex:none;width:36px;display:grid;place-items:center;margin:0 -8px;z-index:2}
+.fbt-plus i{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-size:12px;box-shadow:0 0 0 4px var(--card),0 6px 14px rgba(5,12,46,.25)}
+.fbt-sum{border-radius:18px;padding:20px;background:linear-gradient(135deg,var(--navy),var(--navy-3));color:#fff;position:relative;overflow:hidden}
+.fbt-sum::after{content:"";position:absolute;right:-50px;top:-50px;width:150px;height:150px;border-radius:50%;background:radial-gradient(rgba(255,74,3,.45),transparent 65%);pointer-events:none}
+.fbt-sum small{font-size:12px;color:#B4BAD8}
+.fbt-p{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:2px 0 8px}
+.fbt-p b{font-size:28px;font-weight:800;letter-spacing:-.4px}
+.fbt-p s{color:#8F96B8;font-size:13px}
+.fbt-extra{display:inline-flex;gap:7px;align-items:center;background:var(--gold);color:var(--ink);font-size:12px;font-weight:700;padding:4px 11px;border-radius:20px}
+.fbt-hint{display:block;font-size:12px;color:#B4BAD8}
+.fbt-hint b{color:var(--gold)}
+.fbt-sum .btn{margin-top:14px;position:relative;z-index:1}
+
+/* ---------- Branch availability ---------- */
+.bstock h3{display:flex;gap:9px;align-items:center}
+.bstock h3 i{color:var(--orange)}
+.bs-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;padding:12px 0;border-top:1px solid var(--line);align-items:start}
+.bs-row:first-of-type{border-top:0;padding-top:2px}
+.bs-name{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:600}
+.bs-name i{color:var(--muted);font-size:12px}
+.bs-open{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);margin-top:3px}
+.bs-open::before{content:"";width:7px;height:7px;border-radius:50%;background:#D33;flex:none}
+.bs-open.on::before{background:var(--green);box-shadow:0 0 0 3px rgba(1,144,69,.15)}
+.bs-row .pill{font-size:10.5px;padding:3px 9px;white-space:nowrap}
+.bs-dir{grid-column:1/-1;display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:600;color:var(--orange);width:max-content}
+.bs-dir:hover{text-decoration:underline}
+.bs-note{margin-top:10px;padding-top:12px;border-top:1px dashed var(--line);font-size:11.5px;color:var(--muted)}
+.bs-note a{color:var(--text);font-weight:600}
+
+/* ---------- Review filters / photos / lightbox ---------- */
+.rfilt{display:flex;gap:8px;flex-wrap:wrap;padding:18px 0 4px}
+.rfilt button{padding:7px 14px;border-radius:20px;border:1px solid var(--line);background:var(--card);font-size:12.5px;font-weight:500;color:var(--muted);display:flex;gap:6px;align-items:center;transition:.2s}
+.rfilt button:hover{border-color:var(--orange);color:var(--orange)}
+.rfilt button.on{background:var(--navy);border-color:var(--ink);color:#fff}
+.rfilt button small{font-size:10.5px;font-weight:600;background:rgba(255,74,3,.12);color:var(--orange);border-radius:10px;padding:0 7px}
+.rfilt button.on small{background:var(--orange);color:#fff}
+.rv-empty{padding:28px 0;text-align:center;color:var(--muted);font-size:13px}
+.rv-ph{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.rv-ph button{width:74px;height:74px;border-radius:11px;overflow:hidden;border:1px solid var(--line);background:var(--bg);padding:0}
+.rv-ph img{width:100%;height:100%;object-fit:cover;transition:.25s}
+.rv-ph button:hover img{transform:scale(1.08)}
+.rdrop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:2px dashed var(--line);border-radius:14px;padding:18px;text-align:center;cursor:pointer;background:var(--card);color:var(--muted);font-size:12.5px;transition:.2s}
+.rdrop i{font-size:22px;color:var(--orange);margin-bottom:2px}
+.rdrop u{color:var(--orange);font-weight:600;text-decoration:none}
+.rdrop small{font-size:11px}
+.rdrop:hover,.rdrop.drag{border-color:var(--orange);background:rgba(255,74,3,.05)}
+.rdrop.full{display:none}
+.rprev{display:flex;gap:10px;flex-wrap:wrap}
+.rprev:not(:empty){margin-top:10px}
+.rprev div{position:relative;width:78px;height:78px;border-radius:12px;overflow:hidden;border:1px solid var(--line);animation:pop .25s ease}
+.rprev img{width:100%;height:100%;object-fit:cover}
+.rprev button{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(5,12,46,.78);color:#fff;font-size:10px}
+.rprev button:hover{background:#D33}
+.plb{position:fixed;inset:0;z-index:140;background:rgba(2,6,28,.92);display:grid;place-items:center;padding:60px 16px;opacity:0;visibility:hidden;transition:.25s}
+.plb.open{opacity:1;visibility:visible}
+.plb img{max-width:min(860px,100%);max-height:78vh;border-radius:14px;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.plb button{position:absolute;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:16px;transition:.2s}
+.plb button:hover{background:var(--orange)}
+.plb .x{top:16px;right:16px}
+.plb .p{left:16px;top:50%;transform:translateY(-50%)}
+.plb .n{right:16px;top:50%;transform:translateY(-50%)}
+.plb .c{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#B4BAD8;font-size:12.5px}
+
+/* ---------- Sticky buy bar ---------- */
+.ptabs,.side{top:var(--stickTop,136px);transition:top .3s ease}
+.sbar{position:fixed;left:0;right:0;top:var(--sbTop,0px);z-index:45;background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 14px 30px rgba(5,12,46,.12);transform:translateY(-110%);opacity:0;visibility:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s,visibility .35s,top .25s}
+.sbar.show{transform:none;opacity:1;visibility:visible}
+.sbar-in{display:flex;align-items:center;gap:14px;height:68px}
+.sbar img{width:50px;height:50px;object-fit:contain;border-radius:11px;background:var(--bg);padding:4px;flex:none;border:1px solid var(--line)}
+.sb-t{flex:1;min-width:0}
+.sb-t b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:620px}
+.sb-t span{display:flex;align-items:baseline;gap:8px;font-size:12px;color:var(--muted);white-space:nowrap}
+.sb-t em{font-style:normal;font-size:17px;font-weight:800;color:var(--orange)}
+.sb-t s{font-size:12px}
+.sb-t i{font-style:normal;font-weight:600;color:var(--green)}
+.sb-t i.low{color:#D33}.sb-t i.pre{color:#C77700}
+.sb-btns{display:flex;gap:8px;flex:none}
+.sb-btns .btn{height:44px;padding:0 18px;font-size:13.5px}
+@media (max-width:992px){ .sb-t span i{display:none} }
+@media (max-width:768px){
+  .sbar{top:auto;bottom:calc(64px + env(safe-area-inset-bottom));border-bottom:0;border-top:1px solid var(--line);box-shadow:0 -10px 26px rgba(5,12,46,.14);transform:translateY(110%)}
+  .sbar-in{height:62px;gap:10px;padding:0 12px}
+  .sbar img{width:42px;height:42px}
+  .sb-t b{font-size:12px}
+  .sb-t em{font-size:15px}
+  .sb-btns{gap:6px}
+  .sb-btns .btn{height:42px;padding:0 13px;font-size:13px}
+  .sb-btns .btn.dark{width:42px;padding:0}
+  .sb-btns .btn.dark span{display:none}
+  body.sbar-on .fab{bottom:146px}
+  body.sbar-on .toast{bottom:150px}
+}
+@media (max-width:992px){ .fbt-body{grid-template-columns:1fr} }
+@media (max-width:640px){
+  .fbt{padding:16px}
+  .fbt-items{flex-direction:column}
+  .fbt-it{flex-direction:row;align-items:center;gap:12px;padding:10px 10px 10px 42px}
+  .fbt-chk{top:50%;transform:translateY(-50%)}
+  .fbt-img{width:72px;height:72px;aspect-ratio:auto;flex:none;margin:0;padding:6px}
+  .fbt-plus{width:auto;height:30px;margin:-8px 0}
+  .fbt-plus i{width:28px;height:28px}
+  .buy2 .btn{min-width:100%}
+  .urg-h span{margin-left:0}
+  .al-ch{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main class="wrap">
+  <nav class="crumb" id="crumb"></nav>
+  <div id="pdWrap"></div>
+
+  <section id="relSec">
+    <div class="shead">
+      <div><h2>Related Products</h2><p>You might also like these</p></div>
+      <div class="right">
+        <a href="category.html" class="show-all" id="relAll">View All <i class="fa-solid fa-arrow-right"></i></a>
+        <button class="nav-arr" data-row="r-rel" data-dir="-1" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="nav-arr" data-row="r-rel" data-dir="1" aria-label="Right"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="row" id="r-rel"></div>
+  </section>
+
+  <section id="recentSec" hidden>
+    <div class="shead">
+      <div><h2>Recently Viewed</h2><p>Pick up where you left off</p></div>
+      <div class="right">
+        <button class="nav-arr" data-row="r-recent" data-dir="-1" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="nav-arr" data-row="r-recent" data-dir="1" aria-label="Right"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="row" id="r-recent"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+(() => {
+  /* ---------- Derived data (kept in sync with category.html) ---------- */
+  /* rating & stock come from the shared helpers in app.js so they match cards everywhere */
+  const RT = pchRate, RC = pchReviews;
+  const stars = r => Array.from({length:5}, (_, k) => r >= k + 1 ? '<i class="fa-solid fa-star"></i>' : r >= k + .5 ? '<i class="fa-solid fa-star-half-stroke"></i>' : '<i class="fa-regular fa-star"></i>').join("");
+  const catName = k => CATNAMES[k] || k;
+  function rcard(id){
+    const s = pchStock(id);
+    let h = card(id).replace(/<div class="stock[^"]*">[^<]*<\/div>/, `<div class="stock${s.pre ? " pre" : s.low ? " low" : ""}">${s.text}</div>`);
+    if (s.pre) h = h.replace(">Buy Now<", ">Pre-Order<");
+    return h;
+  }
+
+  /* ---------- Extra gallery images (downloaded from techstore-demo) ---------- */
+  const GALLERY = {
+    16:["g16-1.jpg","g16-2.png","g16-3.jpg","g16-4.png"],
+    15:["g15-1.jpg","g15-2.jpg","g15-3.jpg"],
+    17:["g17-1.png","g17-2.png","g17-3.png"]
+  };
+
+  /* ---------- Specifications (derived from product names) ---------- */
+  const SP = {
+    1:{Projector:{"Display Technology":"DLP","Brightness":"500 ANSI Lumens","Native Resolution":"1920 x 1080 (Full HD 1080P)","4K Support":"Yes (decoding)","Screen Size":"40\" – 120\"","Focus":"Auto focus","Keystone":"Auto keystone correction (±40°)"},Smart:{"Operating System":"Android TV (Google certified)","Wi-Fi":"Dual-band Wi-Fi 6","Bluetooth":"5.1"},General:{"Speaker":"2 x 5W","Ports":"HDMI, USB, 3.5mm audio","Weight":"1.3 kg"}},
+    2:{Projector:{"Display Technology":"LCD","Brightness":"650 ANSI Lumens","Native Resolution":"1920 x 1080 (Full HD)","Screen Size":"40\" – 150\"","Focus":"Electric focus","Keystone":"Auto keystone"},Smart:{"Operating System":"Android 11","Wi-Fi":"Dual-band Wi-Fi","Bluetooth":"5.0"},General:{"Built-in Battery":"Yes, outdoor ready","Speaker":"10W","Ports":"HDMI, USB, AUX"}},
+    3:{Display:{"Screen Size":"34 inch","Panel Type":"VA, Curved 1500R","Resolution":"3440 x 1440 (UWQHD)","Aspect Ratio":"21:9","Refresh Rate":"180Hz","Response Time":"1ms (MPRT)","HDR":"HDR10","Color Gamut":"95% DCI-P3","Adaptive Sync":"AMD FreeSync Premium"},Connectivity:{"Ports":"2 x HDMI 2.0, 2 x DisplayPort 1.4, 3.5mm audio out"},General:{"Stand":"Tilt & height adjustable","VESA Mount":"100 x 100 mm","Model Year":"2026"}},
+    4:{Display:{"Screen Size":"49 inch","Panel Type":"VA, Curved 1800R","Resolution":"3840 x 1080 (Dual FHD)","Aspect Ratio":"32:9","Refresh Rate":"144Hz","Response Time":"1ms (MPRT)","HDR":"HDR10","Adaptive Sync":"AMD FreeSync Premium"},Connectivity:{"Ports":"2 x HDMI 2.0, 1 x DisplayPort 1.4, USB 3.2 hub, audio out"},General:{"Series":"AOC AGON","Stand":"Height, tilt & swivel adjustable","VESA Mount":"100 x 100 mm"}},
+    5:{Wheel:{"Feedback":"TRUEFORCE high-definition force feedback","Rotation":"900°","Rim":"Hand-stitched leather","Controls":"Dual clutch, 24-point selection dial, RPM LEDs"},Pedals:{"Pedal Set":"3 pedals with progressive brake spring"},General:{"Compatibility":"PC, PlayStation 5, PlayStation 4","Connection":"USB","Mounting":"Integrated table clamps"}},
+    6:{Keyboard:{"Layout":"87 keys (TKL)","Switch":"Magnetic Hall-effect switches","Rapid Trigger":"Yes, 0.1mm adjustable actuation","Polling Rate":"8000Hz","Keycaps":"Double-shot PBT","Backlight":"Per-key RGB"},General:{"Connectivity":"Wired USB Type-C","Software":"Web driver support","Compatibility":"Windows, macOS"}},
+    7:{Keyboard:{"Layout":"87 keys (TKL)","Structure":"Gasket mount","Hot-swappable":"Yes, 3/5-pin","Switch":"Linear mechanical switches","Keycaps":"PBT","Backlight":"RGB"},General:{"Connectivity":"Wired USB Type-C","Polling Rate":"1000Hz","Compatibility":"Windows, macOS"}},
+    8:{Mouse:{"Sensor":"PixArt PAW3395","DPI":"Up to 26,000","Polling Rate":"1000Hz","Buttons":"6 programmable","Weight":"Approx. 59 g"},Connectivity:{"Mode":"2.4GHz wireless / wired USB-C","Battery":"500mAh rechargeable"},General:{"Compatibility":"Windows, macOS"}},
+    9:{Mouse:{"Sensor":"PixArt PAW3395","DPI":"Up to 26,000","Polling Rate":"1000Hz (4K with dongle)","Switches":"Optical micro switches","Weight":"Approx. 55 g"},Connectivity:{"Mode":"Tri-mode: 2.4GHz / Bluetooth / wired","Battery":"Up to 80 hours"},General:{"Compatibility":"Windows, macOS, Android"}},
+    10:{Display:{"Screen Size":"27 inch","Panel Type":"Fast IPS","Resolution":"2560 x 1440 (2K QHD)","Refresh Rate":"200Hz","Response Time":"1ms (GtG)","HDR":"HDR10","Color Gamut":"95% DCI-P3","Adaptive Sync":"FreeSync / G-Sync compatible"},Connectivity:{"Ports":"2 x HDMI 2.0, 1 x DisplayPort 1.4, audio out"},General:{"Stand":"Tilt adjustable","VESA Mount":"75 x 75 mm"}},
+    11:{Processor:{"CPU":"AMD Ryzen 5 7500F (6 cores, 12 threads, up to 5.0GHz)","CPU Cooler":"Tower air cooler, ARGB"},Platform:{"Motherboard":"AMD B650M chipset, DDR5","Memory":"16GB DDR5 5600MHz","Storage":"512GB PCIe 4.0 NVMe M.2 SSD"},Graphics:{"Graphics Card":"NVIDIA GeForce RTX 5060 8GB GDDR7"},General:{"Power Supply":"650W 80+ Bronze","Casing":"Mid-tower ARGB gaming case","Operating System":"Not included"}},
+    12:{Processor:{"CPU":"AMD Ryzen 7 7700 (8 cores, 16 threads, up to 5.3GHz)","CPU Cooler":"AMD Wraith Prism (included)"},Platform:{"Motherboard":"AMD A620M chipset, DDR5","Memory":"16GB DDR5 5200MHz","Storage":"512GB PCIe NVMe M.2 SSD"},Graphics:{"Graphics":"AMD Radeon integrated graphics"},General:{"Power Supply":"550W","Casing":"Micro-ATX case","Operating System":"Not included"}},
+    13:{Processor:{"CPU":"Intel Core i5-14600K (14 cores, 20 threads, up to 5.3GHz)","CPU Cooler":"240mm ARGB liquid cooler (white)"},Platform:{"Motherboard":"Intel B760M Wi-Fi (white), DDR5","Memory":"16GB DDR5 6000MHz (white)","Storage":"1TB PCIe 4.0 NVMe M.2 SSD"},Graphics:{"Graphics Card":"Intel Arc B580 12GB GDDR6"},General:{"Power Supply":"750W 80+ Gold","Casing":"White dual-chamber ARGB case","Operating System":"Not included"}},
+    14:{Processor:{"CPU":"AMD Ryzen 5 PRO 5650G (6 cores, 12 threads, up to 4.4GHz)","CPU Cooler":"AMD stock cooler"},Platform:{"Motherboard":"AMD A520M chipset, DDR4","Memory":"16GB DDR4 3200MHz","Storage":"256GB NVMe M.2 SSD"},Graphics:{"Graphics":"AMD Radeon Vega 7 integrated graphics"},General:{"Power Supply":"450W","Casing":"Micro-ATX case","Operating System":"Not included"}},
+    15:{Processor:{"CPU":"AMD Ryzen 7 6800H (8 cores, 16 threads, up to 4.7GHz)"},Display:{"Size":"15.6 inch","Resolution":"1920 x 1080 (FHD)","Panel":"IPS-level, 144Hz, Adaptive-Sync"},Memory:{"RAM":"8GB DDR5 4800MHz (up to 32GB)","Storage":"1TB PCIe 4.0 NVMe M.2 SSD"},Graphics:{"GPU":"NVIDIA GeForce RTX 3050 4GB GDDR6"},General:{"Operating System":"Windows 11 Home","Battery":"90WHrs, 4-cell Li-ion","Weight":"2.10 kg","Keyboard":"Backlit chiclet, RGB"}},
+    16:{Processor:{"CPU":"Intel Core i7-12700H (14 cores, 20 threads, up to 4.7GHz, 24MB cache)"},Display:{"Size":"15.6 inch","Resolution":"1920 x 1080 (FHD)","Panel":"IPS-level, 144Hz, 250 nits"},Memory:{"RAM":"8GB DDR4 3200MHz (up to 32GB)","Storage":"512GB PCIe 4.0 NVMe M.2 SSD"},Graphics:{"GPU":"NVIDIA GeForce RTX 3050 4GB GDDR6"},General:{"Operating System":"Windows 11 Home","Battery":"90WHrs, 4-cell Li-ion","Weight":"2.20 kg","Keyboard":"Backlit chiclet, RGB","Durability":"MIL-STD-810H"}},
+    17:{Processor:{"CPU":"AMD Ryzen 7 6800HS (8 cores, 16 threads, up to 4.7GHz)"},Display:{"Size":"15.6 inch","Resolution":"1920 x 1080 (FHD)","Panel":"IPS-level, 144Hz"},Memory:{"RAM":"8GB DDR5 4800MHz (up to 32GB)","Storage":"512GB PCIe 4.0 NVMe M.2 SSD"},Graphics:{"GPU":"NVIDIA GeForce RTX 2050 4GB GDDR6"},General:{"Operating System":"Windows 11 Home","Battery":"90WHrs, 4-cell Li-ion","Weight":"2.20 kg","Durability":"MIL-STD-810H"}},
+    18:{Processor:{"CPU":"Intel Core i5-13420H (8 cores, 12 threads, up to 4.6GHz)"},Display:{"Size":"15.6 inch","Resolution":"1920 x 1080 (FHD)","Panel":"IPS, 144Hz, 250 nits"},Memory:{"RAM":"8GB DDR4 3200MHz","Storage":"512GB PCIe NVMe M.2 SSD"},Graphics:{"GPU":"NVIDIA GeForce RTX 3050 6GB GDDR6"},General:{"Operating System":"Windows 11 Home","Battery":"70WHrs, 4-cell","Weight":"2.29 kg"}},
+    19:{Display:{"Size":"12.7 inch","Panel":"IPS","Resolution":"2176 x 1600 (2.2K)"},Performance:{"Processor":"MediaTek Helio G99 octa-core","RAM":"8GB","Storage":"128GB (microSD expandable)"},Connectivity:{"Network":"4G LTE dual SIM","Wi-Fi":"Dual-band Wi-Fi","Bluetooth":"5.0"},General:{"Operating System":"Android 14","Battery":"8000mAh","Stylus":"Pen support"}},
+    20:{Display:{"Screen Size":"15.6 inch","Panel":"IPS, 10-point touch","Resolution":"1920 x 1080 (FHD)","Refresh Rate":"60Hz","Brightness":"300 nits"},Connectivity:{"Ports":"2 x USB Type-C (full function), 1 x Mini HDMI"},General:{"Weight":"Approx. 0.8 kg","Included":"Smart cover stand, USB-C & HDMI cables"}}
+  };
+  const GICON = {Processor:"fa-microchip",Display:"fa-display",Memory:"fa-memory",Graphics:"fa-gamepad",General:"fa-circle-info",Platform:"fa-server",Connectivity:"fa-plug",Projector:"fa-video",Smart:"fa-robot",Keyboard:"fa-keyboard",Mouse:"fa-computer-mouse",Wheel:"fa-circle-dot",Pedals:"fa-shoe-prints",Performance:"fa-gauge-high",Warranty:"fa-shield-halved"};
+  const WARR = {laptop:"2 Years",desktop:"3 Years (parts as per brand)",monitor:"3 Years",projector:"1 Year",accessories:"1 Year",gaming:"1 Year",tablet:"1 Year"};
+
+  /* ---------- Resolve product ---------- */
+  let id = +qp("id") || 16;
+  const x = P[id];
+  if (!x) {
+    $("#crumb").innerHTML = `<a href="index.html">Home</a><i class="fa-solid fa-chevron-right"></i><span>Product not found</span>`;
+    $("#pdWrap").innerHTML = `<div class="box empty" id="notFound"><i class="fa-solid fa-box-open"></i><h3>Product not found</h3><p>The product you're looking for doesn't exist or is no longer available.</p><a href="category.html" class="btn primary" style="margin-top:18px">Browse all products</a></div>`;
+    $("#recentSec").hidden = true;
+    fill("r-rel", Object.keys(P).slice(0, 10));
+    return;
+  }
+
+  document.title = x.n + " | TechStore BD";
+  $$("nav.cats a").forEach(a => a.classList.toggle("on", a.getAttribute("href") === "category.html?c=" + x.c));
+  const save = x.o - x.p, pct = Math.round(save / x.o * 100);
+  const sku = "TSD-" + x.c.slice(0, 3).toUpperCase() + "-" + String(id).padStart(4, "0");
+  const imgs = [x.i, ...(GALLERY[id] || [])];
+  const spec = SP[id] || {General:{}};
+  const warranty = WARR[x.c] || "1 Year";
+  const allSpec = Object.assign({}, ...Object.values(spec));
+  const model = x.n.replace(new RegExp("^" + x.b.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\s*", "i"), "");
+
+  // Key features: first 5 spec rows across groups
+  const kf = Object.entries(allSpec).slice(0, 5);
+  const stk = pchStock(id);
+  const avail = stk.pre ? `<span class="pill warn"><i class="fa-solid fa-clock"></i>Pre-Order</span>`
+    : stk.low ? `<span class="pill bad"><i class="fa-solid fa-fire"></i>${esc(stk.text)}</span>`
+    : `<span class="pill ok"><i class="fa-solid fa-circle-check"></i>In Stock</span>`;
+  const viewers = 6 + (id * 13) % 23;
+  const urgency = stk.pre
+    ? `<div class="preinfo"><i class="fa-solid fa-circle-info"></i><span><b>Pre-order item.</b> Book now and get it in 7–10 working days. Only a small advance is needed; the rest is paid on delivery.</span></div>`
+    : stk.low ? `<div class="urg"><div class="urg-h"><b><i class="fa-solid fa-fire-flame-curved"></i>Hurry! Only ${stk.left} left in stock</b><span><em></em>${viewers} people are viewing this</span></div><div class="urg-bar"><span style="width:${Math.max(10, stk.left * 9)}%"></span></div></div>` : "";
+  const waText = `Hi TechStore, I'm interested in: ${x.n} (${tk(x.p)}) – ${location.href}`;
+
+  /* ---------- Bundle: product + 2 complementary items ---------- */
+  const ACC_PAIR = {6:[9,8], 7:[8,9], 8:[7,6], 9:[6,7]};
+  const CAT_PAIR = {laptop:[8,7], monitor:[9,6], desktop:[10,7], gaming:[6,9], tablet:[9,7]};
+  const bIds = [id, ...(ACC_PAIR[id] || CAT_PAIR[x.c] || [8,7]).filter(k => P[k] && k !== id).slice(0, 2)];
+
+  /* ---------- Branch availability (deterministic mock) ---------- */
+  function branchAvail(bi){
+    if (bi === 3) return null; // Service Center & RMA doesn't sell stock
+    if (stk.pre) return bi === 0 ? {c:"warn", t:"Pre-order"} : bi === 1 ? {c:"bad", t:"Not available"} : null;
+    if (bi === 0) return stk.low ? {c:"warn", t:"Only " + stk.left + " left"} : {c:"ok", t:"In stock"};
+    if (bi === 1) return id % 4 === 1 ? {c:"bad", t:"Out of stock"} : (stk.low || id % 2) ? {c:"warn", t:"Limited"} : {c:"ok", t:"In stock"};
+    return ["laptop", "desktop", "monitor"].includes(x.c) ? {c:"info", t:"Display only"} : null;
+  }
+  const branchRows = BRANCHES.map((b, bi) => [b, branchAvail(bi)]).filter(r => r[1]).map(([b, a]) => {
+    const st = branchStatus(b);
+    return `<div class="bs-row"><div><b class="bs-name"><i class="fa-solid ${b.icon}"></i>${esc(b.name)}</b><span class="bs-open ${st.open ? "on" : ""}">${esc(st.text)}</span></div><span class="pill ${a.c}">${a.t}</span><a class="bs-dir" href="https://maps.google.com/?q=${encodeURIComponent(b.map)}" target="_blank" rel="noopener"><i class="fa-solid fa-diamond-turn-right"></i>Directions</a></div>`;
+  }).join("");
+
+  /* ---------- Reviews / Q&A data ---------- */
+  const avg = RT(id), cnt = RC(id);
+  const dist = (() => { const w5 = Math.round((avg - 4) * 100), r = 100 - w5; return [w5, Math.round(r * .7), Math.round(r * .2), Math.round(r * .07), Math.max(0, r - Math.round(r * .7) - Math.round(r * .2) - Math.round(r * .07))]; })();
+  const SAMPLE = [
+    {n:"Tanvir Ahmed", r:5, d:"12 Sep 2026", t:`Got the ${esc(model.split(" ").slice(0, 3).join(" "))} from the Main showroom. 100% original with official warranty and the staff helped me test everything before I left. Highly recommended!`, ph:imgs.slice(0, 3).reverse().map(s => "img/" + s)},
+    {n:"Nusrat Jahan", r:5, d:"28 Aug 2026", t:`Delivered to Chattogram in two days, packaging was excellent. Performance is exactly what I expected for the price. Great value from ${esc(x.b)}.`},
+    {n:"Rafiul Islam", r:4, d:"03 Aug 2026", t:`Very happy with the build quality and features. Took one star because I wish the box included a few more accessories, but TechStore support was quick to answer my questions.`}
+  ];
+  const userRevs = store.get("reviews", {})[id] || [];
+  const CATQ = {
+    laptop:["Can I upgrade the RAM and storage later?","Yes. This laptop has an accessible SO-DIMM slot and an additional M.2 slot on most configurations. Our service team can upgrade it for you in-store without voiding the warranty."],
+    desktop:["Is Windows pre-installed on this build?","The build ships without an OS by default. We can install a genuine Windows license on request at an extra cost; just mention it while ordering."],
+    monitor:["Which cables come in the box?","A power adapter and a DisplayPort or HDMI cable are included in the box. Additional cables are available in our accessories section."],
+    projector:["Can I use it in a bright room?","For the best picture we recommend a dim room. In daylight it works fine for casual use at a smaller screen size."],
+    accessories:["Does it work with Mac?","Yes, it works with macOS out of the box. Some software features may only be available on Windows."],
+    gaming:["Does it work with Xbox?","This version supports PC and PlayStation. An Xbox-specific version is available on request."],
+    tablet:["Can I make phone calls with this tablet?","Yes, with a 4G LTE SIM inserted you can make calls and use mobile data."]
+  };
+  const QA = [
+    CATQ[x.c] || ["Is this product available in the showroom?","Yes, you can check it at our Demo Tower showroom."],
+    ["Is this the original product with official warranty?",`Yes, every product we sell is 100% original and comes with ${warranty.toLowerCase()} official warranty from ${esc(x.b)} or its authorised distributor.`],
+    ["Is 0% EMI available for this product?",`Yes, 0% EMI is available for up to 12 months with selected bank credit cards, starting from ${tk(Math.ceil(x.p / 12))}/month.`],
+    ["How long does delivery take outside Dhaka?","Delivery outside Dhaka usually takes 2–3 working days via courier. Inside Dhaka we deliver within 24 hours."]
+  ];
+
+  /* only accept our own downscaled JPEG data URLs or local img/ paths */
+  const safePh = a => (Array.isArray(a) ? a : []).filter(s => typeof s === "string" && (/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(s) || /^img\/[\w.-]+$/.test(s))).slice(0, 4);
+  const revHTML = r => { const ph = safePh(r.ph); return `<div class="rvw"><div class="av">${esc(r.n.split(" ").map(s => s[0]).join("").slice(0, 2).toUpperCase())}</div><div style="flex:1;min-width:0">
+      <div class="hd"><b>${esc(r.n)}</b><span class="pill ok"><i class="fa-solid fa-circle-check"></i>Verified Buyer</span><time>${esc(r.d)}</time></div>
+      <div class="rating" style="margin-top:4px">${stars(r.r)}</div>
+      <p>${r.t}</p>
+      ${ph.length ? `<div class="rv-ph">${ph.map((s, k) => `<button type="button" data-lb="${k}" aria-label="View photo ${k + 1}"><img src="${s}" alt="Review photo ${k + 1}" loading="lazy"></button>`).join("")}</div>` : ""}
+      <div class="helpful"><button onclick="this.innerHTML='<i class=\\'fa-solid fa-thumbs-up\\'></i> Thanks for your feedback';this.disabled=true"><i class="fa-regular fa-thumbs-up"></i>Helpful</button></div>
+    </div></div>`; };
+
+  /* ---------- Render ---------- */
+  $("#crumb").innerHTML = `<a href="index.html"><i class="fa-solid fa-house" style="font-size:11px;opacity:1"></i> Home</a><i class="fa-solid fa-chevron-right"></i><a href="category.html?c=${x.c}">${esc(catName(x.c))}</a><i class="fa-solid fa-chevron-right"></i><a href="category.html?c=${x.c}&q=${encodeURIComponent(x.b)}">${esc(x.b)}</a><i class="fa-solid fa-chevron-right"></i><span>${esc(model.length > 48 ? model.slice(0, 48) + "…" : model)}</span>`;
+  $("#relAll").href = "category.html?c=" + x.c;
+
+  $("#pdWrap").innerHTML = `
+  <div class="pd">
+    <div class="gallery">
+      <div class="gmain" id="gmain">
+        <div class="badges">${save > 0 ? `<span class="save">-${pct}% OFF</span>` : ""}${id === 16 ? `<span class="tag">HOT DEAL</span>` : ""}</div>
+        <img src="img/${imgs[0]}" alt="${esc(x.n)}" id="gimg">
+        ${imgs.length > 1 ? `<button class="garr p" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button><button class="garr n" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>` : ""}
+        <span class="hint"><i class="fa-solid fa-magnifying-glass-plus"></i>Hover to zoom</span>
+      </div>
+      <div class="gthumbs" id="gthumbs">${(imgs.length > 1 ? imgs : [x.i, x.i, x.i]).map((s, k) => `<button class="${k ? "" : "on"}" data-k="${k}" aria-label="Image ${k + 1}"><img src="img/${s}" alt=""></button>`).join("")}</div>
+    </div>
+
+    <div class="info">
+      <div class="top"><a class="bchip" href="category.html?q=${encodeURIComponent(x.b)}"><i class="fa-solid fa-certificate"></i>${esc(x.b)}</a>${avail}</div>
+      <h1>${esc(x.n)}</h1>
+      <div class="meta">
+        <span class="rating">${stars(avg)}<span><b>${avg.toFixed(1)}</b> (${cnt + userRevs.length} reviews)</span></span>
+        <span class="sep"></span>
+        <a href="#tabs" data-go="qa"><i class="fa-regular fa-comments"></i> ${QA.length} Questions</a>
+        <span class="sep"></span>
+        <span>SKU: <b>${sku}</b></span>
+      </div>
+
+      <div class="pbox">
+        <div class="now"><b>${tk(x.p)}</b>${x.o > x.p ? `<s>${tk(x.o)}</s><span class="save">SAVE ${tk(save)}</span>` : ""}</div>
+        <div class="emi"><i class="fa-solid fa-credit-card"></i><span>0% EMI from <b>${tk(Math.ceil(x.p / 12))}/month</b> for 12 months</span><a href="#" onclick="emiCalc(${id});return false">EMI Calculator</a></div>
+      </div>
+      ${urgency}
+
+      <div class="kf">
+        <h3>Key Features</h3>
+        <ul>${kf.map(([k, v]) => `<li><i class="fa-solid fa-check"></i><span><b>${esc(k)}:</b> ${esc(v)}</span></li>`).join("")}</ul>
+        <a class="more" data-go="spec">View full specification <i class="fa-solid fa-arrow-down"></i></a>
+      </div>
+
+      <div class="buyrow">
+        <div class="qty"><button aria-label="Decrease" id="qm"><i class="fa-solid fa-minus"></i></button><input id="pq" value="1" inputmode="numeric" aria-label="Quantity"><button aria-label="Increase" id="qpBtn"><i class="fa-solid fa-plus"></i></button></div>
+        <button class="icon-btn" data-wish="${id}" aria-label="Add to wishlist" onclick="toggleWish(${id})"><i class="fa-regular fa-heart"></i></button>
+        <button class="icon-btn" data-cmp="${id}" aria-label="Add to compare" onclick="toggleCompare(${id})"><i class="fa-solid fa-code-compare"></i></button>
+        <button class="btn dark" id="addBtn"><i class="fa-solid fa-cart-plus"></i>Add to Cart</button>
+        <button class="btn primary" id="buyBtn"><i class="fa-solid fa-bolt"></i>${stk.pre ? "Pre-Order" : "Buy Now"}</button>
+      </div>
+      <div class="buy2">
+        ${stk.pre ? `<button class="btn notify" id="notifyBtn" type="button"><i class="fa-regular fa-bell"></i>Notify me when available</button>` : ""}
+        <a class="btn wa" href="https://wa.me/8801000000008?text=${encodeURIComponent(waText)}" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Ask on WhatsApp</a>
+      </div>
+      <div class="secondary">
+        <a href="#" onclick="navigator.clipboard&&navigator.clipboard.writeText(location.href);toast('Product link copied');return false"><i class="fa-solid fa-share-nodes"></i>Share</a>
+        <a href="#branchBox" data-scroll="branchBox"><i class="fa-solid fa-store"></i>Check showroom stock</a>
+        <a href="#" id="priceAlert"><i class="fa-regular fa-bell"></i>Price drop alert</a>
+      </div>
+      <div id="alertChip"></div>
+
+      <div class="perks">
+        <div><i class="fa-solid fa-truck-fast"></i><p><b>Fast Delivery</b><span>Dhaka 24 hrs · Outside 2–3 days</span></p></div>
+        <div><i class="fa-solid fa-shield-halved"></i><p><b>${warranty} Warranty</b><span>Official brand warranty</span></p></div>
+        <div><i class="fa-solid fa-rotate"></i><p><b>7-Day Replacement</b><span>For manufacturing defects</span></p></div>
+        <div><i class="fa-solid fa-store"></i><p><b>Store Pickup</b><span>Main &amp; City branch</span></p></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="box fbt" id="fbt">
+    <div class="fbt-h"><h3>Frequently Bought Together</h3><p>Customers who bought this also picked these. Select all ${bIds.length} and get an extra 5% off.</p></div>
+    <div class="fbt-body">
+      <div class="fbt-items">${bIds.map((k, i) => (i ? `<span class="fbt-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>` : "") + `<label class="fbt-it on${i ? "" : " main"}"><input type="checkbox" checked data-id="${k}" ${i ? "" : "disabled"} aria-label="Include ${esc(P[k].n)}"><span class="fbt-chk"><i class="fa-solid fa-check"></i></span><span class="fbt-img"><img src="img/${P[k].i}" alt=""></span><span class="fbt-tx">${i ? `<small>${esc(P[k].b)}</small>` : `<small class="me">This item</small>`}<a href="product.html?id=${k}">${esc(P[k].n)}</a><b>${tk(P[k].p)}</b></span></label>`).join("")}</div>
+      <div class="fbt-sum"><div id="fbtInfo"></div><button class="btn primary block" id="fbtAdd" type="button"><i class="fa-solid fa-cart-plus"></i><span>Add bundle to cart</span></button></div>
+    </div>
+  </section>
+
+  <div class="detail" id="tabs">
+    <div>
+      <div class="ptabs" role="tablist">
+        <button class="on" data-tab="spec"><i class="fa-solid fa-list-check"></i>Specification</button>
+        <button data-tab="desc"><i class="fa-regular fa-file-lines"></i>Description</button>
+        <button data-tab="warr"><i class="fa-solid fa-shield-halved"></i>Warranty</button>
+        <button data-tab="rev"><i class="fa-regular fa-star"></i>Reviews <small id="revN">${cnt + userRevs.length}</small></button>
+        <button data-tab="qa"><i class="fa-regular fa-comments"></i>Q&amp;A <small id="qaN">${QA.length}</small></button>
+      </div>
+
+      <div class="pane box on" data-pane="spec">
+        <h3>Specification</h3>
+        <table class="spec">
+          <tr><th class="g" colspan="2"><i class="fa-solid fa-tag"></i>Basic Information</th></tr>
+          <tr class="first"><td>Brand</td><td>${esc(x.b)}</td></tr>
+          <tr><td>Model</td><td>${esc(model)}</td></tr>
+          <tr><td>Category</td><td>${esc(catName(x.c))}</td></tr>
+          ${Object.entries(spec).map(([g, rows]) => `<tr><th class="g" colspan="2"><i class="fa-solid ${GICON[g] || "fa-circle-info"}"></i>${esc(g)}</th></tr>` + Object.entries(rows).map(([k, v], i) => `<tr class="${i ? "" : "first"}"><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join("")).join("")}
+          <tr><th class="g" colspan="2"><i class="fa-solid fa-shield-halved"></i>Warranty</th></tr>
+          <tr class="first"><td>Warranty</td><td>${warranty} official warranty</td></tr>
+        </table>
+      </div>
+
+      <div class="pane box desc" data-pane="desc">
+        <h3>Description</h3>
+        <p><b>${esc(x.n)}</b> brings ${esc(x.b)}'s trusted engineering to your ${x.c === "desktop" || x.c === "laptop" ? "work and play" : "setup"}. ${kf.slice(0, 3).map(([k, v]) => `${esc(k)} – ${esc(v)}`).join("; ")}. It is built for users in Bangladesh who want reliable performance with official warranty and local after-sales support.</p>
+        <div class="hl">
+          <div><i class="fa-solid fa-bolt"></i><b>Performance</b><span>${esc((kf[0] || ["", "Built for daily performance"])[1])}</span></div>
+          <div><i class="fa-solid fa-gem"></i><b>Premium Build</b><span>Quality materials, tested by our team before dispatch</span></div>
+          <div><i class="fa-solid fa-headset"></i><b>Local Support</b><span>${warranty} warranty with service at TechStore BD</span></div>
+        </div>
+        <h4>Why buy from TechStore BD?</h4>
+        <p>Every ${esc(catName(x.c).toLowerCase())} at TechStore BD is 100% original and sourced from authorised distributors. Enjoy 0% EMI for up to 12 months, secure payment via bKash, Nagad or card, and fast delivery all over Bangladesh. Visit our Demo Tower showroom to see it in person.</p>
+        <h4>What's in the box</h4>
+        <p>${esc(x.n)}, ${x.c === "laptop" ? "power adapter, " : x.c === "monitor" ? "stand, power cable, display cable, " : x.c === "desktop" ? "power cable, component boxes, " : ""}user manual and warranty card.</p>
+      </div>
+
+      <div class="pane box" data-pane="warr">
+        <h3>Warranty Information</h3>
+        <div class="wcard"><div><small>Official Warranty</small><div class="big">${warranty.split(" (")[0]}</div></div><p>Covered by ${esc(x.b)} authorised warranty. Claims are handled at TechStore BD service center, Demo Tower, Dhaka.</p></div>
+        <ul class="wlist">
+          <li><i class="fa-solid fa-circle-check"></i>Warranty covers manufacturing defects under normal use.</li>
+          <li><i class="fa-solid fa-circle-check"></i>7-day replacement for dead-on-arrival or manufacturing faults (box and accessories must be intact).</li>
+          <li><i class="fa-solid fa-circle-check"></i>Keep the invoice and warranty sticker safe; both are required for any claim.</li>
+          <li><i class="fa-solid fa-circle-xmark" style="color:#D33"></i>Physical damage, burn marks, liquid damage and unauthorised repair are not covered.</li>
+          <li><i class="fa-solid fa-circle-xmark" style="color:#D33"></i>Software issues, viruses and consumables (e.g. batteries after 6 months) are excluded.</li>
+        </ul>
+      </div>
+
+      <div class="pane box" data-pane="rev">
+        <h3>Customer Reviews</h3>
+        <div class="rsum">
+          <div class="avg"><b>${avg.toFixed(1)}</b><div class="rating">${stars(avg)}</div><span id="revBase">Based on ${cnt + userRevs.length} reviews</span></div>
+          <div class="bars">${dist.map((p, k) => `<div><span>${5 - k} <i class="fa-solid fa-star"></i></span><div class="bar"><span style="width:${p}%"></span></div><span>${p}%</span></div>`).join("")}</div>
+          <button class="btn ghost" data-scroll="rform"><i class="fa-solid fa-pen"></i>Write a review</button>
+        </div>
+        <div class="rfilt" id="rfilt"><button type="button" data-f="all" class="on">All reviews</button><button type="button" data-f="ph"><i class="fa-regular fa-image"></i>With photos <small id="phCnt">0</small></button><button type="button" data-f="5">5 <i class="fa-solid fa-star" style="color:#F5A623;font-size:10px"></i></button><button type="button" data-f="4">4 <i class="fa-solid fa-star" style="color:#F5A623;font-size:10px"></i></button></div>
+        <div id="revList"></div>
+        <form class="rform" id="rform">
+          <h4>Write a Review</h4>
+          <p>Share your experience to help other buyers. Your email will not be published.</p>
+          <div class="starpick" id="starpick">${[1,2,3,4,5].map(n => `<button type="button" data-s="${n}" aria-label="${n} star"><i class="fa-solid fa-star"></i></button>`).join("")}<span id="starTxt">Select a rating</span></div>
+          <div class="two">
+            <div class="field"><label for="rn">Your Name</label><input id="rn" required placeholder="e.g. Sakib Hasan"></div>
+            <div class="field"><label for="re">Email</label><input id="re" type="email" required placeholder="you@example.com"></div>
+          </div>
+          <div class="field"><label for="rt">Your Review</label><textarea id="rt" required placeholder="What did you like or dislike?"></textarea></div>
+          <div class="field"><label>Add photos <span class="opt">(optional · <span id="phN">0/4</span>)</span></label>
+            <label class="rdrop" id="rdrop"><input type="file" id="rfile" accept="image/*" multiple hidden><i class="fa-solid fa-camera"></i><span>Drag &amp; drop photos here or <u>browse</u></span><small>JPG, PNG or WebP · up to 4 photos</small></label>
+            <div class="rprev" id="rprev"></div>
+          </div>
+          <button class="btn primary"><i class="fa-solid fa-paper-plane"></i>Submit Review</button>
+        </form>
+      </div>
+
+      <div class="pane box" data-pane="qa">
+        <h3>Questions &amp; Answers</h3>
+        <div id="qaList">${QA.map(([q, a], k) => `<details class="qa" ${k ? "" : "open"}><summary><span class="q">Q</span><span>${esc(q)}</span><i class="fa-solid fa-chevron-down chev"></i></summary><div class="a"><span class="q">A</span><div>${a}<small>Answered by TechStore BD</small></div></div></details>`).join("")}</div>
+        <form class="askf" id="askf"><input id="askq" required placeholder="Have a question about this product? Ask here..."><button class="btn dark"><i class="fa-regular fa-paper-plane"></i>Ask Question</button></form>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="help">
+        <small>NEED HELP?</small>
+        <h4>Talk to a tech expert</h4>
+        <p>Not sure if this is the right ${esc(catName(x.c).toLowerCase())} for you? Our team will help you choose.</p>
+        <a href="tel:01000000000" class="btn primary block"><i class="fa-solid fa-phone"></i>01000000000</a>
+      </div>
+      <div class="box bstock" id="branchBox">
+        <h3><i class="fa-solid fa-store"></i>Available at our branches</h3>
+        ${branchRows}
+        <p class="bs-note">Stock changes fast. Call <a href="tel:01000000000">01000000000</a> to reserve before visiting.</p>
+      </div>
+      <div class="box">
+        <h3>More from ${esc(x.b)}</h3>
+        <div class="minis" id="minis"></div>
+      </div>
+    </aside>
+  </div>`;
+
+  /* ---------- Gallery ---------- */
+  const gm = $("#gmain"), gi = $("#gimg"), thumbs = $$("#gthumbs button");
+  let gk = 0;
+  const show = k => {
+    gk = (k + thumbs.length) % thumbs.length;
+    thumbs.forEach((b, j) => b.classList.toggle("on", j === gk));
+    gi.style.opacity = 0;
+    setTimeout(() => { gi.src = thumbs[gk].querySelector("img").src; gi.style.opacity = 1; }, 150);
+    thumbs[gk].scrollIntoView({block:"nearest", inline:"nearest", behavior:"smooth"});
+  };
+  $("#gthumbs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) show(+b.dataset.k); });
+  $$(".garr", gm).forEach(b => b.addEventListener("click", e => { e.stopPropagation(); show(gk + (b.classList.contains("n") ? 1 : -1)); }));
+  if (matchMedia("(hover:hover)").matches) {
+    gm.addEventListener("mousemove", e => {
+      if (e.target.closest(".garr")) { gm.classList.remove("zoom"); return; }
+      const r = gm.getBoundingClientRect();
+      gi.style.transformOrigin = `${(e.clientX - r.left) / r.width * 100}% ${(e.clientY - r.top) / r.height * 100}%`;
+      gm.classList.add("zoom");
+    });
+    gm.addEventListener("mouseleave", () => gm.classList.remove("zoom"));
+  }
+
+  /* ---------- Quantity & buy ---------- */
+  const qv = $("#pq"); // not "#qv": that id belongs to the shared Quick View modal
+  const getQ = () => Math.max(1, Math.min(10, parseInt(qv.value) || 1));
+  $("#qm").onclick = () => qv.value = Math.max(1, getQ() - 1);
+  $("#qpBtn").onclick = () => { if (getQ() >= 10) toast("Maximum 10 per order"); qv.value = Math.min(10, getQ() + 1); };
+  qv.onchange = () => qv.value = getQ();
+  $("#addBtn").onclick = () => addCart(id, getQ());
+  $("#buyBtn").onclick = () => addCart(id, getQ(), true);
+
+  /* ---------- Tabs ---------- */
+  const openTab = (t, scroll) => {
+    $$(".ptabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === t));
+    $$(".pane").forEach(p => p.classList.toggle("on", p.dataset.pane === t));
+    if (scroll) window.scrollTo({top: $("#tabs").getBoundingClientRect().top + scrollY - 150, behavior:"smooth"});
+  };
+  $(".ptabs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) openTab(b.dataset.tab); });
+  $$("[data-go]").forEach(a => a.addEventListener("click", e => { e.preventDefault(); openTab(a.dataset.go, true); }));
+  $$("[data-scroll]").forEach(b => b.addEventListener("click", e => { e.preventDefault(); $("#" + b.dataset.scroll).scrollIntoView({behavior:"smooth", block:"center"}); }));
+
+  /* ---------- Sticky buy bar ---------- */
+  document.body.insertAdjacentHTML("beforeend", `<div class="sbar" id="sbar" aria-hidden="true"><div class="wrap sbar-in">
+    <img src="img/${x.i}" alt="">
+    <div class="sb-t"><b>${esc(x.n)}</b><span><em>${tk(x.p)}</em>${x.o > x.p ? `<s>${tk(x.o)}</s>` : ""}<i class="${stk.pre ? "pre" : stk.low ? "low" : ""}">${esc(stk.text)}</i></span></div>
+    <div class="sb-btns"><button class="btn dark" id="sbAdd" type="button" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i><span>Add to Cart</span></button><button class="btn primary" id="sbBuy" type="button"><i class="fa-solid fa-bolt"></i>${stk.pre ? "Pre-Order" : "Buy Now"}</button></div>
+  </div></div>`);
+  $("#sbAdd").onclick = () => addCart(id, getQ());
+  $("#sbBuy").onclick = () => addCart(id, getQ(), true);
+  (() => {
+    const sb = $("#sbar"), hdr = $("header.main"), target = $(".buyrow"), mob = matchMedia("(max-width:768px)"), root = document.documentElement;
+    const hh = () => hdr ? Math.round(hdr.getBoundingClientRect().height) : 0;
+    const sync = () => {
+      const h = hh(), on = sb.classList.contains("show") && !mob.matches;
+      root.style.setProperty("--sbTop", h + "px");
+      root.style.setProperty("--stickTop", (h + 22 + (on ? sb.offsetHeight : 0)) + "px");
+    };
+    const set = on => {
+      if (sb.classList.contains("show") === on) return;
+      sb.classList.toggle("show", on); sb.setAttribute("aria-hidden", String(!on));
+      document.body.classList.toggle("sbar-on", on); sync();
+    };
+    let io, lastH = -1;
+    const watch = () => {
+      const h = hh(); if (h === lastH) return; lastH = h;
+      if (io) io.disconnect();
+      // the buttons count as "visible" only below the sticky header
+      io = new IntersectionObserver(([en]) => set(!en.isIntersecting && en.boundingClientRect.top < innerHeight / 2), {rootMargin: `-${h}px 0px 0px 0px`});
+      io.observe(target);
+    };
+    if (hdr && "ResizeObserver" in window) new ResizeObserver(() => { sync(); watch(); }).observe(hdr);
+    mob.addEventListener ? mob.addEventListener("change", sync) : mob.addListener(sync);
+    sync(); watch();
+  })();
+
+  /* ---------- Price-drop / back-in-stock alerts ---------- */
+  const getAlerts = () => (Array.isArray(store.get("alerts", [])) ? store.get("alerts", []) : []);
+  const myAlerts = () => getAlerts().filter(a => +a.id === id);
+  function renderAlertChip(){
+    $("#alertChip").innerHTML = myAlerts().map(a => `<span class="nchip"><i class="fa-solid fa-bell"></i>You'll be notified${a.type === "stock" ? " when it's available" : " on price drop" + (a.target ? " below " + tk(a.target) : "")}<button type="button" data-unalert="${a.type}" aria-label="Cancel alert" title="Cancel alert"><i class="fa-solid fa-xmark"></i></button></span>`).join("");
+    const pa = $("#priceAlert"); if (pa) pa.innerHTML = `<i class="fa-${myAlerts().some(a => a.type === "price") ? "solid" : "regular"} fa-bell"></i>Price drop alert`;
+  }
+  $("#alertChip").addEventListener("click", e => {
+    const b = e.target.closest("[data-unalert]"); if (!b) return;
+    store.set("alerts", getAlerts().filter(a => !(+a.id === id && a.type === b.dataset.unalert)));
+    renderAlertChip(); toast("Alert removed");
+  });
+  const closeAlert = () => { const m = $("#alertM"); if (m && m.classList.contains("open")) { m.classList.remove("open"); lockScroll(false); } };
+  function openAlert(type){
+    let m = $("#alertM");
+    if (!m) {
+      document.body.insertAdjacentHTML("beforeend", '<div class="qv emi-m" id="alertM" role="dialog" aria-modal="true"><div class="qv-box emi-box"></div></div>');
+      m = $("#alertM");
+      m.addEventListener("click", e => { if (e.target === m || e.target.closest(".qv-x") || e.target.closest("#alDone")) closeAlert(); });
+    }
+    const box = $(".emi-box", m), price = type === "price";
+    const ex = myAlerts().find(a => a.type === type) || {}, u = store.get("user", null) || {};
+    box.innerHTML = `
+      <button class="qv-x" type="button" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="emi-h"><i class="fa-solid ${price ? "fa-arrow-trend-down" : "fa-bell"}"></i><div><h3>${price ? "Price Drop Alert" : "Notify Me When Available"}</h3><p>${price ? "We'll message you as soon as the price goes down" : "We'll message you the moment it's back in stock"}</p></div></div>
+      <div class="al-prod"><img src="img/${x.i}" alt=""><div><b>${esc(x.n)}</b><span>Current price <em>${tk(x.p)}</em></span></div></div>
+      <form id="alForm" novalidate>
+        <div class="field"><label for="alPhone">Mobile number</label><div class="al-in" id="alPhoneW"><span>+88</span><input id="alPhone" inputmode="numeric" autocomplete="tel" maxlength="14" placeholder="01XXXXXXXXX" value="${esc(ex.phone || u.phone || "")}"></div><small class="al-err" id="alErr"></small></div>
+        ${price ? `<div class="field"><label for="alTarget">Target price <span class="opt">(optional)</span></label><div class="al-in" id="alTargetW"><span>৳</span><input id="alTarget" inputmode="numeric" placeholder="e.g. ${Math.round(x.p * .9 / 100) * 100}" value="${ex.target || ""}"></div><small id="alTErr">Leave empty to be notified of any price drop.</small></div>` : ""}
+        <label class="emi-l">Notify me via</label>
+        <div class="al-ch"><label><input type="checkbox" value="SMS" ${!ex.via || ex.via.includes("SMS") ? "checked" : ""}><i class="fa-solid fa-comment-sms"></i>SMS</label><label><input type="checkbox" value="WhatsApp" ${ex.via && ex.via.includes("WhatsApp") ? "checked" : ""}><i class="fa-brands fa-whatsapp"></i>WhatsApp</label></div>
+        <button class="btn primary block"><i class="fa-solid fa-bell"></i>${ex.phone ? "Update alert" : "Notify me"}</button>
+      </form>`;
+    $("#alForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const phone = $("#alPhone").value.replace(/[\s-]/g, "").replace(/^\+?88/, "");
+      const okPhone = /^01[3-9]\d{8}$/.test(phone);
+      $("#alPhoneW").classList.toggle("bad", !okPhone);
+      $("#alErr").textContent = okPhone ? "" : "Enter a valid Bangladeshi number, e.g. 01712345678";
+      let target = null;
+      if (price) {
+        const raw = $("#alTarget").value.replace(/[৳,\s]/g, "");
+        target = raw ? Math.round(+raw) : null;
+        const okT = !raw || (target > 0 && target < x.p);
+        $("#alTargetW").classList.toggle("bad", !okT);
+        $("#alTErr").className = okT ? "" : "al-err";
+        $("#alTErr").textContent = okT ? "Leave empty to be notified of any price drop." : `Target price must be lower than ${tk(x.p)}`;
+        if (!okT) return;
+      }
+      if (!okPhone) return;
+      const via = $$(".al-ch input:checked", box).map(i => i.value);
+      if (!via.length) { toast("Choose SMS or WhatsApp"); return; }
+      store.set("alerts", [...getAlerts().filter(a => !(+a.id === id && a.type === type)), {id, type, phone, target, via, date:new Date().toISOString()}]);
+      renderAlertChip();
+      box.innerHTML = `<button class="qv-x" type="button" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+        <div class="al-ok"><span><i class="fa-solid fa-check"></i></span><h3>You're on the list!</h3>
+        <p>We'll send ${via.join(" &amp; ")} to <b>${phone}</b> ${price ? (target ? `when the price drops below <b>${tk(target)}</b>` : "as soon as the price drops") : "as soon as it's back in stock"}.</p>
+        <button class="btn dark" id="alDone" type="button">Done</button></div>`;
+    });
+    m.classList.add("open"); lockScroll(true);
+    setTimeout(() => { const p = $("#alPhone"); if (p && !p.value) p.focus(); }, 250);
+  }
+  $("#priceAlert").addEventListener("click", e => { e.preventDefault(); openAlert("price"); });
+  if ($("#notifyBtn")) $("#notifyBtn").addEventListener("click", () => openAlert("stock"));
+  renderAlertChip();
+
+  /* ---------- Bundle ---------- */
+  const fbtSel = () => $$("#fbt input:checked").map(i => +i.dataset.id);
+  function fbtRender(){
+    $$("#fbt .fbt-it").forEach(l => l.classList.toggle("on", l.querySelector("input").checked));
+    const sel = fbtSel(), all = sel.length === bIds.length;
+    const sum = sel.reduce((s, k) => s + P[k].p, 0), orig = sel.reduce((s, k) => s + P[k].o, 0);
+    const extra = all && bIds.length > 1 ? Math.round(sum * .05) : 0;
+    const full = bIds.reduce((s, k) => s + P[k].p, 0);
+    $("#fbtInfo").innerHTML = `<small>${all ? "Bundle price" : "Total price"} for ${sel.length} item${sel.length > 1 ? "s" : ""}</small>
+      <div class="fbt-p"><b>${tk(sum - extra)}</b>${orig > sum - extra ? `<s>${tk(orig)}</s>` : ""}</div>
+      ${extra ? `<span class="fbt-extra"><i class="fa-solid fa-gift"></i>Save ${tk(extra)} extra</span>` : `<span class="fbt-hint">Select all ${bIds.length} to save an extra <b>${tk(Math.round(full * .05))}</b></span>`}`;
+    $("#fbtAdd span").textContent = sel.length > 1 ? `Add ${sel.length} items to cart` : "Add to cart";
+  }
+  $("#fbt").addEventListener("change", fbtRender);
+  $("#fbtAdd").addEventListener("click", () => {
+    const sel = fbtSel();
+    const c = getCart(); sel.forEach(k => c[k] = (c[k] || 0) + 1); store.set("cart", c); updateCounts(); // add all, open the drawer once
+    if (sel.length === bIds.length && sel.length > 1) store.set("bundle", {ids:sel, off:Math.round(sel.reduce((s, k) => s + P[k].p, 0) * .05), date:new Date().toISOString()});
+    if (sel.length === bIds.length && sel.length > 1 && !store.get("coupon", null)) store.set("coupon", "BUNDLE5");
+    openMiniCart(); toast(sel.length > 1 ? `${sel.length} items added${sel.length === bIds.length ? " · 5% bundle discount applied at checkout" : ""}` : "Product added to cart");
+  });
+  fbtRender();
+
+  /* ---------- Review list, filters & lightbox ---------- */
+  let revs = [...userRevs, ...SAMPLE], rf = "all";
+  function renderRevs(){
+    const list = revs.filter(r => rf === "all" || (rf === "ph" ? safePh(r.ph).length : r.r === +rf));
+    $("#revList").innerHTML = list.length ? list.map(revHTML).join("") : `<div class="rv-empty"><i class="fa-regular fa-image"></i> No reviews match this filter yet.</div>`;
+    $$("#rfilt button").forEach(b => b.classList.toggle("on", b.dataset.f === rf));
+    $("#phCnt").textContent = revs.filter(r => safePh(r.ph).length).length;
+  }
+  $("#rfilt").addEventListener("click", e => { const b = e.target.closest("button"); if (b) { rf = b.dataset.f; renderRevs(); } });
+  renderRevs();
+
+  document.body.insertAdjacentHTML("beforeend", `<div class="plb" id="plb" role="dialog" aria-modal="true" aria-label="Review photo"><button class="x" type="button" aria-label="Close"><i class="fa-solid fa-xmark"></i></button><button class="p" type="button" aria-label="Previous photo"><i class="fa-solid fa-chevron-left"></i></button><img alt="Review photo"><button class="n" type="button" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button><div class="c"></div></div>`);
+  const lb = $("#plb"); let lbList = [], lbK = 0;
+  const lbShow = k => { lbK = (k + lbList.length) % lbList.length; $("img", lb).src = lbList[lbK]; $(".c", lb).textContent = `${lbK + 1} / ${lbList.length}`; $$(".p,.n", lb).forEach(b => b.style.display = lbList.length > 1 ? "" : "none"); };
+  const closeLB = () => { if (lb.classList.contains("open")) { lb.classList.remove("open"); lockScroll(false); } };
+  $("#revList").addEventListener("click", e => {
+    const b = e.target.closest("[data-lb]"); if (!b) return;
+    lbList = $$("img", b.parentElement).map(i => i.src); lbShow(+b.dataset.lb); lb.classList.add("open"); lockScroll(true);
+  });
+  lb.addEventListener("click", e => {
+    if (e.target.closest(".p")) lbShow(lbK - 1); else if (e.target.closest(".n")) lbShow(lbK + 1);
+    else if (e.target === lb || e.target.closest(".x")) closeLB();
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") { closeAlert(); closeLB(); }
+    if (lb.classList.contains("open") && (e.key === "ArrowLeft" || e.key === "ArrowRight")) lbShow(lbK + (e.key === "ArrowRight" ? 1 : -1));
+  });
+
+  /* ---------- Review photo upload (downscaled to ~400px JPEG) ---------- */
+  let rPh = [];
+  const MAXPH = 4;
+  const downscale = file => new Promise((res, rej) => {
+    const fr = new FileReader();
+    fr.onerror = rej;
+    fr.onload = () => {
+      const im = new Image();
+      im.onerror = rej;
+      im.onload = () => {
+        const s = Math.min(1, 400 / Math.max(im.width, im.height)), cv = document.createElement("canvas");
+        cv.width = Math.max(1, Math.round(im.width * s)); cv.height = Math.max(1, Math.round(im.height * s));
+        const cx = cv.getContext("2d"); cx.fillStyle = "#fff"; cx.fillRect(0, 0, cv.width, cv.height); cx.drawImage(im, 0, 0, cv.width, cv.height);
+        res(cv.toDataURL("image/jpeg", .72));
+      };
+      im.src = fr.result;
+    };
+    fr.readAsDataURL(file);
+  });
+  function renderPh(){
+    $("#rprev").innerHTML = rPh.map((s, k) => `<div><img src="${s}" alt="Photo ${k + 1}"><button type="button" data-rm="${k}" aria-label="Remove photo ${k + 1}"><i class="fa-solid fa-xmark"></i></button></div>`).join("");
+    $("#rdrop").classList.toggle("full", rPh.length >= MAXPH);
+    $("#phN").textContent = rPh.length + "/" + MAXPH;
+  }
+  async function addPhotos(files){
+    const list = [...files].filter(f => /^image\//.test(f.type));
+    if (!list.length) { if (files.length) toast("Please choose image files"); return; }
+    const room = MAXPH - rPh.length;
+    if (list.length > room) toast(`Up to ${MAXPH} photos, extra ones were skipped`);
+    for (const f of list.slice(0, room)) { try { rPh.push(await downscale(f)); } catch { toast("Couldn't read " + f.name); } }
+    renderPh();
+  }
+  const drop = $("#rdrop");
+  $("#rfile").addEventListener("change", e => { addPhotos(e.target.files); e.target.value = ""; });
+  ["dragenter", "dragover"].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.add("drag"); }));
+  ["dragleave", "drop"].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.remove("drag"); }));
+  drop.addEventListener("drop", e => addPhotos(e.dataTransfer.files));
+  $("#rprev").addEventListener("click", e => { const b = e.target.closest("[data-rm]"); if (b) { rPh.splice(+b.dataset.rm, 1); renderPh(); } });
+
+  /* ---------- Review form ---------- */
+  let pick = 0;
+  const LABELS = ["", "Poor", "Fair", "Good", "Very good", "Excellent"];
+  const paint = n => $$("#starpick button").forEach(b => b.classList.toggle("on", +b.dataset.s <= n));
+  $("#starpick").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; pick = +b.dataset.s; paint(pick); $("#starTxt").textContent = LABELS[pick]; });
+  $("#starpick").addEventListener("mouseover", e => { const b = e.target.closest("button"); if (b) paint(+b.dataset.s); });
+  $("#starpick").addEventListener("mouseleave", () => paint(pick));
+  $("#rform").addEventListener("submit", e => {
+    e.preventDefault();
+    if (!pick) { toast("Please select a star rating"); return; }
+    const r = {n:$("#rn").value.trim(), r:pick, d:new Date().toLocaleDateString("en-GB", {day:"2-digit", month:"short", year:"numeric"}), t:esc($("#rt").value.trim())};
+    if (rPh.length) r.ph = rPh.slice();
+    const all = store.get("reviews", {}); all[id] = [r, ...(all[id] || [])]; store.set("reviews", all);
+    let msg = "Thanks! Your review has been posted";
+    if (r.ph && (store.get("reviews", {})[id] || []).length !== all[id].length) { // storage full: keep the review, drop the photos
+      delete r.ph; store.set("reviews", all); msg = "Review posted, but photos were too large to save";
+    }
+    revs.unshift(r); rf = "all"; renderRevs();
+    const total = cnt + all[id].length;
+    $("#revN").textContent = total; $("#revBase").textContent = `Based on ${total} reviews`;
+    e.target.reset(); pick = 0; paint(0); $("#starTxt").textContent = "Select a rating";
+    rPh = []; renderPh();
+    toast(msg);
+    $("#revList").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+  $("#askf").addEventListener("submit", e => {
+    e.preventDefault();
+    const q = $("#askq").value.trim();
+    $("#qaList").insertAdjacentHTML("afterbegin", `<details class="qa" open><summary><span class="q">Q</span><span>${esc(q)}</span><i class="fa-solid fa-chevron-down chev"></i></summary><div class="a"><span class="q" style="background:#FFF4E0;color:#C77700"><i class="fa-regular fa-clock"></i></span><div>Thanks for asking! Our team will answer within 24 hours.<small>Pending answer</small></div></div></details>`);
+    $("#qaN").textContent = +$("#qaN").textContent + 1;
+    e.target.reset(); toast("Your question has been submitted");
+  });
+
+  /* ---------- Side: more from brand ---------- */
+  const ids = Object.keys(P).map(Number).filter(k => k !== id);
+  let brandIds = ids.filter(k => P[k].b === x.b);
+  if (brandIds.length < 3) brandIds = [...brandIds, ...ids.filter(k => P[k].c === x.c && !brandIds.includes(k))];
+  if (brandIds.length < 3) brandIds = [...brandIds, ...ids.filter(k => !brandIds.includes(k))];
+  $("#minis").innerHTML = brandIds.slice(0, 4).map(k => `<a class="mini" href="product.html?id=${k}"><img src="img/${P[k].i}" alt=""><div><b>${esc(P[k].n)}</b><span>${tk(P[k].p)}</span></div></a>`).join("");
+
+  /* ---------- Related & recent ---------- */
+  let rel = ids.filter(k => P[k].c === x.c);
+  if (rel.length < 6) rel = [...rel, ...ids.filter(k => !rel.includes(k)).sort((a, b) => Math.abs(P[a].p - x.p) - Math.abs(P[b].p - x.p))].slice(0, 8);
+  $("#r-rel").innerHTML = rel.map(rcard).join("");
+
+  const recent = store.get("recent", []).map(Number).filter(k => k !== id && P[k]);
+  if (recent.length) { $("#recentSec").hidden = false; $("#r-recent").innerHTML = recent.slice(0, 10).map(rcard).join(""); }
+  store.set("recent", [id, ...recent].slice(0, 12));
+
+  markTools();
+})();
+</script>
+</body>
+</html>

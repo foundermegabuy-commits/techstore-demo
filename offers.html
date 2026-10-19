@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offers &amp; Deals | TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* ---------- Hero ---------- */
+.of-hero{margin-top:14px;border-radius:24px;overflow:hidden;position:relative;color:#fff;padding:40px 40px 36px;
+  background:radial-gradient(circle at 85% 30%,rgba(255,74,3,.55),transparent 45%),radial-gradient(circle at 10% 110%,rgba(232,199,122,.25),transparent 40%),linear-gradient(120deg,var(--navy),var(--navy-3) 60%,#2A1A3E);
+  display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center}
+.of-hero::before{content:"%";position:absolute;right:-30px;bottom:-110px;font-size:360px;font-weight:800;color:rgba(255,255,255,.04);line-height:1}
+.of-hero small{display:inline-flex;align-items:center;gap:8px;background:rgba(232,199,122,.14);border:1px solid rgba(232,199,122,.35);color:var(--gold);padding:5px 12px;border-radius:30px;font-weight:600;font-size:11.5px;letter-spacing:1.5px}
+.of-hero h1{font-size:44px;line-height:1.08;font-weight:800;margin:14px 0 10px;letter-spacing:-1px}
+.of-hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--orange-2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.of-hero p{color:#B4BAD8;max-width:460px}
+.of-hero .btns{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.cd{position:relative;z-index:1}
+.cd .lbl{font-size:12px;color:#9CA3C7;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;text-align:center}
+.cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.cd-grid div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(8px);border-radius:18px;padding:18px 6px;text-align:center;position:relative;overflow:hidden}
+.cd-grid div::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.25)}
+.cd-grid b{display:block;font-size:46px;font-weight:800;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+.cd-grid span{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+.cd .foot{display:flex;justify-content:center;gap:18px;margin-top:16px;font-size:12px;color:#B4BAD8;flex-wrap:wrap}
+.cd .foot i{color:var(--orange-2);margin-right:6px}
+
+/* ---------- Chips ---------- */
+.chips{display:flex;gap:10px;flex-wrap:wrap;min-width:0;max-width:100%}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:30px;background:var(--card);border:1px solid var(--line);font-size:13px;font-weight:500;color:var(--text);transition:.2s}
+.chip i{color:var(--orange)}
+.chip:hover{border-color:var(--orange)}
+.chip.on{background:var(--navy);border-color:var(--ink);color:#fff}
+.chip.on i{color:var(--gold)}
+.chip em{font-style:normal;font-size:11px;background:var(--orange-soft);color:var(--orange);border-radius:10px;padding:0 7px;font-weight:600}
+.chip.on em{background:rgba(255,255,255,.15);color:#fff}
+
+/* ---------- Banner grid ---------- */
+.ob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.ob{position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);display:block;background:var(--navy)}
+.ob img{width:100%;aspect-ratio:1880/600;object-fit:cover;transition:transform .6s}
+.ob:hover img{transform:scale(1.04)}
+.ob .cap{position:absolute;left:0;right:0;bottom:0;padding:30px 18px 14px;background:linear-gradient(transparent,rgba(5,12,46,.85));color:#fff;display:flex;justify-content:space-between;align-items:end;gap:10px}
+.ob .cap b{font-size:15px;font-weight:600}
+.ob .cap span{font-size:12px;font-weight:600;background:var(--orange);padding:6px 12px;border-radius:8px;white-space:nowrap}
+.ob .off{position:absolute;top:14px;left:14px;background:var(--gold);color:var(--ink);font-weight:700;font-size:12px;padding:4px 10px;border-radius:8px}
+
+/* ---------- Deal of the day ---------- */
+.dotd{display:grid;grid-template-columns:1fr 1.1fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}
+.dotd .pic{background:radial-gradient(circle at 50% 45%,#fff,var(--soft-2) 70%);display:grid;place-items:center;padding:30px;position:relative;min-height:340px}
+.dotd .pic img{max-height:320px;object-fit:contain;mix-blend-mode:multiply;filter:drop-shadow(0 20px 30px rgba(5,12,46,.15));transition:transform .5s}
+.dotd:hover .pic img{transform:scale(1.04) rotate(-1deg)}
+.dotd .burst{position:absolute;top:22px;left:22px;width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff;display:grid;place-items:center;text-align:center;font-weight:800;font-size:22px;line-height:1;box-shadow:0 10px 24px rgba(255,74,3,.4)}
+.dotd .burst small{display:block;font-size:10px;font-weight:600;letter-spacing:1px}
+.dotd .info{padding:34px;display:flex;flex-direction:column;gap:12px;justify-content:center}
+.dotd .kick{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.dotd h3{font-size:24px;font-weight:700;line-height:1.3}
+.dotd .pr{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.dotd .pr b{font-size:32px;color:var(--orange);font-weight:800}
+.dotd .pr s{color:#9AA0BC;font-size:16px}
+.stockbar{display:grid;gap:6px;font-size:12.5px;color:var(--muted)}
+.stockbar .bar{height:9px;border-radius:6px;background:var(--line);overflow:hidden}
+.stockbar .bar i{display:block;height:100%;width:72%;background:linear-gradient(90deg,var(--orange),var(--gold))}
+.mini-t{display:flex;gap:8px}
+.mini-t span{background:var(--navy);color:#fff;border-radius:10px;padding:6px 10px;min-width:52px;text-align:center;font-size:10.5px;color:#9CA3C7}
+.mini-t b{display:block;color:var(--gold);font-size:18px;line-height:1.1}
+.dotd .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.feat{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.feat i{color:var(--green);margin-right:5px}
+
+/* ---------- Coupons ---------- */
+.cp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.cpw{filter:drop-shadow(0 8px 18px rgba(5,12,46,.09));transition:transform .25s}
+.cpw:hover{transform:translateY(-3px)}
+.cp{position:relative;display:flex;height:100%;background:var(--card);border-radius:16px;
+  -webkit-mask:radial-gradient(circle 12px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 12px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat}
+.cp .l{width:96px;flex:none;display:grid;place-items:center;text-align:center;color:#fff;padding:16px 8px;border-right:2px dashed rgba(255,255,255,.6)}
+.cp .l b{font-size:24px;font-weight:800;line-height:1}
+.cp .l span{font-size:10px;letter-spacing:1.5px;font-weight:600;opacity:.9}
+.cp.o .l{background:linear-gradient(160deg,var(--orange),#FF8A3D)}
+.cp.n .l{background:linear-gradient(160deg,var(--navy),var(--navy-3))}
+.cp.g .l{background:linear-gradient(160deg,#C9A24F,var(--gold));color:var(--ink)}
+.cp.e .l{background:linear-gradient(160deg,#019045,#2DBE73)}
+.cp .r{flex:1;padding:16px 16px 16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.cp .r h4{font-size:14px;font-weight:600}
+.cp .r p{font-size:11.5px;color:var(--muted);line-height:1.45}
+.code{margin-top:auto;display:flex;align-items:center;border:1.5px dashed #FFB896;border-radius:10px;background:var(--orange-soft);overflow:hidden}
+.code code{flex:1;font-family:inherit;font-weight:700;letter-spacing:1.5px;color:var(--orange);padding:0 10px;font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.code button{background:var(--navy);color:#fff;font-size:12px;font-weight:600;padding:8px 12px;transition:.2s;white-space:nowrap}
+.code button:hover{background:var(--orange)}
+.code button.done{background:var(--green)}
+.cp .exp{font-size:10.5px;color:#9AA0BC}
+
+/* ---------- Strip ---------- */
+.perks{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.perks div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;gap:14px;align-items:center}
+.perks i{width:46px;height:46px;flex:none;border-radius:13px;display:grid;place-items:center;background:var(--orange-soft);color:var(--orange);font-size:18px}
+.perks b{display:block;font-size:13.5px}
+.perks span{font-size:12px;color:var(--muted)}
+
+@media (max-width:1200px){.cp-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:992px){
+  .of-hero{grid-template-columns:1fr;padding:32px 28px}
+  .dotd{grid-template-columns:1fr}
+  .perks{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .of-hero{padding:24px 18px;border-radius:20px}
+  .of-hero h1{font-size:30px}
+  .cd-grid{gap:8px}.cd-grid div{padding:12px 4px;border-radius:14px}.cd-grid b{font-size:30px}.cd-grid span{font-size:9.5px;letter-spacing:1px}
+  .ob-grid{grid-template-columns:1fr;gap:12px}
+  .ob .cap{padding:24px 12px 10px}.ob .cap b{font-size:13px}
+  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none}
+  .dotd .pic{min-height:240px;padding:20px}.dotd .pic img{max-height:220px}
+  .dotd .burst{width:66px;height:66px;font-size:18px;top:14px;left:14px}
+  .dotd .info{padding:20px}
+  .dotd h3{font-size:18px}.dotd .pr b{font-size:26px}
+  .dotd .btns .btn{flex:1}
+  .cp-grid{grid-template-columns:1fr}
+  .perks{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body data-page="offers">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <nav class="crumb"><a href="index.html"><i class="fa-solid fa-house" style="font-size:11px"></i></a><i class="fa-solid fa-chevron-right"></i><span>Offers</span></nav>
+
+  <!-- Hero -->
+  <div class="of-hero">
+    <div style="position:relative;z-index:1">
+      <small><i class="fa-solid fa-fire"></i>MEGA TECH SALE</small>
+      <h1>Up to <em>30% Off</em><br>on Top Tech</h1>
+      <p>Laptops, monitors, gaming gear and ready-to-go desktop PCs at their lowest prices this season. Official warranty on every product.</p>
+      <div class="btns"><a href="#deals" class="btn primary"><i class="fa-solid fa-bolt"></i>Shop Deals</a><a href="#coupons" class="btn" style="border:1px solid rgba(255,255,255,.25);color:#fff"><i class="fa-solid fa-ticket"></i>Get Coupons</a></div>
+    </div>
+    <div class="cd">
+      <div class="lbl">Sale ends in</div>
+      <div class="cd-grid">
+        <div><b id="cdD">00</b><span>Days</span></div>
+        <div><b id="cdH">00</b><span>Hours</span></div>
+        <div><b id="cdM">00</b><span>Minutes</span></div>
+        <div><b id="cdS">00</b><span>Seconds</span></div>
+      </div>
+      <div class="foot"><span><i class="fa-solid fa-credit-card"></i>0% EMI up to 12 months</span><span><i class="fa-solid fa-truck-fast"></i>Nationwide delivery</span></div>
+    </div>
+  </div>
+
+  <!-- Banners -->
+  <section>
+    <div class="shead"><div><h2>Featured Campaigns</h2><p>Handpicked offers from our top brands</p></div></div>
+    <div class="ob-grid" id="obGrid">
+      <a href="category.html?c=laptop" class="ob" data-c="laptop"><span class="off">Up to 25% OFF</span><img src="img/hero1.png" alt="Laptop offer"><div class="cap"><b>Gaming &amp; Everyday Laptops</b><span>Shop Now</span></div></a>
+      <a href="category.html?c=monitor" class="ob" data-c="monitor"><span class="off">Save ৳12,000</span><img src="img/hero2.png" alt="Monitor offer"><div class="cap"><b>High Refresh Monitors</b><span>Shop Now</span></div></a>
+      <a href="category.html?c=gaming" class="ob" data-c="gaming"><span class="off">Up to 20% OFF</span><img src="img/hero3.png" alt="Gaming offer"><div class="cap"><b>Gaming Gear Week</b><span>Shop Now</span></div></a>
+      <a href="category.html?c=monitor" class="ob" data-c="monitor"><span class="off">Up to 29% OFF</span><img src="img/hero4.png" alt="Portable monitor offer"><div class="cap"><b>Portable Monitors</b><span>Shop Now</span></div></a>
+    </div>
+  </section>
+
+  <!-- Deal of the day -->
+  <section>
+    <div class="shead"><div><h2>Deal of the Day</h2><p>One product. One unbeatable price. Today only.</p></div></div>
+    <div class="dotd" id="dotd"></div>
+  </section>
+
+  <!-- Discounted products -->
+  <section id="deals">
+    <div class="shead">
+      <div><h2>Biggest Discounts</h2><p>Sorted by highest savings first</p></div>
+      <div class="chips" id="chips">
+        <button class="chip on" data-f="all"><i class="fa-solid fa-grip"></i>All <em></em></button>
+        <button class="chip" data-f="laptop"><i class="fa-solid fa-laptop"></i>Laptop <em></em></button>
+        <button class="chip" data-f="monitor"><i class="fa-solid fa-tv"></i>Monitor <em></em></button>
+        <button class="chip" data-f="gaming"><i class="fa-solid fa-gamepad"></i>Gaming <em></em></button>
+        <button class="chip" data-f="desktop"><i class="fa-solid fa-desktop"></i>Desktop <em></em></button>
+      </div>
+    </div>
+    <div class="grid" id="dealGrid"></div>
+  </section>
+
+  <!-- Coupons -->
+  <section id="coupons">
+    <div class="shead"><div><h2>Coupon Codes</h2><p>Copy a code and apply it at checkout</p></div></div>
+    <div class="cp-grid" id="cpGrid"></div>
+  </section>
+
+  <section>
+    <div class="perks">
+      <div><i class="fa-solid fa-certificate"></i><p><b>100% Original</b><span>Official brand warranty</span></p></div>
+      <div><i class="fa-solid fa-credit-card"></i><p><b>0% EMI</b><span>On selected bank cards</span></p></div>
+      <div><i class="fa-solid fa-rotate"></i><p><b>Easy Exchange</b><span>7-day exchange policy</span></p></div>
+      <div><i class="fa-solid fa-headset"></i><p><b>Expert Support</b><span>Call 01000000000</span></p></div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+const pct = id => Math.round((P[id].o - P[id].p) / P[id].o * 100);
+const GROUP = {laptop:["laptop"],monitor:["monitor"],gaming:["gaming","accessories"],desktop:["desktop"]};
+const ALL = Object.keys(P).map(Number).filter(id=>P[id].o>P[id].p).sort((a,b)=>pct(b)-pct(a));
+
+function showDeals(f){
+  const ids = f==="all" ? ALL : ALL.filter(id=>GROUP[f].includes(P[id].c));
+  const tags = {}; ids.forEach(id=>tags[id]=pct(id)+"% OFF");
+  fill("dealGrid", ids, tags);
+}
+$$("#chips .chip").forEach(c=>{
+  const f=c.dataset.f; c.querySelector("em").textContent = f==="all"?ALL.length:ALL.filter(id=>GROUP[f].includes(P[id].c)).length;
+});
+$("#chips").addEventListener("click",e=>{
+  const b=e.target.closest(".chip"); if(!b) return;
+  $$("#chips .chip").forEach(x=>x.classList.toggle("on",x===b));
+  showDeals(b.dataset.f);
+  // highlight related campaign banner
+  $$("#obGrid .ob").forEach(o=>o.style.opacity = b.dataset.f==="all"||o.dataset.c===b.dataset.f ? "" : ".45");
+});
+showDeals("all");
+
+// Deal of the day: biggest discount
+(()=>{
+  const id=ALL[0], x=P[id];
+  $("#dotd").innerHTML=`
+    <div class="pic"><div class="burst"><div>${pct(id)}%<small>OFF</small></div></div><img src="img/${x.i}" alt="${esc(x.n)}"></div>
+    <div class="info">
+      <div class="kick"><span class="pill warn"><i class="fa-solid fa-fire"></i>Deal of the Day</span><span class="brand">${esc(x.b)}</span></div>
+      <h3>${esc(x.n)}</h3>
+      <div class="pr"><b>${tk(x.p)}</b><s>${tk(x.o)}</s><span class="pill ok">You save ${tk(x.o-x.p)}</span></div>
+      <div class="feat"><span><i class="fa-solid fa-circle-check"></i>Official warranty</span><span><i class="fa-solid fa-circle-check"></i>0% EMI available</span><span><i class="fa-solid fa-circle-check"></i>Free delivery in Dhaka</span></div>
+      <div class="stockbar"><div style="display:flex;justify-content:space-between"><span>Sold: <b style="color:var(--text)">36</b></span><span>Available: <b style="color:var(--text)">14</b></span></div><div class="bar"><i></i></div></div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="font-size:12.5px;color:var(--muted)">Ends in</span><div class="mini-t"><span><b id="dH">00</b>Hrs</span><span><b id="dM">00</b>Min</span><span><b id="dS">00</b>Sec</span></div></div>
+      <div class="btns"><button class="btn primary" onclick="addCart(${id},1,true)"><i class="fa-solid fa-bolt"></i>Buy Now</button><button class="btn ghost" onclick="addCart(${id})"><i class="fa-solid fa-cart-plus"></i>Add to Cart</button><a class="btn ghost" href="product.html?id=${id}">Details</a></div>
+    </div>`;
+})();
+
+// Coupons
+const COUPONS = [
+  {c:"SAVE5",k:"o",v:"5%",u:"OFF",t:"5% off your order",d:"On orders above ৳20,000. Max discount ৳3,000."},
+  {c:"GAMER500",k:"n",v:"৳500",u:"OFF",t:"Gaming accessories",d:"Flat ৳500 off keyboards, mice and gaming gear above ৳4,000."},
+  {c:"FREESHIP",k:"g",v:"FREE",u:"DELIVERY",t:"Free home delivery",d:"Free delivery anywhere in Bangladesh on orders above ৳10,000."},
+  {c:"BUILD1000",k:"e",v:"৳1K",u:"OFF",t:"Custom PC builds",d:"Save ৳1,000 on builds made with the PC Builder above ৳80,000."}
+];
+const exp = new Date(); exp.setDate(exp.getDate() + ((5 - exp.getDay() + 7) % 7 || 7));
+$("#cpGrid").innerHTML = COUPONS.map(x=>`
+  <div class="cpw"><div class="cp ${x.k}"><div class="l"><div><b>${x.v}</b><span>${x.u}</span></div></div>
+    <div class="r"><h4>${x.t}</h4><p>${x.d}</p>
+      <div class="code"><code>${x.c}</code><button data-code="${x.c}"><i class="fa-regular fa-copy"></i> Copy</button></div>
+      <span class="exp"><i class="fa-regular fa-clock"></i> Valid till ${exp.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}</span>
+    </div></div></div>`).join("");
+$("#cpGrid").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-code]"); if(!b) return;
+  const code=b.dataset.code;
+  const done=()=>{ b.classList.add("done"); b.innerHTML='<i class="fa-solid fa-check"></i> Copied'; toast(`Coupon ${code} copied`); setTimeout(()=>{b.classList.remove("done");b.innerHTML='<i class="fa-regular fa-copy"></i> Copy';},2000); };
+  if(navigator.clipboard?.writeText) navigator.clipboard.writeText(code).then(done,()=>fallback(code,done)); else fallback(code,done);
+});
+function fallback(text,cb){ const t=document.createElement("textarea"); t.value=text; t.style.position="fixed"; t.style.opacity="0"; document.body.appendChild(t); t.select(); try{document.execCommand("copy");}catch{} t.remove(); cb(); }
+
+// Countdowns
+(()=>{
+  const pad=v=>String(v).padStart(2,"0");
+  const tick=()=>{
+    const now=new Date(), d=Math.max(0,Math.floor((exp.setHours(0,0,0,0),exp-now)/1000));
+    $("#cdD").textContent=pad(Math.floor(d/86400)); $("#cdH").textContent=pad(Math.floor(d%86400/3600)); $("#cdM").textContent=pad(Math.floor(d%3600/60)); $("#cdS").textContent=pad(d%60);
+    const m=new Date(now); m.setHours(24,0,0,0); const s=Math.floor((m-now)/1000);
+    $("#dH").textContent=pad(Math.floor(s/3600)); $("#dM").textContent=pad(Math.floor(s%3600/60)); $("#dS").textContent=pad(s%60);
+  };
+  tick(); setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>

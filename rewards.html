@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TechStore Rewards | TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* ---------- Hero ---------- */
+.rw-hero{margin-top:14px;border-radius:24px;overflow:hidden;position:relative;color:#fff;padding:38px 40px;
+  background:radial-gradient(circle at 92% 10%,rgba(232,199,122,.35),transparent 40%),radial-gradient(circle at 0% 110%,rgba(255,74,3,.35),transparent 45%),linear-gradient(120deg,var(--navy),var(--navy-3) 65%,#2A1A3E);
+  display:grid;grid-template-columns:1.15fr 1fr;gap:34px;align-items:center}
+.rw-hero > *{position:relative;z-index:1;min-width:0}
+.rw-kick{display:inline-flex;align-items:center;gap:8px;background:rgba(232,199,122,.14);border:1px solid rgba(232,199,122,.35);color:var(--gold);padding:5px 12px;border-radius:30px;font-weight:600;font-size:11.5px;letter-spacing:1.5px}
+.rw-hero h1{font-size:40px;line-height:1.1;font-weight:800;margin:14px 0 8px;letter-spacing:-.8px}
+.rw-hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--gold),var(--orange-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.rw-hero p{color:#B4BAD8;max-width:480px;font-size:13.5px}
+.rw-hero .btns{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.rw-hero .btn.line{border:1px solid rgba(255,255,255,.25);color:#fff;background:transparent}
+.pts{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:6px 0 4px}
+.pts b{font-size:58px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;background:linear-gradient(180deg,#fff,#F3DDA6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pts span{color:#B4BAD8;font-size:14px}
+.pts span strong{color:var(--gold)}
+.mini-stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.mini-stats div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px 14px;font-size:11.5px;color:#9CA3C7}
+.mini-stats b{display:block;color:#fff;font-size:15px}
+
+/* membership card */
+.mcard{border-radius:22px;padding:24px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;position:relative;overflow:hidden;box-shadow:0 24px 50px rgba(0,0,0,.35);color:var(--ink)}
+.mcard::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.18)}
+.mcard.silver{background:linear-gradient(135deg,#E9ECF4,#BFC6D8 55%,#9AA3BC)}
+.mcard.gold{background:linear-gradient(135deg,#F7E3AE,var(--gold) 50%,#C9A24F)}
+.mcard.platinum{background:linear-gradient(135deg,#3B4366,#1D2346 55%,#0B1033);color:#fff}
+.mcard .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;position:relative;z-index:1}
+.mcard .top img{height:30px;width:auto}
+.mcard.silver .top img,.mcard.gold .top img{filter:brightness(0) saturate(100%) invert(6%) sepia(40%) saturate(4000%) hue-rotate(225deg)}
+.mcard .tier{font-weight:800;letter-spacing:2px;font-size:13px;display:flex;align-items:center;gap:6px}
+.mcard .nm{position:relative;z-index:1}
+.mcard .nm small{display:block;font-size:11px;letter-spacing:1.5px;opacity:.7;font-weight:600}
+.mcard .nm b{font-size:20px;font-weight:700;word-break:break-word}
+.mcard .prog{position:relative;z-index:1;font-size:11.5px;font-weight:500}
+.mcard .prog .bar{height:8px;border-radius:6px;background:rgba(5,12,46,.18);overflow:hidden;margin:6px 0 4px}
+.mcard.platinum .prog .bar{background:rgba(255,255,255,.18)}
+.mcard .prog .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--orange),var(--orange-2))}
+
+/* ---------- Common ---------- */
+.rw-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;min-width:0}
+.rw-box h3{font-size:16px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.rw-box h3 i{color:var(--orange)}
+.rw-box > p.sub{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;color:var(--muted);margin-top:14px;line-height:1.5}
+.note i{color:var(--orange);margin-top:2px}
+
+/* ---------- Tiers ---------- */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tc{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;position:relative;transition:.25s;min-width:0}
+.tc:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.tc.cur{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,74,3,.12)}
+.tc .badge{position:absolute;top:18px;right:18px}
+.tc .medal{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:22px;margin-bottom:12px;color:var(--ink)}
+.tc.silver .medal{background:linear-gradient(135deg,#E9ECF4,#AEB6CC)}
+.tc.gold .medal{background:linear-gradient(135deg,#F7E3AE,#C9A24F)}
+.tc.platinum .medal{background:linear-gradient(135deg,#3B4366,#0B1033);color:#fff}
+.tc h4{font-size:19px;font-weight:700}
+.tc .req{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.tc ul{list-style:none;display:grid;gap:9px;font-size:13px}
+.tc li{display:flex;gap:10px;align-items:flex-start}
+.tc li i{color:var(--green);margin-top:4px;font-size:12px}
+.tprog{margin-top:18px;display:grid;gap:6px}
+.tprog .bar{height:12px;border-radius:8px;background:var(--line);overflow:hidden}
+.tprog .bar i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,var(--orange),var(--gold));transition:width .6s}
+.tprog .lbls{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);gap:10px;flex-wrap:wrap}
+.tprog .lbls b{color:var(--text)}
+
+/* ---------- Earn ---------- */
+.earn{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.earn div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 16px;text-align:center;transition:.25s;min-width:0}
+.earn div:hover{border-color:var(--orange);transform:translateY(-3px)}
+.earn i{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;margin:0 auto 12px;font-size:20px;background:var(--orange-soft);color:var(--orange)}
+.earn b{display:block;font-size:14px}
+.earn em{display:inline-block;font-style:normal;font-weight:700;color:var(--green);font-size:13px;margin:4px 0}
+.earn span{display:block;font-size:12px;color:var(--muted);line-height:1.45}
+
+/* ---------- Redeem ---------- */
+.bal{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 16px;border-radius:14px;background:var(--bg);margin-bottom:16px}
+.bal span{font-size:12.5px;color:var(--muted)}
+.bal b{font-size:22px;color:var(--ink);display:block;line-height:1.2}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.presets button{padding:8px 14px;border-radius:10px;border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--text);background:var(--card);transition:.15s}
+.presets button.on{border-color:var(--orange);background:var(--orange-soft);color:var(--orange)}
+.presets button:disabled{opacity:.4;cursor:not-allowed}
+.rd-row{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap}
+.rd-row .field{flex:1;min-width:150px;margin:0}
+.rd-row .field input{background:var(--card);color:var(--text)}
+.rd-row .btn{flex:none}
+.rd-row .btn:disabled,.rd-row input:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none;filter:none}
+.rd-out{font-size:12.5px;color:var(--muted);margin-top:10px}
+.rd-out b{color:var(--green)}
+.locked-msg{display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:14px;border:1px dashed var(--line);color:var(--muted);font-size:13px;margin-top:12px}
+.locked-msg i{font-size:18px;color:var(--orange)}
+.cps{display:grid;gap:10px}
+.rc{display:flex;align-items:stretch;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.rc .v{width:92px;flex:none;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(160deg,var(--orange),var(--orange-2));padding:10px 6px;border-right:2px dashed rgba(255,255,255,.6)}
+.rc .v b{font-size:18px;font-weight:800;line-height:1.1}
+.rc .v span{font-size:9.5px;letter-spacing:1.5px;font-weight:600}
+.rc .d{flex:1;min-width:0;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between}
+.rc code{font-family:inherit;font-weight:700;letter-spacing:1.5px;color:var(--orange);font-size:15px}
+.rc small{display:block;font-size:11px;color:var(--muted)}
+.copy{height:34px;padding:0 12px;border-radius:9px;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:#fff;transition:.2s;white-space:nowrap}
+.copy:hover{background:var(--orange)}
+.copy.done{background:var(--green)}
+.empty-s{text-align:center;padding:30px 10px;color:var(--muted);font-size:13px}
+.empty-s i{font-size:34px;color:var(--line);margin-bottom:8px;display:block}
+
+/* ---------- Referral ---------- */
+.ref-code{display:flex;align-items:center;gap:10px;border:2px dashed var(--orange);border-radius:14px;padding:10px 10px 10px 16px;background:var(--orange-soft);margin-bottom:12px}
+.ref-code code{flex:1;min-width:0;font-family:inherit;font-weight:800;font-size:22px;letter-spacing:2px;color:var(--orange);overflow:hidden;text-overflow:ellipsis}
+.ref-link{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px;background:var(--bg)}
+.ref-link input{flex:1;min-width:0;border:0;outline:0;background:transparent;padding:0 12px;font-family:inherit;font-size:12.5px;color:var(--text);height:44px}
+.ref-link .copy{height:auto;border-radius:0}
+.share{display:flex;gap:10px;flex-wrap:wrap}
+.share a{flex:1;min-width:130px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:13px;color:#fff;transition:.2s}
+.share a:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.share .wa{background:#25D366}.share .fb{background:#1877F2}
+.steps{display:grid;gap:14px;counter-reset:st}
+.step{display:flex;gap:14px;align-items:flex-start}
+.step i{width:46px;height:46px;flex:none;border-radius:14px;display:grid;place-items:center;font-size:17px;background:linear-gradient(135deg,var(--navy),var(--navy-3));color:var(--gold);position:relative}
+.step i::after{counter-increment:st;content:counter(st);position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:var(--orange);color:#fff;font:700 11px/20px Poppins,sans-serif;text-align:center}
+.step b{display:block;font-size:14px}
+.step span{font-size:12.5px;color:var(--muted)}
+.ref-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.ref-sum div{background:var(--bg);border-radius:12px;padding:12px;text-align:center}
+.ref-sum b{display:block;font-size:20px;color:var(--ink)}
+.ref-sum span{font-size:11.5px;color:var(--muted)}
+.rtbl{width:100%;border-collapse:collapse;font-size:13px}
+.rtbl th{text-align:left;font-size:11.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;padding:10px 12px;background:var(--bg);border-bottom:1px solid var(--line)}
+.rtbl td{padding:12px;border-bottom:1px solid var(--line)}
+.rtbl tr:last-child td{border-bottom:0}
+.rtbl .pt{font-weight:700;color:var(--green)}
+.demo-tag{font-size:10.5px;font-weight:600;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:2px 8px;margin-left:8px;vertical-align:middle}
+
+/* ---------- FAQ ---------- */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 18px;transition:.2s}
+.faq details[open]{border-color:var(--orange)}
+.faq summary{list-style:none;cursor:pointer;padding:16px 0;font-weight:600;font-size:13.5px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"\f067";font-family:"Font Awesome 6 Free";font-weight:900;font-size:11px;color:var(--orange);flex:none;transition:.2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{font-size:13px;color:var(--muted);padding-bottom:16px;line-height:1.6}
+
+.login-gate{text-align:center;padding:34px 20px}
+.login-gate i{font-size:34px;color:var(--orange);margin-bottom:10px}
+.login-gate h4{font-size:17px;margin-bottom:4px}
+.login-gate p{color:var(--muted);font-size:13px;margin-bottom:14px}
+.login-gate .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+@media (max-width:1200px){ .earn{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:992px){
+  .rw-hero{grid-template-columns:1fr;padding:30px 26px}
+  .mcard{max-width:460px}
+  .tiers{grid-template-columns:1fr}
+  .two-col{grid-template-columns:1fr}
+  .faq{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .rw-hero{padding:24px 18px;border-radius:20px;gap:24px}
+  .rw-hero h1{font-size:28px}
+  .pts b{font-size:44px}
+  .mcard{padding:20px;min-height:190px}
+  .earn{grid-template-columns:1fr 1fr;gap:10px}
+  .earn div{padding:16px 10px}
+  .earn div:last-child{grid-column:1/-1}
+  .rw-box{padding:16px}
+  .ref-code code{font-size:18px;letter-spacing:1px}
+  .rd-row .btn{width:100%}
+  .rtbl thead{display:none}
+  .rtbl,.rtbl tbody,.rtbl tr,.rtbl td{display:block;width:100%}
+  .rtbl tr{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:4px 0}
+  .rtbl td{border:0;padding:6px 12px;display:flex;justify-content:space-between;gap:10px}
+  .rtbl td::before{content:attr(data-l);font-size:11.5px;color:var(--muted)}
+  .ref-sum b{font-size:17px}
+}
+</style>
+</head>
+<body data-page="rewards">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <nav class="crumb"><a href="index.html"><i class="fa-solid fa-house" style="font-size:11px"></i></a><i class="fa-solid fa-chevron-right"></i><span>TechStore Rewards</span></nav>
+
+  <div class="rw-hero" id="hero"></div>
+
+  <!-- Tiers -->
+  <section id="tiers">
+    <div class="shead"><div><h2>Membership Tiers</h2><p>Your tier is based on lifetime points earned from purchases</p></div></div>
+    <div class="tiers" id="tierGrid"></div>
+    <div class="rw-box tprog" id="tierProg" style="margin-top:18px"></div>
+  </section>
+
+  <!-- Ways to earn -->
+  <section>
+    <div class="shead"><div><h2>Ways to Earn</h2><p>Collect points every time you shop or engage</p></div></div>
+    <div class="earn">
+      <div><i class="fa-solid fa-bag-shopping"></i><b>Shopping</b><em>1 pt / ৳100</em><span>Earn on every delivered order, online or in-store.</span></div>
+      <div><i class="fa-solid fa-star"></i><b>Write a Review</b><em>+20 pts</em><span>Review a product you bought from us.</span></div>
+      <div><i class="fa-solid fa-user-plus"></i><b>Refer a Friend</b><em>+200 pts</em><span>When your friend completes their first order.</span></div>
+      <div><i class="fa-solid fa-cake-candles"></i><b>Birthday Gift</b><em>+100 pts</em><span>Add your date of birth in your profile.</span></div>
+      <div><i class="fa-solid fa-gift"></i><b>First Order Bonus</b><em>+100 pts</em><span>A welcome bonus on your very first order.</span></div>
+    </div>
+  </section>
+
+  <!-- Redeem -->
+  <section id="redeem">
+    <div class="shead"><div><h2>Redeem Points</h2><p>1 point = ৳1 discount · redeem from 500 points</p></div></div>
+    <div class="two-col" id="redeemWrap"></div>
+  </section>
+
+  <!-- Referral -->
+  <section id="refer">
+    <div class="shead"><div><h2>Refer &amp; Earn</h2><p>Your friend saves ৳300, you earn 200 points</p></div></div>
+    <div class="two-col">
+      <div class="rw-box" id="refBox"></div>
+      <div class="rw-box">
+        <h3><i class="fa-solid fa-route"></i>How it works</h3>
+        <p class="sub">Three simple steps</p>
+        <div class="steps">
+          <div class="step"><i class="fa-solid fa-share-nodes"></i><div><b>Share your link</b><span>Send your referral code or link to friends on WhatsApp, Facebook or anywhere.</span></div></div>
+          <div class="step"><i class="fa-solid fa-tags"></i><div><b>Friend gets ৳300 off</b><span>They get ৳300 off their first order of ৳5,000 or more using your code.</span></div></div>
+          <div class="step"><i class="fa-solid fa-coins"></i><div><b>You get 200 points</b><span>Points are added once their order is delivered. No limit on referrals.</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="rw-box" id="refHist" style="margin-top:18px"></div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="shead"><div><h2>Rewards FAQ</h2><p>Everything about points, tiers and referrals</p></div></div>
+    <div class="faq">
+      <details><summary>When are points added to my account?</summary><p>Purchase points are added once your order is marked Delivered. Bonus points (reviews, birthday, referrals) are added within 24 hours.</p></details>
+      <details><summary>How do I use my points?</summary><p>Convert 500 points or more into a reward coupon on this page (1 point = ৳1), then apply the RWD code at checkout or show it in any of our branches.</p></details>
+      <details><summary>Do points expire?</summary><p>Points stay valid for 12 months from the date they were earned. Reward coupons are valid for 90 days after you create them.</p></details>
+      <details><summary>Will redeeming points lower my tier?</summary><p>No. Your tier is based on lifetime points earned from purchases, so redeeming points never moves you down a tier.</p></details>
+      <details><summary>Can I combine reward coupons with other offers?</summary><p>Reward coupons can be used with regular prices and most offers, but not with Flash Sale prices or other coupon codes on the same order.</p></details>
+      <details><summary>Is there a limit on referrals?</summary><p>No limit. Each friend can only use one referral code, and only on their first order with TechStore BD.</p></details>
+    </div>
+    <p class="note"><i class="fa-solid fa-circle-info"></i>Points, tiers, perks and referral rewards shown here are sample program values for this design and may change.</p>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+/* ---------- Program rules (sample values) ---------- */
+const TIERS = [
+  {k:"silver", n:"Silver", min:0, ic:"fa-medal", perks:["1 point for every ৳100 spent","Birthday bonus of 100 points","Member-only deals & coupons","Standard warranty support"]},
+  {k:"gold", n:"Gold", min:5000, ic:"fa-crown", perks:["Everything in Silver","Early access to Flash Sale slots","Free delivery inside Dhaka","Priority customer support"]},
+  {k:"platinum", n:"Platinum", min:20000, ic:"fa-gem", perks:["Everything in Gold","Free nationwide delivery","Priority service & RMA desk","Personal account manager"]}
+];
+const MIN_REDEEM = 500;
+
+/* same rule as account.html: delivered orders (demo orders when none), 1 point per ৳100 */
+const DEMO_ORDERS = [
+  {id:"TSD-118274", items:{16:1, 8:1}, total:133490 + 120, date:"2026-10-14", status:"Processing"},
+  {id:"TSD-102938", items:{10:1, 6:1}, total:32800 + 120, date:"2026-09-22", status:"Delivered"}
+];
+const orderTotal = o => o.total ?? Object.entries(o.items || {}).reduce((s, [id, q]) => s + (P[id]?.p || 0) * q, 0);
+const getOrders = () => { const o = store.get("orders", []); return o && o.length ? o : DEMO_ORDERS; };
+const earnedPts = () => Math.floor(getOrders().filter(o => o.status === "Delivered").reduce((s, o) => s + orderTotal(o), 0) / 100);
+const bonusPts = () => Number(store.get("bonusPoints", 0)) || 0;
+const balance = () => Math.max(0, earnedPts() + bonusPts());
+const tierOf = p => TIERS.slice().reverse().find(t => p >= t.min);
+const nextTier = p => TIERS.find(t => t.min > p);
+const num = n => Number(n).toLocaleString("en-IN");
+const user = () => store.get("user", null);
+function refCode(u){
+  if (!u) return "";
+  const name = (u.name || "MEMBER").split(/\s+/)[0].toUpperCase().replace(/[^A-Z]/g, "").slice(0, 8) || "MEMBER";
+  const digits = String(u.phone || "").replace(/\D/g, "");
+  let tail = digits.slice(-2);
+  if (tail.length < 2) { let h = 0; for (const c of (u.name || "") + (u.email || "")) h = (h * 31 + c.charCodeAt(0)) % 97; tail = String(h + 10).slice(-2); }
+  return "TSD-" + name + tail;
+}
+const refLink = code => new URL("index.html?ref=" + encodeURIComponent(code), location.href).href;
+const fmtDate = d => { const x = new Date(d); return isNaN(x) ? esc(d || "") : x.toLocaleDateString("en-GB", {day:"2-digit", month:"short", year:"numeric"}); };
+
+function copyText(text, btn, msg){
+  const done = () => { if (btn) { const h = btn.innerHTML; btn.classList.add("done"); btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied'; setTimeout(() => { btn.classList.remove("done"); btn.innerHTML = h; }, 1800); } toast(msg || "Copied"); };
+  const fb = () => { const t = document.createElement("textarea"); t.value = text; t.style.position = "fixed"; t.style.opacity = "0"; document.body.appendChild(t); t.select(); try { document.execCommand("copy"); } catch {} t.remove(); done(); };
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text).then(done, fb); else fb();
+}
+
+/* ---------- Hero ---------- */
+function memberCard(u, life){
+  const t = tierOf(life), nx = nextTier(life);
+  const pct = nx ? Math.min(100, Math.round((life - t.min) / (nx.min - t.min) * 100)) : 100;
+  return `<div class="mcard ${t.k}">
+    <div class="top"><img src="img/logo.svg" alt="TechStore BD"><span class="tier"><i class="fa-solid ${t.ic}"></i>${t.n.toUpperCase()}</span></div>
+    <div class="nm"><small>${u ? "MEMBER" : "SAMPLE MEMBER"}</small><b>${esc(u ? u.name || "Customer" : "Your Name")}</b></div>
+    <div class="prog">${nx ? `<div class="bar"><i style="width:${pct}%"></i></div>${num(nx.min - life)} points to ${nx.n}` : `<div class="bar"><i style="width:100%"></i></div>Top tier reached`}</div>
+  </div>`;
+}
+function renderHero(){
+  const u = user(), h = $("#hero");
+  if (!u) {
+    h.innerHTML = `<div>
+      <span class="rw-kick"><i class="fa-solid fa-crown"></i>TECHSTORE REWARDS</span>
+      <h1>Shop. Earn. <em>Save more.</em></h1>
+      <p>Join TechStore Rewards for free. Earn 1 point for every ৳100 you spend, unlock Gold and Platinum perks, and turn points into discounts.</p>
+      <div class="btns"><a href="login.html" class="btn primary"><i class="fa-solid fa-right-to-bracket"></i>Login to see points</a><a href="login.html#register" class="btn line"><i class="fa-solid fa-user-plus"></i>Create free account</a></div>
+    </div>${memberCard(null, 0)}`;
+    return;
+  }
+  const life = earnedPts(), bal = balance(), t = tierOf(life);
+  h.innerHTML = `<div>
+    <span class="rw-kick"><i class="fa-solid fa-crown"></i>TECHSTORE REWARDS · ${t.n.toUpperCase()}</span>
+    <h1 style="font-size:26px;margin-bottom:2px">Hello, ${esc((u.name || "there").split(" ")[0])}! You have</h1>
+    <div class="pts"><b id="ptsNum">${num(bal)}</b><span>points · worth <strong>${tk(bal)}</strong></span></div>
+    <p>${bal >= MIN_REDEEM ? "You can redeem your points for a discount coupon right now." : `Earn ${num(MIN_REDEEM - bal)} more points to unlock your first reward coupon.`}</p>
+    <div class="mini-stats"><div><b>${num(life)}</b>From purchases</div><div><b>${bonusPts() >= 0 ? "+" : ""}${num(bonusPts())}</b>Bonus / redeemed</div><div><b>${store.get("coupons", []).length}</b>Reward coupons</div></div>
+    <div class="btns"><a href="#redeem" class="btn primary"><i class="fa-solid fa-ticket"></i>Redeem Points</a><a href="#refer" class="btn line"><i class="fa-solid fa-user-plus"></i>Refer a Friend</a></div>
+  </div>${memberCard(u, life)}`;
+}
+
+/* ---------- Tiers ---------- */
+function renderTiers(){
+  const u = user(), life = u ? earnedPts() : 0, cur = u ? tierOf(life) : null, nx = nextTier(life);
+  $("#tierGrid").innerHTML = TIERS.map(t => `<div class="tc ${t.k} ${cur && cur.k === t.k ? "cur" : ""}">
+    ${cur && cur.k === t.k ? `<span class="pill warn badge"><i class="fa-solid fa-location-dot"></i>Your tier</span>` : cur && t.min <= life ? `<span class="pill ok badge"><i class="fa-solid fa-check"></i>Unlocked</span>` : ""}
+    <div class="medal"><i class="fa-solid ${t.ic}"></i></div>
+    <h4>${t.n}</h4><div class="req">${t.min ? num(t.min) + "+ lifetime points" : "Join free · 0+ points"}</div>
+    <ul>${t.perks.map(p => `<li><i class="fa-solid fa-circle-check"></i>${p}</li>`).join("")}</ul>
+  </div>`).join("");
+  const p = $("#tierProg");
+  if (!u) { p.innerHTML = `<div class="lbls"><span><b>Login</b> to track your progress to Gold and Platinum</span><a href="login.html" class="show-all">Login <i class="fa-solid fa-arrow-right"></i></a></div>`; return; }
+  const max = TIERS[TIERS.length - 1].min, pct = Math.min(100, life / max * 100);
+  p.innerHTML = `<div class="lbls"><span>You: <b>${num(life)} lifetime points</b> · ${cur.n}</span><span>${nx ? `<b>${num(nx.min - life)}</b> points to ${nx.n}` : "<b>Platinum</b> reached"}</span></div>
+    <div class="bar"><i style="width:${pct.toFixed(1)}%"></i></div>
+    <div class="lbls"><span>Silver · 0</span><span>Gold · 5,000</span><span>Platinum · 20,000</span></div>`;
+}
+
+/* ---------- Redeem ---------- */
+let pick = MIN_REDEEM;
+function genCode(){
+  const A = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", have = store.get("coupons", []).map(c => c.code);
+  let c; do { c = "RWD-" + Array.from({length:4}, () => A[Math.floor(Math.random() * A.length)]).join(""); } while (have.includes(c));
+  return c;
+}
+function renderRedeem(){
+  const u = user(), w = $("#redeemWrap");
+  if (!u) { w.innerHTML = `<div class="rw-box login-gate" style="grid-column:1/-1"><i class="fa-solid fa-lock"></i><h4>Login to redeem your points</h4><p>Sign in to see your balance and turn points into discount coupons.</p><div class="btns"><a href="login.html" class="btn primary">Login</a><a href="login.html#register" class="btn ghost">Register</a></div></div>`; return; }
+  const bal = balance(), can = bal >= MIN_REDEEM, cps = store.get("coupons", []);
+  const maxV = Math.floor(bal / 100) * 100;
+  if (pick > maxV || pick < MIN_REDEEM) pick = Math.max(MIN_REDEEM, Math.min(pick, maxV));
+  w.innerHTML = `<div class="rw-box">
+      <h3><i class="fa-solid fa-coins"></i>Convert points to a coupon</h3>
+      <p class="sub">Choose how many points to redeem. 1 point = ৳1 off your next order.</p>
+      <div class="bal"><div><span>Available balance</span><b>${num(bal)} pts</b></div><div style="text-align:right"><span>Worth</span><b style="color:var(--orange)">${tk(bal)}</b></div></div>
+      <div class="presets" id="presets">${[500, 1000, 2000, 5000].map(v => `<button type="button" data-v="${v}" class="${can && v === pick ? "on" : ""}" ${v > bal ? "disabled" : ""}>${num(v)} pts</button>`).join("")}</div>
+      <form class="rd-row" id="rdForm">
+        <div class="field"><label for="rdIn">Points to redeem</label><input id="rdIn" type="number" min="${MIN_REDEEM}" max="${maxV}" step="100" value="${can ? pick : MIN_REDEEM}" ${can ? "" : "disabled"}></div>
+        <button class="btn primary" style="align-self:flex-end" ${can ? "" : "disabled"}><i class="fa-solid fa-wand-magic-sparkles"></i>Get Coupon</button>
+      </form>
+      ${can ? `<p class="rd-out" id="rdOut">You'll get a <b>${tk(pick)}</b> coupon · ${num(bal - pick)} points left</p>`
+        : `<div class="locked-msg"><i class="fa-solid fa-lock"></i><span>You need at least <b>${MIN_REDEEM}</b> points to redeem. Earn <b>${num(MIN_REDEEM - bal)}</b> more points to unlock your first coupon.</span></div>`}
+      <p class="note"><i class="fa-solid fa-circle-info"></i>Redeem in steps of 100 points. Coupons are valid for 90 days and can't be combined with Flash Sale prices.</p>
+    </div>
+    <div class="rw-box">
+      <h3><i class="fa-solid fa-ticket"></i>My reward coupons</h3>
+      <p class="sub">Copy a code and apply it at checkout</p>
+      <div class="cps" id="cpList">${cps.length ? cps.map(c => `<div class="rc"><div class="v"><div><b>${tk(c.value)}</b><span>OFF</span></div></div>
+        <div class="d"><div><code>${esc(c.code)}</code><small>Created ${fmtDate(c.date)}</small></div><button class="copy" data-code="${esc(c.code)}"><i class="fa-regular fa-copy"></i> Copy</button></div></div>`).join("")
+        : `<div class="empty-s"><i class="fa-solid fa-ticket"></i>No reward coupons yet. Redeem ${MIN_REDEEM}+ points to create one.</div>`}</div>
+    </div>`;
+}
+function redeem(v){
+  v = Math.floor(+v / 100) * 100;
+  const bal = balance();
+  if (!user()) return toast("Please login first");
+  if (v < MIN_REDEEM) return toast(`Minimum redemption is ${MIN_REDEEM} points`);
+  if (v > bal) return toast("Not enough points");
+  const code = genCode(), cps = store.get("coupons", []);
+  cps.unshift({code, value:v, date:new Date().toISOString().slice(0, 10)});
+  store.set("coupons", cps);
+  store.set("bonusPoints", bonusPts() - v);
+  pick = MIN_REDEEM; renderAll();
+  toast(`Coupon ${code} worth ${tk(v)} created`);
+  return code;
+}
+$("#redeemWrap").addEventListener("click", e => {
+  const p = e.target.closest("#presets button"); if (p && !p.disabled) { pick = +p.dataset.v; renderRedeem(); return; }
+  const c = e.target.closest(".copy[data-code]"); if (c) copyText(c.dataset.code, c, `Coupon ${c.dataset.code} copied`);
+});
+$("#redeemWrap").addEventListener("input", e => {
+  if (e.target.id !== "rdIn") return;
+  const v = Math.floor(+e.target.value / 100) * 100, bal = balance(), o = $("#rdOut");
+  $$("#presets button").forEach(b => b.classList.toggle("on", +b.dataset.v === v));
+  if (o) o.innerHTML = v >= MIN_REDEEM && v <= bal ? `You'll get a <b>${tk(v)}</b> coupon · ${num(bal - v)} points left` : v > bal ? `<span style="color:#E5484D">Not enough points (max ${num(Math.floor(bal / 100) * 100)})</span>` : `<span style="color:#E5484D">Minimum ${MIN_REDEEM} points</span>`;
+});
+$("#redeemWrap").addEventListener("submit", e => { e.preventDefault(); redeem($("#rdIn").value); });
+
+/* ---------- Referral ---------- */
+const DEMO_REFS = [
+  {name:"Tanvir H.", date:"2026-10-02", status:"Completed", points:200},
+  {name:"Nusrat J.", date:"2026-09-18", status:"Completed", points:200},
+  {name:"Sabbir A.", date:"2026-10-15", status:"Pending", points:0}
+];
+function renderRef(){
+  const u = user(), box = $("#refBox"), hist = $("#refHist");
+  if (!u) {
+    box.innerHTML = `<div class="login-gate"><i class="fa-solid fa-user-plus"></i><h4>Get your referral code</h4><p>Login to get a personal code and share link.</p><div class="btns"><a href="login.html" class="btn primary">Login</a><a href="login.html#register" class="btn ghost">Register</a></div></div>`;
+    hist.hidden = true; return;
+  }
+  hist.hidden = false;
+  const code = refCode(u), link = refLink(code);
+  const msg = `Get ৳300 off your first order at TechStore BD with my code ${code}: ${link}`;
+  box.innerHTML = `<h3><i class="fa-solid fa-gift"></i>Your referral code</h3>
+    <p class="sub">Share it with friends. They save ৳300, you earn 200 points.</p>
+    <div class="ref-code"><code>${esc(code)}</code><button class="copy" id="cpCode"><i class="fa-regular fa-copy"></i> Copy</button></div>
+    <div class="ref-link"><input id="refLink" value="${esc(link)}" readonly aria-label="Referral link"><button class="copy" id="cpLink"><i class="fa-solid fa-link"></i> Copy link</button></div>
+    <div class="share">
+      <a class="wa" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>WhatsApp</a>
+      <a class="fb" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i>Facebook</a>
+    </div>`;
+  $("#cpCode").onclick = e => copyText(code, e.currentTarget, "Referral code copied");
+  $("#cpLink").onclick = e => copyText(link, e.currentTarget, "Referral link copied");
+  $("#refLink").onfocus = e => e.target.select();
+
+  const saved = store.get("referrals", []), demo = !saved.length, rows = demo ? DEMO_REFS : saved;
+  const done = rows.filter(r => r.status === "Completed");
+  hist.innerHTML = `<h3><i class="fa-solid fa-clock-rotate-left"></i>Referral history${demo ? '<span class="demo-tag">Sample data</span>' : ""}</h3>
+    <div class="ref-sum" style="margin-top:12px"><div><b>${rows.length}</b><span>Invited</span></div><div><b>${done.length}</b><span>Completed</span></div><div><b>${num(done.reduce((s, r) => s + (+r.points || 0), 0))}</b><span>Points earned</span></div></div>
+    <table class="rtbl"><thead><tr><th>Friend</th><th>Date</th><th>Status</th><th style="text-align:right">Points</th></tr></thead><tbody>
+    ${rows.map(r => `<tr><td data-l="Friend"><b>${esc(r.name)}</b></td><td data-l="Date">${fmtDate(r.date)}</td><td data-l="Status"><span class="pill ${r.status === "Completed" ? "ok" : "warn"}"><i class="fa-solid ${r.status === "Completed" ? "fa-circle-check" : "fa-clock"}"></i>${esc(r.status)}</span></td><td data-l="Points" style="text-align:right" class="pt">${r.points ? "+" + num(r.points) : "–"}</td></tr>`).join("")}
+    </tbody></table>`;
+}
+
+function renderAll(){ renderHero(); renderTiers(); renderRedeem(); renderRef(); }
+renderAll();
+</script>
+</body>
+</html>

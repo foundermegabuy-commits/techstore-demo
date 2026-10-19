@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout | TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* steps */
+.steps{display:flex;align-items:center;justify-content:center;gap:0;margin:22px auto 0;max-width:620px}
+.step{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;z-index:1;min-width:80px}
+.step .dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:2px solid var(--line);color:#A0A6C2;font-size:16px;transition:.3s}
+.step b{font-size:12.5px;font-weight:600;color:var(--muted)}
+.step.done .dot{background:var(--green);border-color:var(--green);color:#fff}
+.step.on .dot{background:linear-gradient(135deg,var(--orange),var(--orange-2));border-color:transparent;color:#fff;box-shadow:0 0 0 6px rgba(255,74,3,.15)}
+.step.on b,.step.done b{color:var(--text)}
+.bar{flex:1;height:3px;background:var(--line);border-radius:2px;margin-bottom:28px}
+.bar.done{background:var(--green)}
+.co-layout{display:grid;grid-template-columns:1fr 390px;gap:22px;margin-top:26px;align-items:start}
+.co-main{display:grid;gap:18px}
+.sec-h{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.sec-h .n{width:32px;height:32px;border-radius:10px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px;flex:none}
+.sec-h h3{margin:0;font-size:16.5px}
+.sec-h p{font-size:12px;color:var(--muted)}
+.field label .req{color:var(--orange)}
+.field.err input,.field.err select{border-color:#E5484D;background:#FFF8F8}
+.field .msg{font-size:11.5px;color:#E5484D;display:none}
+.field.err .msg{display:block}
+.iwrap{position:relative}
+.iwrap i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#A0A6C2;font-size:14px;pointer-events:none}
+.iwrap input,.iwrap select{padding-left:40px}
+/* option cards */
+.opts{display:grid;gap:12px}
+.opts.d3{grid-template-columns:repeat(3,1fr)}
+.opts.p3{grid-template-columns:repeat(3,1fr)}
+.opt{position:relative;display:flex;gap:12px;align-items:flex-start;padding:16px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;background:var(--card);transition:.2s}
+.opt:hover{border-color:#FFC3A8}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt .ic{width:42px;height:42px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--soft-2);color:var(--ink);font-size:17px;transition:.2s}
+.opt .tx{flex:1;min-width:0}
+.opt .tx b{display:block;font-size:13.5px;font-weight:600}
+.opt .tx span{font-size:11.5px;color:var(--muted);display:block;line-height:1.4}
+.opt .fee{font-weight:700;font-size:13.5px;color:var(--ink);margin-top:6px;display:block}
+.opt .fee.free{color:var(--green)}
+.opt .radio{width:20px;height:20px;flex:none;border-radius:50%;border:2px solid #C9CEE0;display:grid;place-items:center;transition:.2s}
+.opt .radio::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--card);transform:scale(0);transition:.2s}
+.opt:has(input:checked){border-color:var(--orange);background:linear-gradient(180deg,#FFF8F4,#fff);box-shadow:0 8px 22px rgba(255,74,3,.12)}
+.opt:has(input:checked) .ic{background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff}
+.opt:has(input:checked) .radio{border-color:var(--orange);background:var(--orange)}
+.opt:has(input:checked) .radio::after{transform:scale(1)}
+.opt input:focus-visible ~ .radio{box-shadow:0 0 0 3px rgba(255,74,3,.3)}
+.opt .ic.bkash{background:#FCE4EF;color:#E2136E}
+.opt .ic.nagad{background:#FFEBDD;color:#EC1C24}
+.opt .badge{position:absolute;top:-9px;right:12px;background:var(--navy);color:var(--gold);font-size:10px;font-weight:600;padding:2px 8px;border-radius:6px}
+.pay-note{margin-top:14px;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:12.5px;color:var(--muted);display:flex;gap:10px;align-items:flex-start}
+.pay-note i{color:var(--orange);margin-top:3px}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:13px;cursor:pointer;margin-top:4px}
+.agree input{width:18px;height:18px;accent-color:var(--orange);margin-top:2px;flex:none}
+.agree a{color:var(--orange);font-weight:500}
+.agree.err{color:#E5484D}
+/* summary */
+.co-side{position:sticky;top:140px;display:grid;gap:16px}
+.mini{display:grid;gap:12px;max-height:300px;overflow:auto;padding-right:4px;margin-bottom:6px}
+.mini div{display:flex;gap:12px;align-items:center}
+.mini .im{width:56px;height:56px;flex:none;border-radius:10px;background:var(--soft);border:1px solid var(--line);display:grid;place-items:center;position:relative}
+.mini .im img{width:82%;height:82%;object-fit:contain;mix-blend-mode:multiply}
+.mini .im em{position:absolute;top:-7px;right:-7px;background:var(--navy);color:#fff;font-style:normal;font-size:10.5px;font-weight:700;min-width:20px;height:20px;border-radius:10px;display:grid;place-items:center;padding:0 5px}
+.mini p{flex:1;min-width:0;font-size:12.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mini b{font-size:13px;font-weight:600;white-space:nowrap}
+.summary .line.disc b{color:var(--green)}
+.summary .line .free{color:var(--green)}
+.summary .btn{margin-top:16px;height:52px;font-size:15px}
+.secure{display:flex;justify-content:center;gap:16px;margin-top:14px;font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.secure i{color:var(--green);margin-right:4px}
+.edit-cart{font-size:12px;font-weight:600;color:var(--orange)}
+/* success */
+.success{max-width:760px;margin:30px auto 0;text-align:center}
+.success .box{padding:40px 30px}
+.check{width:110px;height:110px;margin:0 auto 20px;position:relative}
+.check svg{width:110px;height:110px}
+.check circle{stroke:var(--green);stroke-width:4;fill:none;stroke-dasharray:320;stroke-dashoffset:320;animation:draw .8s ease forwards}
+.check path{stroke:var(--green);stroke-width:6;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:80;stroke-dashoffset:80;animation:draw .5s .7s ease forwards}
+.check::before{content:"";position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(rgba(1,144,69,.16),transparent 70%);animation:pulse 2s 1.1s ease-out infinite}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pulse{0%{transform:scale(.8);opacity:1}100%{transform:scale(1.35);opacity:0}}
+.success h1{font-size:28px;font-weight:700;letter-spacing:-.3px}
+.success .lead{color:var(--muted);max-width:480px;margin:6px auto 0}
+.oid{display:inline-flex;gap:10px;align-items:center;margin-top:18px;background:var(--orange-soft);border:1px dashed #FFB896;border-radius:12px;padding:10px 18px;font-size:13px}
+.oid b{font-size:17px;letter-spacing:1px;color:var(--orange)}
+.oid button{color:var(--ink);font-size:14px}
+.s-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0;text-align:left}
+.s-grid div{background:var(--soft);border-radius:12px;padding:12px 14px;min-width:0}
+.s-grid span{font-size:11.5px;color:var(--muted);display:block}
+.s-grid b{font-size:13.5px;font-weight:600;display:block;overflow-wrap:anywhere}
+.s-items{text-align:left;border-top:1px solid var(--line);padding-top:16px}
+.s-items .r{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:13px}
+.s-items .r span{color:var(--muted);min-width:0}
+.s-items .r b{white-space:nowrap}
+.s-acts{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
+.confetti i{position:absolute;top:-12px;width:8px;height:14px;border-radius:2px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.2}}
+.empty-co{margin-top:22px}
+.empty-co .acts{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+@media (max-width:1100px){
+  .co-layout{grid-template-columns:1fr}
+  .co-side{position:static}
+}
+@media (max-width:760px){
+  .opts.d3,.opts.p3{grid-template-columns:1fr}
+  .s-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .step{min-width:64px}.step .dot{width:38px;height:38px;font-size:14px}.step b{font-size:11.5px}
+  .success .box{padding:28px 16px}
+  .success h1{font-size:22px}
+  .s-acts .btn{flex:1}
+}
+</style>
+</head>
+<body data-page="checkout">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <nav class="crumb"><a href="index.html"><i class="fa-solid fa-house" style="font-size:12px;opacity:1"></i></a><i class="fa-solid fa-chevron-right"></i><a href="cart.html">Cart</a><i class="fa-solid fa-chevron-right"></i><span>Checkout</span></nav>
+
+  <div class="steps" id="steps">
+    <div class="step done"><div class="dot"><i class="fa-solid fa-cart-shopping"></i></div><b>Cart</b></div>
+    <div class="bar done"></div>
+    <div class="step on"><div class="dot"><i class="fa-solid fa-clipboard-list"></i></div><b>Checkout</b></div>
+    <div class="bar"></div>
+    <div class="step"><div class="dot"><i class="fa-solid fa-check"></i></div><b>Done</b></div>
+  </div>
+
+  <div id="coRoot"></div>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+const COUPONS = {SAVE5: 5, WELCOME5: 5, BUNDLE5: 5};
+const DISTRICTS = ["Dhaka","Chattogram","Gazipur","Narayanganj","Sylhet","Rajshahi","Khulna","Barishal","Rangpur","Mymensingh","Cumilla","Cox's Bazar","Bogura","Jashore","Feni","Noakhali","Brahmanbaria","Tangail","Narsingdi","Munshiganj","Manikganj","Faridpur","Kushtia","Dinajpur","Pabna","Sirajganj","Jamalpur","Kishoreganj","Habiganj","Moulvibazar","Sunamganj","Chandpur","Lakshmipur","Satkhira","Bagerhat","Patuakhali","Bhola","Pirojpur","Jhalokati","Barguna","Natore","Naogaon","Chapainawabganj","Joypurhat","Thakurgaon","Panchagarh","Nilphamari","Lalmonirhat","Kurigram","Gaibandha","Sherpur","Netrokona","Madaripur","Shariatpur","Gopalganj","Rajbari","Magura","Narail","Jhenaidah","Chuadanga","Meherpur","Khagrachhari","Rangamati","Bandarban"];
+const DELIVERY = {
+  inside:{n:"Inside Dhaka", fee:60, eta:"1–2 days", ic:"fa-truck-fast", d:"Delivered within 24–48 hours"},
+  outside:{n:"Outside Dhaka", fee:120, eta:"3–5 days", ic:"fa-truck", d:"Courier delivery in 3–5 days"},
+  pickup:{n:"Store Pickup", fee:0, eta:"Same day", ic:"fa-store", d:"Demo Tower, Dhaka"}
+};
+const PAYMENTS = {
+  cod:{n:"Cash on Delivery", ic:"fa-solid fa-money-bill-wave", d:"Pay when you receive", note:"Pay in cash to our delivery agent when your order arrives. Please keep exact change ready."},
+  bkash:{n:"bKash", ic:"fa-solid fa-mobile-screen-button", cls:"bkash", d:"Mobile wallet", note:"You will be redirected to the bKash payment gateway to complete your payment securely."},
+  nagad:{n:"Nagad", ic:"fa-solid fa-wallet", cls:"nagad", d:"Mobile wallet", note:"You will be redirected to the Nagad payment gateway to complete your payment securely."},
+  card:{n:"Card / Online", ic:"fa-regular fa-credit-card", d:"Visa, Mastercard, AMEX", note:"Pay securely with any debit/credit card or internet banking through SSLCommerz."},
+  emi:{n:"0% EMI", ic:"fa-solid fa-calendar-check", d:"3 to 12 months", badge:"POPULAR", note:"0% EMI is available on orders above ৳5,000 with credit cards of 30+ partner banks for up to 12 months."}
+};
+const root = $("#coRoot");
+const totals = () => {
+  const sub = cartTotal(), code = store.get("coupon", null), pct = code && COUPONS[code] ? COUPONS[code] : 0;
+  const rc = code && !pct ? store.get("coupons", []).find(c => c.code === code) : null;   // reward coupon (flat ৳)
+  const disc = rc ? Math.min(rc.value, sub) : Math.round(sub * pct / 100);
+  const dkey = ($("input[name=delivery]:checked") || {}).value || "inside";
+  const fee = DELIVERY[dkey].fee;
+  return {sub, code, pct, disc, dkey, fee, total: sub - disc + fee};
+};
+function setSteps(n){
+  const s = $$("#steps .step"), b = $$("#steps .bar");
+  s.forEach((x, i) => { x.classList.toggle("done", i < n); x.classList.toggle("on", i === n); });
+  b.forEach((x, i) => x.classList.toggle("done", i < n));
+  if (n === 2) s[2].classList.add("done");
+}
+
+/* ---------- Checkout form ---------- */
+function renderForm(){
+  const u = store.get("user", null) || {};
+  const opt = (name, key, o, checked, extra) => `<label class="opt">${o.badge ? `<span class="badge">${o.badge}</span>` : ""}
+    <input type="radio" name="${name}" value="${key}" ${checked ? "checked" : ""}>
+    <span class="ic ${o.cls || ""}"><i class="${o.ic.startsWith("fa-") && !o.ic.includes(" ") ? "fa-solid " + o.ic : o.ic}"></i></span>
+    <span class="tx"><b>${o.n}</b><span>${o.d}</span>${extra || ""}</span>
+    <span class="radio"></span></label>`;
+  root.innerHTML = `<form class="co-layout" id="coForm" novalidate>
+    <div class="co-main">
+      <div class="box">
+        <div class="sec-h"><span class="n">1</span><div><h3>Customer Information</h3><p>We'll use this to deliver your order</p></div></div>
+        <div class="two">
+          ${fld("name", "Full Name", "fa-regular fa-user", "text", u.name || "", "Enter your full name")}
+          ${fld("phone", "Phone Number", "fa-solid fa-phone", "tel", u.phone || "", "01XXXXXXXXX")}
+        </div>
+        ${fld("email", "Email Address", "fa-regular fa-envelope", "email", u.email || "", "you@example.com", true)}
+        ${fld("address", "Full Address", "fa-solid fa-location-dot", "text", "", "House, road, block / village")}
+        <div class="two">
+          <div class="field" data-f="district"><label>District <span class="req">*</span></label>
+            <div class="iwrap"><i class="fa-solid fa-map"></i><select name="district"><option value="">Select district</option>${DISTRICTS.map(d => `<option>${d}</option>`).join("")}</select></div>
+            <span class="msg">Please select your district</span></div>
+          ${fld("area", "Area / Thana", "fa-solid fa-map-pin", "text", "", "e.g. Dhanmondi")}
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="sec-h"><span class="n">2</span><div><h3>Delivery Method</h3><p>Choose how you'd like to receive your order</p></div></div>
+        <div class="opts d3">${Object.entries(DELIVERY).map(([k, o], i) => opt("delivery", k, o, i === 0, `<span class="fee ${o.fee ? "" : "free"}">${o.fee ? tk(o.fee) : "Free"}</span>`)).join("")}</div>
+      </div>
+
+      <div class="box">
+        <div class="sec-h"><span class="n">3</span><div><h3>Payment Method</h3><p>All transactions are secure and encrypted</p></div></div>
+        <div class="opts p3">${Object.entries(PAYMENTS).map(([k, o], i) => opt("payment", k, o, i === 0)).join("")}</div>
+        <div class="pay-note" id="payNote"><i class="fa-solid fa-circle-info"></i><span></span></div>
+      </div>
+
+      <div class="box">
+        <div class="sec-h"><span class="n">4</span><div><h3>Order Note</h3><p>Optional – anything we should know?</p></div></div>
+        <div class="field" style="margin-bottom:10px"><textarea name="note" placeholder="e.g. Please call before delivery, preferred time..."></textarea></div>
+        <label class="agree" id="agreeL"><input type="checkbox" name="agree"><span>I have read and agree to the <a href="policy.html?p=terms">Terms &amp; Conditions</a>, <a href="policy.html?p=privacy">Privacy Policy</a> and <a href="policy.html?p=refund">Return &amp; Refund Policy</a>.</span></label>
+      </div>
+    </div>
+
+    <aside class="co-side">
+      <div class="box summary" id="sumBox"></div>
+    </aside>
+  </form>`;
+
+  const f = $("#coForm");
+  f.addEventListener("change", e => {
+    if (e.target.name === "delivery" || e.target.name === "payment") renderSummary();
+    if (e.target.name === "district"){
+      const dk = e.target.value === "Dhaka" ? "inside" : e.target.value ? "outside" : null;
+      const cur = $("input[name=delivery]:checked").value;
+      if (dk && cur !== "pickup") { f.elements.delivery.value = dk; renderSummary(); }
+    }
+    if (e.target.name === "agree" && e.target.checked) $("#agreeL").classList.remove("err");
+  });
+  f.addEventListener("input", e => { const w = e.target.closest(".field"); if (w) w.classList.remove("err"); });
+  f.addEventListener("submit", placeOrder);
+  renderSummary();
+}
+function fld(name, label, ic, type, val, ph, optional){
+  return `<div class="field" data-f="${name}"><label>${label} ${optional ? `<span style="color:var(--muted);font-weight:400">(optional)</span>` : `<span class="req">*</span>`}</label>
+    <div class="iwrap"><i class="${ic}"></i><input type="${type}" name="${name}" value="${esc(val)}" placeholder="${ph}"></div>
+    <span class="msg"></span></div>`;
+}
+function renderSummary(){
+  const cart = getCart(), ids = Object.keys(cart).filter(id => P[id]), t = totals();
+  const pay = ($("input[name=payment]:checked") || {}).value || "cod";
+  $("#payNote span").textContent = PAYMENTS[pay].note;
+  $("#sumBox").innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="margin:0">Order Summary</h3><a href="cart.html" class="edit-cart"><i class="fa-solid fa-pen"></i> Edit cart</a></div>
+    <div class="mini">${ids.map(id => `<div><span class="im"><img src="img/${P[id].i}" alt=""><em>${cart[id]}</em></span><p>${esc(P[id].n)}</p><b>${tk(P[id].p * cart[id])}</b></div>`).join("")}</div>
+    <div class="line"><span>Subtotal</span><b>${tk(t.sub)}</b></div>
+    ${t.disc ? `<div class="line disc"><span>Coupon (${esc(t.code)} · ${t.pct ? t.pct + "%" : "reward"})</span><b>− ${tk(t.disc)}</b></div>` : ""}
+    <div class="line"><span>Delivery (${DELIVERY[t.dkey].n})</span><b>${t.fee ? tk(t.fee) : `<span class="free">Free</span>`}</b></div>
+    <div class="line total"><span>Total</span><b>${tk(t.total)}</b></div>
+    <button class="btn primary block" type="submit"><i class="fa-solid fa-lock"></i>Place Order</button>
+    <div class="secure"><span><i class="fa-solid fa-shield-halved"></i>SSL secured</span><span><i class="fa-solid fa-rotate"></i>7-day exchange</span><span><i class="fa-solid fa-certificate"></i>100% original</span></div>`;
+}
+function placeOrder(e){
+  e.preventDefault();
+  const f = e.target, el = f.elements, v = k => (el[k].value || "").trim();
+  const errs = {};
+  if (v("name").length < 3) errs.name = "Please enter your full name";
+  if (!/^(\+?88)?01[3-9]\d{8}$/.test(v("phone").replace(/[\s-]/g, ""))) errs.phone = "Enter a valid 11-digit mobile number";
+  if (v("email") && !/^\S+@\S+\.\S+$/.test(v("email"))) errs.email = "Enter a valid email address";
+  if (v("address").length < 5) errs.address = "Please enter your delivery address";
+  if (!v("district")) errs.district = "Please select your district";
+  if (!v("area")) errs.area = "Please enter your area";
+  $$(".field[data-f]", f).forEach(w => {
+    const m = errs[w.dataset.f]; w.classList.toggle("err", !!m);
+    if (m) w.querySelector(".msg").textContent = m;
+  });
+  const agree = el.agree.checked; $("#agreeL").classList.toggle("err", !agree);
+  if (Object.keys(errs).length || !agree){
+    const first = $(".field.err", f) || $("#agreeL");
+    first.scrollIntoView({behavior: "smooth", block: "center"});
+    toast(Object.keys(errs).length ? "Please fill in the required fields" : "Please accept the terms to continue");
+    return;
+  }
+  const t = totals(), cart = getCart();
+  const id = "TSD-" + String(Math.floor(100000 + Math.random() * 900000));
+  const order = {
+    id, date: new Date().toISOString(), status: "Processing",
+    items: Object.entries(cart).filter(([k]) => P[k]).map(([k, q]) => ({id: +k, n: P[k].n, i: P[k].i, p: P[k].p, q})),
+    subtotal: t.sub, discount: t.disc, coupon: t.disc ? t.code : null, delivery: t.dkey, deliveryFee: t.fee, total: t.total,
+    payment: el.payment.value, note: v("note"),
+    customer: {name: v("name"), phone: v("phone"), email: v("email"), address: v("address"), area: v("area"), district: v("district")}
+  };
+  const orders = store.get("orders", []); orders.unshift(order); store.set("orders", orders);
+  if (t.disc && t.code) store.set("coupons", store.get("coupons", []).filter(c => c.code !== t.code));   // reward coupons are single-use
+  store.set("cart", {}); store.set("coupon", null); updateCounts();
+  history.replaceState(null, "", "checkout.html?success=" + id);
+  window.scrollTo({top: 0, behavior: "smooth"});
+  renderSuccess(id, true);
+}
+
+/* ---------- Success ---------- */
+function renderSuccess(id, celebrate){
+  const o = store.get("orders", []).find(x => x.id === id);
+  setSteps(2);
+  $(".crumb span:last-child").textContent = "Order Confirmed";
+  if (!o){ root.innerHTML = `<div class="box empty empty-co"><i class="fa-solid fa-circle-question"></i><h3>Order not found</h3><p>We couldn't find order ${esc(id)}.</p><div class="acts"><a href="track-order.html" class="btn primary">Track an Order</a></div></div>`; return; }
+  const eta = new Date(o.date); eta.setDate(eta.getDate() + (o.delivery === "outside" ? 5 : o.delivery === "inside" ? 2 : 0));
+  const fmt = d => d.toLocaleDateString("en-GB", {day: "numeric", month: "short", year: "numeric"});
+  root.innerHTML = `<div class="success"><div class="box">
+    <div class="check"><svg viewBox="0 0 110 110"><circle cx="55" cy="55" r="50"/><path d="M33 57 l15 15 l30 -32"/></svg></div>
+    <h1>Thank you for your order!</h1>
+    <p class="lead">Your order has been placed successfully. We'll send a confirmation to ${esc(o.customer.phone)}${o.customer.email ? " and " + esc(o.customer.email) : ""} shortly.</p>
+    <div class="oid">Order ID <b id="oidv">${o.id}</b><button type="button" aria-label="Copy order ID" onclick="navigator.clipboard&&navigator.clipboard.writeText('${o.id}');toast('Order ID copied')"><i class="fa-regular fa-copy"></i></button></div>
+    <div class="s-grid">
+      <div><span>Date</span><b>${fmt(new Date(o.date))}</b></div>
+      <div><span>Payment</span><b>${PAYMENTS[o.payment]?.n || o.payment}</b></div>
+      <div><span>Delivery</span><b>${DELIVERY[o.delivery]?.n || "-"}</b></div>
+      <div><span>Est. ${o.delivery === "pickup" ? "pickup" : "delivery"}</span><b>${fmt(eta)}</b></div>
+    </div>
+    <div class="s-items summary">
+      ${o.items.map(i => `<div class="r"><span>${esc(i.n)} × ${i.q}</span><b>${tk(i.p * i.q)}</b></div>`).join("")}
+      ${o.discount ? `<div class="line"><span>Discount (${esc(o.coupon)})</span><b style="color:var(--green)">− ${tk(o.discount)}</b></div>` : ""}
+      <div class="line"><span>Delivery fee</span><b>${o.deliveryFee ? tk(o.deliveryFee) : "Free"}</b></div>
+      <div class="line total"><span>Total</span><b>${tk(o.total)}</b></div>
+    </div>
+    <div class="s-acts">
+      <a href="track-order.html?id=${o.id}&phone=${encodeURIComponent(o.customer.phone)}" class="btn primary"><i class="fa-solid fa-truck-fast"></i>Track Order</a>
+      <a href="index.html" class="btn ghost"><i class="fa-solid fa-bag-shopping"></i>Continue Shopping</a>
+    </div>
+  </div></div>`;
+  if (celebrate) confetti();
+}
+function confetti(){
+  const c = document.createElement("div"); c.className = "confetti";
+  const cols = ["#FF4A03", "#FF8A3D", "#E8C77A", "#050C2E", "#019045", "#131E57"];
+  c.innerHTML = Array.from({length: 70}, () => `<i style="left:${Math.random() * 100}%;background:${cols[Math.floor(Math.random() * cols.length)]};animation-duration:${2 + Math.random() * 2}s;animation-delay:${Math.random() * .6}s"></i>`).join("");
+  document.body.appendChild(c); setTimeout(() => c.remove(), 5000);
+}
+
+/* ---------- Init ---------- */
+const sid = qp("success");
+if (sid) renderSuccess(sid, false);
+else if (!Object.keys(getCart()).some(id => P[id])){
+  root.innerHTML = `<div class="box empty empty-co"><i class="fa-solid fa-cart-shopping"></i><h3>Your cart is empty</h3><p>Add some products to your cart before checking out.</p><div class="acts"><a href="category.html" class="btn primary"><i class="fa-solid fa-bag-shopping"></i>Start Shopping</a><a href="track-order.html" class="btn ghost"><i class="fa-solid fa-truck-fast"></i>Track an Order</a></div></div>`;
+} else renderForm();
+</script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PC Builder | TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* ---------- Hero ---------- */
+.pb-hero{position:relative;overflow:hidden;margin-top:14px;border-radius:22px;color:#fff;padding:34px 36px;
+  background:radial-gradient(circle at 92% 10%,rgba(255,74,3,.45),transparent 42%),radial-gradient(circle at 0% 100%,rgba(232,199,122,.16),transparent 40%),linear-gradient(120deg,var(--navy) 0%,var(--navy-3) 65%,#2A1A3E 100%);
+  display:grid;grid-template-columns:1.4fr 1fr;gap:26px;align-items:center}
+.pb-hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(90deg,transparent,#000 70%);pointer-events:none}
+.pb-hero small{color:var(--gold);font-weight:600;letter-spacing:2px;font-size:12px}
+.pb-hero h1{font-size:34px;line-height:1.15;font-weight:800;margin:6px 0 10px;letter-spacing:-.5px}
+.pb-hero h1 em{font-style:normal;color:var(--orange-2)}
+.pb-hero p{color:#B4BAD8;max-width:520px;font-size:13.5px}
+.pb-steps{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.pb-steps span{display:inline-flex;align-items:center;gap:8px;font-size:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:6px 12px;border-radius:30px}
+.pb-steps b{width:20px;height:20px;border-radius:50%;background:var(--orange);display:grid;place-items:center;font-size:11px}
+.pb-live{position:relative;z-index:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);border-radius:18px;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pb-live div{display:flex;flex-direction:column}
+.pb-live span{font-size:11.5px;color:#9CA3C7;text-transform:uppercase;letter-spacing:1px}
+.pb-live b{font-size:22px;font-weight:700}
+.pb-live .tot{grid-column:1/-1;border-top:1px dashed rgba(255,255,255,.18);padding-top:12px}
+.pb-live .tot b{color:var(--gold);font-size:28px}
+.pb-prog{grid-column:1/-1;height:8px;border-radius:5px;background:rgba(255,255,255,.1);overflow:hidden}
+.pb-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--gold));transition:width .4s}
+
+/* ---------- Layout ---------- */
+.pb{display:grid;grid-template-columns:1fr 340px;gap:22px;margin-top:22px;align-items:start}
+.pb-list{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.pb-group{padding:12px 20px;background:var(--soft);font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+.pb-group+.pb-row{border-top:0}
+.pb-row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:16px;align-items:center;padding:16px 20px;border-top:1px solid var(--line);transition:background .2s}
+.pb-row:hover{background:#FBFCFF}
+.pb-ic{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;font-size:22px;color:var(--ink);background:linear-gradient(135deg,var(--soft-2),#E2E7F6);position:relative}
+.pb-row.done .pb-ic{background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff}
+.pb-row.done .pb-ic::after{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-size:10px;display:grid;place-items:center;border:2px solid #fff}
+.pb-name{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
+.req{font-size:10px;font-weight:600;color:var(--orange);background:var(--orange-soft);padding:2px 8px;border-radius:20px;letter-spacing:.3px}
+.pb-empty{font-size:12.5px;color:var(--muted);margin-top:2px}
+.pb-sel{display:flex;align-items:center;gap:12px;margin-top:8px;min-width:0}
+.pb-sel img{width:54px;height:54px;object-fit:contain;border-radius:10px;background:var(--soft);padding:4px;flex:none;mix-blend-mode:multiply}
+.pb-sel div{min-width:0}
+.pb-sel h5{font-size:13px;font-weight:500;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pb-sel b{color:var(--ink);font-size:15px}
+.pb-sel s{color:#9AA0BC;font-size:12px;margin-left:6px}
+.pb-act{display:flex;gap:8px;align-items:center}
+.pb-act .btn{height:40px;padding:0 18px;font-size:13px}
+.ibtn{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);color:var(--ink);background:var(--card);transition:.2s}
+.ibtn:hover{border-color:var(--orange);color:var(--orange)}
+.ibtn.del:hover{border-color:#D33;color:#D33}
+
+/* ---------- Summary ---------- */
+.pb-side{position:sticky;top:140px;display:grid;gap:16px}
+.pb-side .box h3{display:flex;justify-content:space-between;align-items:center}
+.compat{border-radius:14px;padding:14px;font-size:12.5px;display:grid;gap:8px}
+.compat.ok{background:#E6F6EE;color:#0B6B37}
+.compat.warn{background:#FFF4E0;color:#8A5300}
+.compat.info{background:#EEF2FB;color:#3B4470}
+.compat .hd{display:flex;align-items:center;gap:8px;font-weight:600;font-size:13.5px}
+.compat ul{list-style:none;display:grid;gap:5px}
+.compat li{display:flex;gap:8px}
+.compat li i{margin-top:3px;font-size:11px}
+.watt{display:flex;align-items:center;gap:12px;margin:6px 0 2px}
+.watt .ic{width:42px;height:42px;border-radius:12px;background:var(--orange-soft);color:var(--orange);display:grid;place-items:center;font-size:17px;flex:none}
+.watt small{display:block;color:var(--muted);font-size:11.5px}
+.watt b{font-size:18px}
+.watt-bar{height:6px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:6px}
+.watt-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),#F5A623,#D33);transition:width .4s}
+.pb-btns{display:grid;gap:10px;margin-top:16px}
+.pb-btns .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pb-note{font-size:12px;color:var(--muted);display:flex;gap:10px;align-items:flex-start}
+.pb-note i{color:var(--orange);margin-top:3px}
+
+/* ---------- Modal ---------- */
+.modal{position:fixed;inset:0;background:rgba(2,6,28,.6);backdrop-filter:blur(3px);z-index:120;display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;transition:.25s}
+.modal.open{opacity:1;pointer-events:auto}
+.mbox{background:var(--card);border-radius:20px;width:min(760px,100%);max-height:calc(100vh - 32px);display:flex;flex-direction:column;overflow:hidden;transform:translateY(20px) scale(.98);transition:.3s;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.modal.open .mbox{transform:none}
+.mhead{padding:18px 20px;background:linear-gradient(135deg,var(--navy),var(--navy-3));color:#fff;display:grid;gap:14px}
+.mhead .t{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.mhead h3{font-size:18px;font-weight:600;display:flex;gap:10px;align-items:center}
+.mhead h3 i{color:var(--orange-2)}
+.mhead .x{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.1);color:#fff;font-size:16px;flex:none}
+.mhead .x:hover{background:var(--orange)}
+.mtools{display:flex;gap:10px}
+.msearch{flex:1;display:flex;align-items:center;background:var(--card);border-radius:11px;height:44px;padding:0 14px;gap:10px;min-width:0}
+.msearch i{color:var(--muted)}
+.msearch input{flex:1;border:0;outline:0;font-family:inherit;font-size:14px;min-width:0}
+.mtools select{height:44px;border-radius:11px;border:0;padding:0 12px;font-family:inherit;font-size:13px;outline:0}
+.mlist{overflow:auto;padding:8px 20px 20px}
+.opt{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.opt:last-child{border-bottom:0}
+.opt img{width:76px;height:76px;object-fit:contain;background:var(--soft);border-radius:12px;padding:6px;mix-blend-mode:multiply}
+.opt h5{font-size:13.5px;font-weight:500;line-height:1.4}
+.opt .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.opt .meta span{font-size:10.5px;background:var(--soft-2);color:var(--muted);padding:2px 8px;border-radius:6px;font-weight:500}
+.opt .meta span.bad{background:#FFF4E0;color:#C77700}
+.opt .pr{text-align:right;display:grid;gap:6px;justify-items:end}
+.opt .pr b{font-size:16px;color:var(--ink);white-space:nowrap}
+.opt .pr s{font-size:11.5px;color:#9AA0BC}
+.opt .pr .btn{height:36px;padding:0 16px;font-size:12.5px}
+.opt.cur{background:var(--orange-soft);margin:0 -20px;padding:14px 20px;border-radius:0}
+.mempty{padding:40px 10px;text-align:center;color:var(--muted)}
+
+.print-head{display:none}
+
+@media (max-width:1100px){.pb{grid-template-columns:1fr}.pb-side{position:static}}
+@media (max-width:860px){.pb-hero{grid-template-columns:1fr;padding:28px 24px}.pb-hero h1{font-size:28px}}
+@media (max-width:640px){
+  .pb-hero{padding:22px 18px}.pb-hero h1{font-size:23px}
+  .pb-live{padding:14px;gap:10px}.pb-live b{font-size:18px}.pb-live .tot b{font-size:22px}
+  .pb-row{grid-template-columns:44px minmax(0,1fr);gap:12px;padding:14px}
+  .pb-ic{width:44px;height:44px;font-size:17px;border-radius:12px}
+  .pb-act{grid-column:1/-1;justify-content:flex-end}
+  .pb-act .btn{flex:1}
+  .pb-group{padding:10px 14px}
+  .pb-sel img{width:46px;height:46px}
+  .mtools{flex-wrap:wrap}.mtools select{flex:1}
+  .mhead,.mlist{padding-left:14px;padding-right:14px}
+  .opt{grid-template-columns:60px minmax(0,1fr);gap:10px}
+  .opt img{width:60px;height:60px}
+  .opt .pr{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
+  .opt.cur{margin:0 -14px;padding:14px}
+}
+
+/* ---------- Print ---------- */
+@media print{
+  .topbar,header.main,.news,footer,.fab,.toast,.crumb,.pb-hero,.pb-act,.pb-btns,.modal,.pb-note,.mobile-menu{display:none!important}
+  body{background:var(--card)}
+  .print-head{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #050C2E;padding-bottom:10px;margin-bottom:14px}
+  .print-head img{height:36px}
+  .pb{grid-template-columns:1fr;margin-top:0}
+  .pb-side{position:static}
+  .pb-row{break-inside:avoid;padding:10px 0}
+  .pb-list,.box{border:0}
+  .pb-row.empty-row{display:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body data-page="builder">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <nav class="crumb"><a href="index.html"><i class="fa-solid fa-house" style="font-size:11px"></i></a><i class="fa-solid fa-chevron-right"></i><span>PC Builder</span></nav>
+
+  <section class="pb-hero" style="margin-top:14px">
+    <div style="position:relative;z-index:1">
+      <small>PC BUILDER</small>
+      <h1>Build Your <em>Own PC</em>, Part by Part</h1>
+      <p>Pick each component, and we'll check compatibility and estimate power draw as you go. When you're done, add everything to your cart or save the build.</p>
+      <div class="pb-steps"><span><b>1</b>Choose parts</span><span><b>2</b>Check compatibility</span><span><b>3</b>Order &amp; we assemble</span></div>
+    </div>
+    <div class="pb-live">
+      <div><span>Components</span><b id="hCount">0 / 11</b></div>
+      <div><span>Est. Wattage</span><b id="hWatt">0W</b></div>
+      <div class="pb-prog"><i id="hProg"></i></div>
+      <div class="tot"><span>Build Total</span><b id="hTotal">৳0</b></div>
+    </div>
+  </section>
+
+  <div class="print-head"><img src="img/logo.svg" alt="TechStore BD"><div style="text-align:right;font-size:12px"><b style="font-size:16px">My PC Build</b><br><span id="printDate"></span><br>01000000000 · Demo Tower, Dhaka</div></div>
+
+  <div class="pb">
+    <div class="pb-list" id="pbList"></div>
+
+    <aside class="pb-side">
+      <div class="box summary">
+        <h3>Build Summary <span class="pill info" id="sCount">0 items</span></h3>
+        <div id="sLines"></div>
+        <div class="watt">
+          <span class="ic"><i class="fa-solid fa-bolt"></i></span>
+          <div style="flex:1"><small>Estimated power draw</small><b id="sWatt">0W</b> <small id="sPsu" style="display:inline"></small>
+            <div class="watt-bar"><i id="sWattBar" style="width:0"></i></div></div>
+        </div>
+        <div class="line total"><span>Total</span><b id="sTotal">৳0</b></div>
+        <div id="compat" class="compat info" style="margin-top:12px"></div>
+        <div class="pb-btns">
+          <button class="btn primary block" id="addAll"><i class="fa-solid fa-cart-plus"></i>Add All to Cart</button>
+          <div class="row2">
+            <button class="btn ghost" onclick="window.print()"><i class="fa-solid fa-print"></i>Print</button>
+            <button class="btn ghost" id="reset"><i class="fa-solid fa-rotate-left"></i>Reset</button>
+          </div>
+        </div>
+      </div>
+      <div class="box pb-note"><i class="fa-solid fa-screwdriver-wrench"></i><div><b style="color:var(--text)">Free assembly &amp; testing</b><br>Our technicians assemble, cable-manage and stress-test every custom build before delivery. Call <b style="color:var(--text)">01000000000</b> for advice.</div></div>
+    </aside>
+  </div>
+</main>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="mbox" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="mhead">
+      <div class="t"><h3 id="mTitle"></h3><button class="x" aria-label="Close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
+      <div class="mtools">
+        <label class="msearch"><i class="fa-solid fa-magnifying-glass"></i><input id="mSearch" type="text" placeholder="Search by name or brand..."></label>
+        <select id="mSort" aria-label="Sort"><option value="">Sort: Default</option><option value="asc">Price: Low to High</option><option value="desc">Price: High to Low</option></select>
+      </div>
+    </div>
+    <div class="mlist" id="mList"></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+/* Components (real listings from techstore-demo). s = socket, d = memory type, w = est. watts, cap = PSU capacity */
+const PARTS = {
+  cpu:{t:"Processor",ic:"fa-microchip",req:1,items:[
+    {n:"AMD Ryzen 5 7500F Processor",p:14900,o:21500,i:"c-cpu-1.png",s:"AM5",w:65,tag:"6C/12T"},
+    {n:"AMD Ryzen 5 7600 Gaming Processor",p:20500,o:21000,i:"c-cpu-2.jpg",s:"AM5",w:65,tag:"6C/12T"},
+    {n:"AMD Ryzen 7 7700 Gaming Processor",p:20000,o:24500,i:"c-cpu-3.jpg",s:"AM5",w:65,tag:"8C/16T"},
+    {n:"AMD Ryzen 7 9700X AM5 Desktop Gaming Processor",p:28000,o:45000,i:"c-cpu-4.jpg",s:"AM5",w:65,tag:"8C/16T"},
+    {n:"AMD Ryzen 5 5600 Desktop Processor",p:14500,o:17500,i:"c-cpu-5.jpg",s:"AM4",w:65,tag:"6C/12T"},
+    {n:"Intel Core i5 14400 14th Gen Raptor Lake Processor",p:19000,o:30600,i:"c-cpu-6.jpg",s:"LGA1700",w:148,tag:"10C/16T"},
+    {n:"Intel 14th Gen Core i5 14600K Raptor Lake Processor",p:29500,o:32500,i:"c-cpu-7.png",s:"LGA1700",w:181,tag:"14C/20T"}]},
+  cooler:{t:"CPU Cooler",ic:"fa-fan",req:1,items:[
+    {n:"Antec A400i Neon Lighting CPU Air Cooler",p:2400,o:2700,i:"c-cooler-1.jpg",w:4,tag:"Air"},
+    {n:"Arctic Liquid Freezer II 240 A-RGB All-in-One CPU Cooler",p:8990,o:9890,i:"c-cooler-3.jpg",w:10,tag:"240mm AIO"},
+    {n:"DeepCool GAMMAXX L360 A-RGB WH Liquid CPU Cooler",p:9500,o:10450,i:"c-cooler-5.jpg",w:12,tag:"360mm AIO"},
+    {n:"DeepCool MYSTIQUE 240 Liquid CPU Cooler with TFT LCD Screen",p:12800,o:13489,i:"c-cooler-4.png",w:10,tag:"240mm AIO"},
+    {n:"Cooler Master MasterAir MA824 Stealth CPU Air Cooler",p:13500,o:15990,i:"c-cooler-2.png",w:6,tag:"Dual tower"}]},
+  mobo:{t:"Motherboard",ic:"fa-server",req:1,items:[
+    {n:"Asus B650M-AYW Wi-Fi 6 DDR5 AMD Motherboard",p:19800,o:22000,i:"c-mobo-1.jpg",s:"AM5",d:"DDR5",w:40,tag:"mATX"},
+    {n:"GIGABYTE B650M GAMING X AX DDR5 AM5 Motherboard",p:25200,o:30060,i:"c-mobo-3.png",s:"AM5",d:"DDR5",w:40,tag:"mATX"},
+    {n:"GIGABYTE B650 EAGLE AX DDR5 AM5 Motherboard",p:25500,o:33000,i:"c-mobo-2.png",s:"AM5",d:"DDR5",w:45,tag:"ATX"},
+    {n:"Asus TUF GAMING B550M Plus WIFI II AM4 microATX Motherboard",p:19200,o:20500,i:"c-mobo-4.png",s:"AM4",d:"DDR4",w:35,tag:"mATX"},
+    {n:"ASUS B760M MAX GAMING WIFI Intel LGA1700 DDR5 mATX Motherboard",p:21000,o:23500,i:"c-mobo-5.png",s:"LGA1700",d:"DDR5",w:40,tag:"mATX"},
+    {n:"Gigabyte B760M GAMING X GEN5 DDR5 Intel Micro ATX Motherboard",p:20500,o:21500,i:"c-mobo-6.png",s:"LGA1700",d:"DDR5",w:40,tag:"mATX"}]},
+  ram:{t:"RAM",ic:"fa-memory",req:1,items:[
+    {n:"Kingston FURY Beast 16GB 5600MHz DDR5 RGB Desktop RAM",p:29500,o:31200,i:"c-ram-1.png",d:"DDR5",w:5,tag:"16GB"},
+    {n:"Corsair VENGEANCE RGB 16GB DDR5 6000MHz RAM",p:31000,o:33000,i:"c-ram-2.png",d:"DDR5",w:5,tag:"16GB"},
+    {n:"TEAM T-FORCE DELTA RGB 16GB 6000MHz DDR5 Gaming RAM",p:31500,o:36500,i:"c-ram-3.jpg",d:"DDR5",w:5,tag:"16GB"},
+    {n:"Adata XPG LANCER 16GB DDR5 6000MHz RGB Gaming Desktop RAM",p:34500,o:0,i:"c-ram-4.png",d:"DDR5",w:5,tag:"16GB"},
+    {n:"Kingston FURY Beast 32GB DDR5 6000MHz CL30 RGB Desktop RAM",p:60500,o:67900,i:"c-ram-5.png",d:"DDR5",w:8,tag:"32GB"}]},
+  ssd:{t:"Storage",ic:"fa-hard-drive",req:1,items:[
+    {n:"Lexar NM790 512GB PCIe Gen4 NVMe SSD",p:14500,o:19000,i:"c-ssd-1.png",w:5,tag:"512GB"},
+    {n:"Samsung 990 Evo 1TB PCIe 5.0 NVMe SSD",p:21500,o:27000,i:"c-ssd-3.jpg",w:6,tag:"1TB"},
+    {n:"LEXAR NM790 1TB Gen 4 NVMe M.2 2280 SSD",p:27000,o:29700,i:"c-ssd-2.jpg",w:6,tag:"1TB"},
+    {n:"Corsair MP600 PRO NH 1TB PCIe Gen4 x4 NVMe M.2 SSD",p:28000,o:30900,i:"c-ssd-4.jpg",w:7,tag:"1TB"},
+    {n:"Western Digital SN7100 NVMe 2TB SSD",p:38000,o:41200,i:"c-ssd-5.png",w:7,tag:"2TB"}]},
+  gpu:{t:"Graphics Card",ic:"fa-display",req:1,items:[
+    {n:"PowerColor Fighter AMD Radeon RX 7600 8GB GDDR6 Graphics Card",p:44900,o:47500,i:"c-gpu-3.png",w:165,tag:"8GB"},
+    {n:"ZOTAC GAMING GeForce RTX 5050 Twin Edge OC 8GB GDDR6",p:53900,o:59500,i:"c-gpu-1.png",w:130,tag:"8GB"},
+    {n:"MSI GeForce RTX 5060 8G VENTUS 2X OC 8GB GDDR7",p:57999,o:63700,i:"c-gpu-2.jpg",w:145,tag:"8GB"},
+    {n:"Colorful iGame GeForce RTX 5060 Ti Ultra W DUO OC 16GB",p:113000,o:124000,i:"c-gpu-4.jpg",w:180,tag:"16GB"},
+    {n:"MSI GeForce RTX 5070 Ti 16G VENTUS 3X OC 16GB GDDR7",p:191500,o:212500,i:"c-gpu-5.jpg",w:300,tag:"16GB"},
+    {n:"ASUS PRIME GeForce RTX 5080 16GB GDDR7 OC Edition",p:260000,o:282000,i:"c-gpu-6.jpg",w:360,tag:"16GB"}]},
+  psu:{t:"Power Supply",ic:"fa-plug",req:1,items:[
+    {n:"Cooler Master MWE 550W 80 Plus Bronze Power Supply",p:5600,o:5900,i:"c-psu-1.png",cap:550,tag:"550W Bronze"},
+    {n:"Antec G650 650W 80 Plus Gold Semi Modular Power Supply",p:7290,o:8000,i:"c-psu-2.jpg",cap:650,tag:"650W Gold"},
+    {n:"Antec G750 750W 80 Plus Gold Semi Modular Power Supply",p:7900,o:8700,i:"c-psu-3.jpg",cap:750,tag:"750W Gold"},
+    {n:"1STPLAYER NGDP ATX 3.1 Gold 750W Full Modular Power Supply",p:11700,o:12900,i:"c-psu-4.jpg",cap:750,tag:"750W Gold"},
+    {n:"ASUS Prime 850W 80 Plus Gold Full Modular Power Supply",p:17000,o:18500,i:"c-psu-5.png",cap:850,tag:"850W Gold"},
+    {n:"ASUS TUF Gaming 1000G 1000W 80 Plus Gold Power Supply",p:27500,o:28500,i:"c-psu-6.jpg",cap:1000,tag:"1000W Gold"}]},
+  case:{t:"Casing",ic:"fa-box",req:1,items:[
+    {n:"1STPLAYER FD3 ATX Black Gaming Casing",p:3500,o:3650,i:"c-case-1.jpg",w:6,tag:"ATX"},
+    {n:"Antec CX200M RGB ELITE Full-View Mini-Tower Gaming Casing",p:4590,o:5050,i:"c-case-3.jpg",w:8,tag:"mATX"},
+    {n:"Acer V930W Mid-Tower ATX Gaming Casing",p:4750,o:0,i:"c-case-2.jpg",w:8,tag:"ATX"},
+    {n:"Gamdias ATHENA M3 BK ARGB E-ATX Mid-Tower Gaming Casing",p:5899,o:6450,i:"c-case-4.jpg",w:10,tag:"E-ATX"},
+    {n:"Antec C8 White Constellation Full View E-ATX Full Tower Casing",p:14690,o:16150,i:"c-case-5.png",w:10,tag:"E-ATX"}]},
+  monitor:{t:"Monitor",ic:"fa-tv",req:0,pids:[10,3,20,4]},
+  keyboard:{t:"Keyboard",ic:"fa-keyboard",req:0,pids:[7,6]},
+  mouse:{t:"Mouse",ic:"fa-computer-mouse",req:0,pids:[8,9]}
+};
+// map P products (monitor/keyboard/mouse) into the same shape
+Object.values(PARTS).forEach(g=>{ if(g.pids) g.items = g.pids.map(id=>({n:P[id].n,p:P[id].p,o:P[id].o,i:P[id].i,pid:id,w:/monitor/.test(P[id].c)?0:0,tag:P[id].b})); });
+const KEYS = Object.keys(PARTS);
+const REQ = KEYS.filter(k=>PARTS[k].req);
+
+let build = store.get("build", {});
+const pick = k => build[k]!=null ? PARTS[k].items[build[k]] : null;
+const save = () => { store.set("build", build); render(); };
+
+function wattage(){
+  const parts = KEYS.map(pick).filter(Boolean);
+  if(!parts.length) return 0;
+  return parts.reduce((s,x)=>s+(x.w||0),0) + 40; // + fans, USB, headroom base
+}
+
+function compat(){
+  const c=pick("cpu"), m=pick("mobo"), r=pick("ram"), ps=pick("psu"), w=wattage();
+  const msgs=[]; let bad=false, checked=false;
+  if(c&&m){ checked=true; if(c.s===m.s) msgs.push([1,`${c.s} processor matches ${m.s} motherboard`]); else {bad=true; msgs.push([0,`${c.s} processor won't fit a ${m.s} motherboard`]);} }
+  if(r&&m){ checked=true; if(r.d===m.d) msgs.push([1,`${r.d} memory supported by motherboard`]); else {bad=true; msgs.push([0,`Board needs ${m.d}, selected RAM is ${r.d}`]);} }
+  if(ps&&w){ checked=true; const need=Math.ceil(w*1.3/50)*50; if(ps.cap>=need) msgs.push([1,`${ps.cap}W PSU covers ~${w}W load with headroom`]); else {bad=true; msgs.push([0,`Recommend at least ${need}W PSU (selected ${ps.cap}W)`]);} }
+  if(c&&c.s==="LGA1700"&&!pick("cooler")) msgs.push([0,"Intel CPUs listed here need a separate cooler"]);
+  return {bad,checked,msgs};
+}
+
+function render(){
+  // list
+  let html="", n=0;
+  KEYS.forEach((k,idx)=>{
+    if(idx===0) html+=`<div class="pb-group"><span>Core Components</span><span>Required</span></div>`;
+    if(k==="monitor") html+=`<div class="pb-group"><span>Peripherals &amp; Display</span><span>Optional</span></div>`;
+    const g=PARTS[k], x=pick(k); if(x) n++;
+    html+=`<div class="pb-row ${x?"done":"empty-row"}">
+      <div class="pb-ic"><i class="fa-solid ${g.ic}"></i></div>
+      <div style="min-width:0">
+        <div class="pb-name">${g.t}${g.req?'<span class="req">Required</span>':""}</div>
+        ${x?`<div class="pb-sel"><img src="img/${x.i}" alt=""><div><h5>${esc(x.n)}</h5><b>${tk(x.p)}</b>${x.o>x.p?`<s>${tk(x.o)}</s>`:""}</div></div>`
+           :`<div class="pb-empty">Nothing selected yet · ${g.items.length} options</div>`}
+      </div>
+      <div class="pb-act">${x
+        ?`<button class="ibtn" aria-label="Change" title="Change" onclick="openModal('${k}')"><i class="fa-solid fa-arrows-rotate"></i></button><button class="ibtn del" aria-label="Remove" title="Remove" onclick="removePart('${k}')"><i class="fa-regular fa-trash-can"></i></button>`
+        :`<button class="btn dark" onclick="openModal('${k}')"><i class="fa-solid fa-plus"></i>Choose</button>`}</div>
+    </div>`;
+  });
+  $("#pbList").innerHTML=html;
+
+  // totals
+  const sel=KEYS.map(k=>[k,pick(k)]).filter(([,x])=>x);
+  const total=sel.reduce((s,[,x])=>s+x.p,0), w=wattage(), reqDone=REQ.filter(k=>pick(k)).length;
+  $("#hCount").textContent=`${n} / ${KEYS.length}`;
+  $("#hWatt").textContent=w+"W";
+  $("#hTotal").textContent=tk(total);
+  $("#hProg").style.width=(reqDone/REQ.length*100)+"%";
+  $("#sCount").textContent=`${n} item${n===1?"":"s"}`;
+  $("#sTotal").textContent=tk(total);
+  $("#sWatt").textContent=w+"W";
+  const ps=pick("psu");
+  $("#sPsu").textContent=ps?`of ${ps.cap}W PSU`:"";
+  $("#sWattBar").style.width=Math.min(100, ps? w/ps.cap*100 : w/1000*100)+"%";
+  $("#sLines").innerHTML = sel.length
+    ? sel.map(([k,x])=>`<div class="line"><span>${PARTS[k].t}</span><b>${tk(x.p)}</b></div>`).join("")
+    : `<p style="color:var(--muted);font-size:13px;padding:6px 0 10px">Start by choosing a processor. Your selected parts will appear here.</p>`;
+
+  // compatibility
+  const c=compat(), el=$("#compat");
+  if(!c.checked && !c.msgs.length){
+    el.className="compat info";
+    el.innerHTML=`<div class="hd"><i class="fa-solid fa-circle-info"></i>Compatibility check</div><div>Add a processor, motherboard, RAM and PSU to run checks.</div>`;
+  } else {
+    const ok=!c.bad && !c.msgs.some(m=>!m[0]);
+    el.className="compat "+(ok?"ok":"warn");
+    el.innerHTML=`<div class="hd"><span class="pill ${ok?"ok":"warn"}"><i class="fa-solid ${ok?"fa-circle-check":"fa-triangle-exclamation"}"></i>${ok?"Compatible":"Needs attention"}</span></div>
+      <ul>${c.msgs.map(([g,t])=>`<li><i class="fa-solid ${g?"fa-check":"fa-exclamation"}"></i><span>${t}</span></li>`).join("")}</ul>
+      ${reqDone<REQ.length?`<div style="opacity:.8">${REQ.length-reqDone} required component${REQ.length-reqDone>1?"s":""} still missing.</div>`:""}`;
+  }
+}
+
+/* ---------- Modal ---------- */
+let curKey=null;
+function openModal(k){
+  curKey=k; const g=PARTS[k];
+  $("#mTitle").innerHTML=`<i class="fa-solid ${g.ic}"></i>Choose ${g.t}`;
+  $("#mSearch").value=""; $("#mSort").value="";
+  renderOpts(); $("#modal").classList.add("open"); document.body.style.overflow="hidden";
+  setTimeout(()=>$("#mSearch").focus(),150);
+}
+function closeModal(){ $("#modal").classList.remove("open"); document.body.style.overflow=""; }
+function renderOpts(){
+  const g=PARTS[curKey], q=$("#mSearch").value.trim().toLowerCase(), sort=$("#mSort").value;
+  const c=pick("cpu"), m=pick("mobo");
+  let list=g.items.map((x,i)=>({...x,idx:i})).filter(x=>!q||x.n.toLowerCase().includes(q)||(x.tag||"").toLowerCase().includes(q));
+  if(sort) list.sort((a,b)=>sort==="asc"?a.p-b.p:b.p-a.p);
+  $("#mList").innerHTML = list.length ? list.map(x=>{
+    const meta=[];
+    if(x.s){ const clash=(curKey==="mobo"&&c&&c.s!==x.s)||(curKey==="cpu"&&m&&m.s!==x.s); meta.push(`<span class="${clash?"bad":""}">${clash?'<i class="fa-solid fa-triangle-exclamation"></i> ':""}Socket ${x.s}</span>`); }
+    if(x.d){ const r=pick("ram"); const clash=(curKey==="mobo"&&r&&r.d!==x.d)||(curKey==="ram"&&m&&m.d!==x.d); meta.push(`<span class="${clash?"bad":""}">${x.d}</span>`); }
+    if(x.tag) meta.push(`<span>${esc(x.tag)}</span>`);
+    if(x.w) meta.push(`<span><i class="fa-solid fa-bolt"></i> ${x.w}W</span>`);
+    if(x.pid) meta.push(`<span>In store catalog</span>`);
+    const cur=build[curKey]===x.idx;
+    return `<div class="opt ${cur?"cur":""}"><img src="img/${x.i}" alt="" loading="lazy">
+      <div style="min-width:0"><h5>${esc(x.n)}</h5><div class="meta">${meta.join("")}</div></div>
+      <div class="pr"><div><b>${tk(x.p)}</b>${x.o>x.p?`<br><s>${tk(x.o)}</s>`:""}</div>
+        <button class="btn ${cur?"dark":"primary"}" onclick="choose(${x.idx})">${cur?'<i class="fa-solid fa-check"></i>Selected':'<i class="fa-solid fa-plus"></i>Add'}</button></div></div>`;
+  }).join("") : `<div class="mempty"><i class="fa-solid fa-magnifying-glass" style="font-size:30px;color:#D5DAEA;margin-bottom:10px;display:block"></i>No matching ${g.t.toLowerCase()} found.</div>`;
+}
+function choose(i){ build[curKey]=i; save(); closeModal(); toast(`${PARTS[curKey].t} added to your build`); }
+function removePart(k){ delete build[k]; save(); toast(`${PARTS[k].t} removed`); }
+
+$("#mSearch").addEventListener("input",renderOpts);
+$("#mSort").addEventListener("change",renderOpts);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModal(); });
+
+$("#reset").onclick=()=>{ if(!Object.keys(build).length){ toast("Your build is already empty"); return; } build={}; save(); toast("Build has been reset"); };
+$("#addAll").onclick=()=>{
+  const sel=KEYS.map(pick).filter(Boolean);
+  if(!sel.length){ toast("Choose some components first"); return; }
+  const inCat=sel.filter(x=>x.pid), other=sel.length-inCat.length;
+  inCat.forEach(x=>addCart(x.pid));
+  setTimeout(()=>toast(other
+    ? `${inCat.length?inCat.length+" item(s) added to cart. ":""}${other} component(s) saved, our team will call to confirm.`
+    : "All build items added to cart"), 60);
+};
+$("#printDate").textContent=new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
+// clean invalid saved indices
+Object.keys(build).forEach(k=>{ if(!PARTS[k]||!PARTS[k].items[build[k]]) delete build[k]; });
+render();
+</script>
+</body>
+</html>

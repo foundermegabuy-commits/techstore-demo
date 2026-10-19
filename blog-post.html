@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog | TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.media{position:relative;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.95),#E9EDF8 70%)}
+.media img{width:72%;height:80%;object-fit:contain;mix-blend-mode:multiply;transition:transform .5s}
+
+/* Head */
+.ph{max-width:860px;margin:18px auto 0;text-align:center}
+.ph .pill{background:var(--navy);color:var(--gold)}
+.ph h1{font-size:36px;line-height:1.2;font-weight:800;letter-spacing:-.6px;margin:14px 0 12px}
+.ph .lead{color:var(--muted);font-size:15px;max-width:720px;margin:0 auto}
+.byline{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;margin-top:18px;font-size:12.5px;color:var(--muted)}
+.byline i{color:var(--orange);margin-right:5px}
+.av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px;flex:none}
+.author-i{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:600}
+.hero-img{margin-top:24px;border-radius:24px;aspect-ratio:21/7;max-height:400px;width:100%;background:radial-gradient(circle at 50% 55%,#fff 0,#DCE2F3 70%);box-shadow:var(--shadow)}
+.hero-img img{height:84%;width:auto;max-width:80%}
+
+/* Layout */
+.pl{display:grid;grid-template-columns:240px minmax(0,1fr) 220px;gap:30px;margin-top:30px;align-items:start}
+.pl>*{min-width:0}
+.sticky{position:sticky;top:150px;display:grid;gap:16px}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.toc h4,.sharebox h4{font-size:13px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:10px;font-weight:600}
+.toc ol{list-style:none;display:grid;gap:2px;counter-reset:t}
+.toc ol a{display:flex;gap:10px;font-size:13px;padding:7px 8px;border-radius:8px;color:var(--text);line-height:1.4;transition:.2s}
+.toc ol a::before{counter-increment:t;content:counter(t,decimal-leading-zero);color:var(--orange);font-weight:700;font-size:11.5px;padding-top:1px}
+.toc ol a:hover,.toc ol a.on{background:var(--orange-soft);color:var(--orange)}
+.share{display:flex;gap:8px;flex-wrap:wrap}
+.share button{width:40px;height:40px;border-radius:11px;background:var(--card);border:1px solid var(--line);color:var(--ink);font-size:15px;transition:.2s}
+.share button:hover{background:var(--navy);color:#fff;border-color:var(--ink)}
+.share .fb:hover{background:#1877F2;border-color:#1877F2}
+.share .wa:hover{background:#25D366;border-color:#25D366}
+
+/* Article */
+.article{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px 40px;font-size:15.5px;line-height:1.85;color:#2A3050}
+.article h2{font-size:22px;line-height:1.35;color:var(--text);font-weight:700;margin:30px 0 12px;scroll-margin-top:150px;letter-spacing:-.2px}
+.article h2:first-child{margin-top:0}
+.article p{margin-bottom:16px}
+.article b{color:var(--text)}
+.article ul{margin:0 0 18px 0;list-style:none;display:grid;gap:8px}
+.article ul li{position:relative;padding-left:26px}
+.article ul li::before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;left:0;top:1px;color:var(--orange);font-size:13px}
+.tip{display:flex;gap:14px;background:var(--orange-soft);border-left:4px solid var(--orange);border-radius:12px;padding:16px 18px;margin:6px 0 20px;font-size:14px;line-height:1.7}
+.tip i{color:var(--orange);font-size:18px;margin-top:3px}
+.verdict{background:linear-gradient(135deg,var(--navy),var(--navy-3));color:#D5D9EE;border-radius:16px;padding:22px 24px;margin:8px 0 18px;font-size:14.5px}
+.verdict b{color:var(--gold);display:block;font-size:12px;letter-spacing:1.5px;margin-bottom:6px}
+.tbl{overflow-x:auto;margin:0 0 20px;border:1px solid var(--line);border-radius:12px}
+.tbl table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:460px}
+.tbl th,.tbl td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line)}
+.tbl th{background:var(--bg);font-weight:600;color:var(--text)}
+.tbl tr:last-child td{border-bottom:0}
+.inline-prod{margin:8px 0 26px;padding:20px;border-radius:16px;background:var(--soft);border:1px dashed #D5DAEA}
+.inline-prod h5{font-size:13px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:12px;font-weight:600}
+.inline-prod .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.art-tags{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px;margin-top:10px}
+.art-tags a{font-size:12px;padding:5px 12px;border-radius:20px;background:var(--soft-2);color:var(--text);line-height:1.5}
+.art-tags a:hover{background:var(--orange);color:#fff}
+
+.side-prods{display:grid;gap:10px}
+.sp{display:grid;grid-template-columns:54px 1fr;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;transition:.2s}
+.sp:hover{border-color:var(--orange)}
+.sp .media{width:54px;height:54px;border-radius:9px}
+.sp .media img{width:86%}
+.sp b{font-size:11.5px;font-weight:500;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sp span{font-size:12.5px;font-weight:700;color:var(--orange)}
+
+/* Author */
+.author{display:flex;gap:18px;align-items:center;margin-top:22px}
+.author .av{width:64px;height:64px;font-size:20px}
+.author h4{font-size:16px}
+.author p{font-size:13px;color:var(--muted);margin-top:4px}
+.author .social a{background:var(--soft-2);color:var(--ink);width:34px;height:34px}
+.author .social a:hover{background:var(--orange);color:#fff}
+
+/* Prev / next */
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.pn a{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px;transition:.2s;min-width:0}
+.pn a:hover{border-color:var(--orange);box-shadow:var(--shadow)}
+.pn small{font-size:11.5px;color:var(--orange);font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.pn b{font-size:14px;font-weight:600;line-height:1.4}
+.pn .nx{text-align:right}
+.pn .ph-empty{visibility:hidden}
+
+/* Related */
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.post{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+.post:hover{box-shadow:var(--shadow-h);transform:translateY(-4px)}
+.post .media{aspect-ratio:16/10}
+.post .body{padding:16px;display:flex;flex-direction:column;gap:8px}
+.post h3{font-size:15px;font-weight:600;line-height:1.4}
+.post h3 a:hover{color:var(--orange)}
+.meta{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--muted)}
+.meta i{color:var(--orange);margin-right:4px}
+.cat.pill{background:var(--navy);color:var(--gold);align-self:flex-start}
+
+/* Comments */
+.cm-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.cm{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.cm:last-child{border-bottom:0}
+.cm .av{background:linear-gradient(135deg,var(--navy),var(--navy-3))}
+.cm b{font-size:13.5px}
+.cm small{font-size:11.5px;color:var(--muted);margin-left:8px}
+.cm p{font-size:13.5px;color:#3A4060;margin-top:4px;word-break:break-word}
+
+@media (max-width:1200px){
+  .pl{grid-template-columns:220px minmax(0,1fr)}
+  .pl .right{display:none}
+}
+@media (max-width:992px){
+  .pl{grid-template-columns:1fr}
+  .sticky{position:static}
+  .toc{order:0}
+  .posts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cm-wrap{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .ph h1{font-size:24px}
+  .ph .lead{font-size:13.5px}
+  .byline{gap:10px 14px}
+  .hero-img{aspect-ratio:4/3;border-radius:18px}
+  .article{padding:22px 18px;font-size:14.5px;line-height:1.8}
+  .article h2{font-size:18px}
+  .inline-prod{padding:12px}
+  .inline-prod .grid{gap:10px}
+  .author{flex-direction:column;align-items:flex-start;gap:12px}
+  .pn{grid-template-columns:1fr}
+  .pn .nx{text-align:left}
+  .posts{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body data-page="blog">
+<div id="site-header"></div>
+
+<main class="wrap" id="main">
+  <nav class="crumb" id="crumb"></nav>
+  <header class="ph" id="ph"></header>
+  <div class="hero-img media" id="heroImg"></div>
+
+  <div class="pl">
+    <aside class="sticky left">
+      <nav class="toc" aria-label="Table of contents"><h4>In this article</h4><ol id="toc"></ol></nav>
+      <div class="toc sharebox"><h4>Share</h4><div class="share" id="share"></div></div>
+    </aside>
+
+    <div>
+      <article class="article" id="article"></article>
+
+      <div class="box author" id="author"></div>
+      <div class="pn" id="pn"></div>
+
+      <section>
+        <div class="shead"><div><h2>Comments</h2><p id="cmCount"></p></div></div>
+        <div class="cm-wrap">
+          <div class="box"><h3>Leave a comment</h3>
+            <form id="cmForm">
+              <div class="two">
+                <div class="field"><label for="cmName">Name *</label><input id="cmName" required maxlength="60"></div>
+                <div class="field"><label for="cmEmail">Email *</label><input id="cmEmail" type="email" required></div>
+              </div>
+              <div class="field"><label for="cmText">Comment *</label><textarea id="cmText" required maxlength="1000" placeholder="Share your thoughts or ask a question..."></textarea></div>
+              <button class="btn primary"><i class="fa-solid fa-paper-plane"></i>Post Comment</button>
+            </form>
+          </div>
+          <div class="box"><h3>Discussion</h3><div id="cmList"></div></div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="sticky right">
+      <div class="toc"><h4>Products mentioned</h4><div class="side-prods" id="sideProds"></div></div>
+      <a href="request-order.html" class="toc" style="display:block;background:linear-gradient(135deg,var(--orange),#FF7A2E);color:#fff;border:0">
+        <b style="font-size:14px">Can't find it?</b><p style="font-size:12px;opacity:.9;margin:4px 0 10px">We'll source any product for you.</p><span style="font-size:12.5px;font-weight:600">Request a product <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </aside>
+  </div>
+
+  <section>
+    <div class="shead"><div><h2>Related Articles</h2><p>Keep reading</p></div><a href="blog.html" class="show-all">All Articles <i class="fa-solid fa-arrow-right"></i></a></div>
+    <div class="posts" id="related"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+/* POSTS-START (keep identical in blog.html and blog-post.html) */
+const POSTS = [
+  {id:1,slug:"best-gaming-laptops-130k",cat:"Buying Guide",t:"Best Gaming Laptops Under ৳1,30,000 in 2026",x:"From the ASUS TUF A15 to the HP Victus 15, we compare performance, thermals, display and value to find the best gaming laptop for your budget.",img:"p16.png",d:"2026-10-14",r:8,v:4820,tags:["Laptop","Gaming","ASUS","HP"],pr:[16,17,15,18]},
+  {id:2,slug:"choose-portable-monitor",cat:"Buying Guide",t:"How to Choose a Portable Monitor: Size, Panel, Ports and Power",x:"Portable monitors are the easiest productivity upgrade for laptops. Here is what actually matters before you buy one.",img:"p20.webp",d:"2026-10-09",r:6,v:2610,tags:["Monitor","Productivity","Arzopa"],pr:[20,3,10]},
+  {id:3,slug:"ryzen-7500f-vs-i5-14600k",cat:"PC Build",t:"Ryzen 5 7500F vs Intel i5-14600K for a Budget Gaming PC",x:"Two very different CPUs at two very different prices. We look at gaming FPS, platform cost and upgrade path to pick the smarter buy.",img:"p11.jpeg",d:"2026-10-02",r:9,v:5390,tags:["Processor","AMD","Intel","PC Build"],pr:[11,13,14,12]},
+  {id:4,slug:"rapid-trigger-keyboards",cat:"Reviews",t:"Rapid Trigger Keyboards Explained: MageGee Captain87 Review",x:"Magnetic Hall-effect switches went from esports niche to budget mainstream. Is the MageGee Captain87 worth it?",img:"p6.png",d:"2026-09-27",r:5,v:1980,tags:["Keyboard","Gaming","MageGee"],pr:[6,7,9]},
+  {id:5,slug:"budget-home-cinema-projector",cat:"Tips",t:"Build a Budget Home Cinema with a Portable Projector",x:"Screen size, throw distance, ANSI lumens and sound: a simple checklist for a movie-night setup in a Dhaka apartment.",img:"p1.png",d:"2026-09-20",r:5,v:2240,tags:["Projector","Home Cinema","Wanbo"],pr:[1,2]},
+  {id:6,slug:"xiaomi-g34wq-2026-review",cat:"Reviews",t:"Xiaomi REDMI G34WQ 2026 Review: 180Hz Ultrawide on a Budget",x:"A 34-inch curved UWQHD panel with 180Hz for under ৳40,000. We tested it for gaming, office work and movies.",img:"p3.png",d:"2026-09-12",r:6,v:3150,tags:["Monitor","Ultrawide","Xiaomi"],pr:[3,4,10]},
+  {id:7,slug:"rtx-5060-arrives",cat:"News",t:"RTX 5060 Gaming PCs Now in Stock at TechStore",x:"Pre-built Ryzen 5 7500F + RTX 5060 systems are now available with official warranty and free assembly.",img:"p13.jpeg",d:"2026-09-05",r:3,v:1740,tags:["Graphics Card","NVIDIA","PC Build"],pr:[11,13]},
+  {id:8,slug:"sim-racing-starter-setup",cat:"Gaming",t:"Sim Racing Starter Setup with the Logitech G923",x:"Wheel, pedals, mount and monitor: how to get into sim racing without overspending, and which games to start with.",img:"p5.png",d:"2026-08-29",r:5,v:2075,tags:["Gaming","Logitech","Racing"],pr:[5,4,3]},
+  {id:9,slug:"wireless-gaming-mouse-tips",cat:"Tips",t:"5 Settings to Change on Your New Wireless Gaming Mouse",x:"Polling rate, DPI, lift-off distance and more: quick tweaks that make a budget wireless mouse feel premium.",img:"p8.png",d:"2026-08-21",r:4,v:1530,tags:["Mouse","Gaming","Furycube"],pr:[8,9]}
+];
+/* POSTS-END */
+
+/* Article bodies. Sections: h = heading, p = paragraphs, ul = bullet list, tip, table, verdict, prods = inline product cards */
+const BODY = {
+  1: [
+    {h:"What ৳1,30,000 gets you in 2026", p:[
+      "The ৳1,10,000 to ৳1,30,000 bracket is the sweet spot for gaming laptops in Bangladesh. Below it you are usually stuck with entry-level GPUs and dim 60Hz panels; above it, prices climb quickly for small real-world gains.",
+      "At this budget you should expect a 15.6-inch 144Hz display, a modern 6-core or 8-core CPU, a dedicated RTX-class GPU and at least 16GB of RAM (or a free slot to get there). What separates good laptops from great ones here is <b>cooling, build quality and upgradeability</b>, not raw spec sheets."]},
+    {h:"How we picked", p:["Every laptop on this list is available at TechStore with official warranty. We weighed four things:"],
+      ul:["<b>Sustained performance</b> after 30 minutes of gaming, not just the first benchmark run","<b>Display quality</b>: refresh rate, response time and sRGB coverage","<b>Thermals and noise</b> at the default performance profile","<b>Value</b>: price versus what you would pay for the next tier up"]},
+    {h:"1. ASUS TUF Gaming F15 FX507ZC4: best overall", p:[
+      "With a Core i7-12700H, a 144Hz panel and the TUF series' military-grade chassis, the F15 is the laptop we recommend most often at the counter. The 14-core CPU makes it equally good for streaming, video editing and engineering software, and the cooling keeps clocks steady during long sessions.",
+      "At <b>৳1,30,000</b> (down from ৳1,75,500) it is also the best discount in the category right now. The keyboard is comfortable, the WASD keys are highlighted, and there are two SO-DIMM slots so upgrading to 32GB later is trivial."]},
+    {h:"2. ASUS TUF Gaming A15 FA507RF: best value", p:[
+      "If you want most of the F15's experience for less, the A15 with the Ryzen 7 6800HS is the one. AMD's efficient 8-core chip runs cooler and gives noticeably better battery life, which matters if the laptop doubles as a university or office machine.",
+      "At <b>৳1,15,000</b> it leaves room in the budget for a good mouse and a cooling pad."],
+      tip:"Plug in your charger while gaming. Every laptop on this list reduces GPU power on battery, so frame rates can drop by 40% or more unplugged."},
+    {prods:[16,17]},
+    {h:"3. ASUS ROG Strix G513RC: best display and design", p:[
+      "The ROG Strix G15 brings the premium ROG design language, an RGB light bar and a fast 144Hz panel with excellent response times. Its intelligent cooling with liquid-metal compound keeps the CPU noticeably cooler than most rivals at this price.",
+      "At <b>৳1,29,500</b> it costs roughly the same as the TUF F15. Choose the Strix if looks and display quality matter more to you than the TUF's extra CPU cores."]},
+    {h:"4. HP Victus 15: best for students", p:[
+      "The HP Victus 15 FA2013DX pairs a Core i5-13420H with an RTX 3050. It is the least powerful laptop here, but it is also the lightest, quietest and has the most understated design, so it won't look out of place in a classroom or meeting room.",
+      "At <b>৳1,12,999</b> it is a sensible pick if gaming is a weekend hobby rather than a daily priority."]},
+    {h:"Quick comparison", table:[["Laptop","CPU","Display","Price"],["ASUS TUF F15","Core i7-12700H","15.6\" 144Hz","৳1,30,000"],["ASUS TUF A15","Ryzen 7 6800HS","15.6\" 144Hz","৳1,15,000"],["ROG Strix G15","Ryzen 7 6800H","15.6\" 144Hz","৳1,29,500"],["HP Victus 15","Core i5-13420H","15.6\" 144Hz","৳1,12,999"]]},
+    {prods:[15,18]},
+    {h:"Our verdict", verdict:"For most gamers the ASUS TUF Gaming F15 is the best all-rounder under ৳1,30,000. If you want to save ৳15,000, the TUF A15 gives up very little, and the HP Victus 15 is the quiet, portable choice for students.",
+      p:["Whichever you pick, budget for a RAM upgrade to 16GB dual-channel if the model ships with a single stick. It is the cheapest performance boost you can buy, and our service team will install it for free when you buy the RAM with your laptop."]}
+  ],
+  2: [
+    {h:"Why a portable monitor?", p:[
+      "A second screen is the single biggest productivity upgrade for a laptop user. Portable monitors weigh under a kilogram, run off a single USB-C cable and fold into a laptop bag, so you get a dual-screen setup at home, in the office and at a client meeting."]},
+    {h:"Size and resolution", p:["15.6-inch is the sweet spot: it matches most laptop screens and fits in the same bag. At this size, Full HD (1920×1080) is sharp enough for documents and video. 4K panels look great but drain your laptop battery faster and cost much more."]},
+    {h:"Panel type", ul:["<b>IPS</b>: best colors and viewing angles. The right choice for most people.","<b>OLED</b>: deep blacks and vivid colors, but pricier and prone to burn-in with static taskbars.","<b>Touch</b>: useful for presentations, drawing and Android phone desktop modes."]},
+    {h:"Ports and power", p:["Look for <b>two full-function USB-C ports</b> plus mini-HDMI. With a laptop that supports DisplayPort Alt Mode over USB-C, one cable carries both video and power. For game consoles or older laptops, you will need HDMI plus a separate power adapter."],
+      tip:"Not every USB-C port outputs video. Check for a DisplayPort or Thunderbolt logo next to your laptop's USB-C port before you buy."},
+    {prods:[20,10]},
+    {h:"Our pick", p:["The <b>Arzopa A1T</b> 15.6-inch FHD IPS touch monitor hits every point above at ৳17,000, with a slim magnetic stand-cover and both USB-C and mini-HDMI inputs. If you work at a desk most of the time, a full-size monitor like the Titan Army P2712R gives far more screen for the money."]}
+  ],
+  3: [
+    {h:"The short answer", p:[
+      "If you are building a gaming PC on a budget, the <b>Ryzen 5 7500F</b> is the smarter buy for most people. It delivers 90 to 95 percent of the i5-14600K's gaming performance at a much lower price, and the AM5 platform will accept future Ryzen upgrades.",
+      "The <b>Core i5-14600K</b> is the better chip if you also edit video, render 3D or run heavy multitasking, thanks to its 14 cores (6 performance + 8 efficiency)."]},
+    {h:"Specs at a glance", table:[["","Ryzen 5 7500F","Core i5-14600K"],["Cores / threads","6 / 12","14 / 20"],["Max boost","5.0 GHz","5.3 GHz"],["Integrated graphics","None","Intel UHD 770"],["Memory","DDR5 only","DDR4 or DDR5"],["Socket","AM5","LGA1700"],["Cooler included","Yes (Wraith Stealth)","No"]]},
+    {h:"Gaming performance", p:[
+      "In GPU-bound scenarios, which is most gaming at 1080p and 1440p with an RTX 5060 or Arc B580, the two CPUs are practically tied. You will see differences of only a few frames per second in titles like Cyberpunk 2077, Forza Horizon 5 and Valorant at high settings.",
+      "The gap widens in CPU-heavy games such as Counter-Strike 2 at low settings or large strategy games, where the i5-14600K pulls ahead by 8 to 12 percent. That matters for competitive players chasing 300+ FPS on a 240Hz monitor, but not for most gamers."]},
+    {h:"Platform cost: where the real difference is", p:["The CPU price is only part of the story. Here is what each build realistically needs:"],
+      ul:["<b>7500F</b>: an affordable B650 board works perfectly, and the bundled cooler is fine for gaming.","<b>14600K</b>: you need a capable B760 or Z790 board, plus a good tower cooler or 240mm AIO because the chip is unlocked and runs hot.","Altogether the Intel platform usually costs ৳15,000 to ৳25,000 more, money that is better spent on a faster graphics card."],
+      tip:"The 7500F has no integrated graphics. You will need a graphics card to see anything on screen, so keep your old GPU handy if you are troubleshooting."},
+    {prods:[11,13]},
+    {h:"Upgrade path", p:[
+      "AMD has committed to supporting AM5 for several CPU generations, so a 7500F build can be upgraded to a faster Ryzen chip later with just a BIOS update. LGA1700 is the end of the line: the 14th-gen Core processors are the last to use it, so any future Intel upgrade means a new motherboard.",
+      "For a budget build that you plan to keep and improve over years, that alone is a strong argument for AMD."]},
+    {h:"Our recommended builds", p:[
+      "Our <b>Ryzen 5 7500F + RTX 5060</b> pre-built is the best 1080p high-refresh gaming PC we sell under ৳1,20,000. If you need more cores for content creation, the <b>i5-14600K + Arc B580 White Edition</b> is a superb all-rounder. For tighter budgets, the Ryzen 5 PRO 5650G build uses integrated graphics and can take a GPU later."]},
+    {prods:[14,12]},
+    {h:"Verdict", verdict:"Pick the Ryzen 5 7500F for pure gaming value and a long upgrade path. Pick the Core i5-14600K if you game and create, and your budget can absorb the pricier board and cooler.",
+      p:["Not sure which suits you? Try both in our PC Builder to compare total prices, or visit our Demo Tower store and our build team will help you plan it."]}
+  ],
+  4: [
+    {h:"What is rapid trigger?", p:["Magnetic Hall-effect switches measure exactly how far a key is pressed. Rapid trigger uses that to reset a key the instant you begin to lift it, instead of waiting for a fixed reset point. In games like Valorant and CS2, that means faster counter-strafing and more precise movement."]},
+    {h:"MageGee Captain87 in use", p:["The Captain87 is a compact TKL board with adjustable actuation from 0.1mm to 4.0mm per key. Typing feels smooth and linear, the gasket mount soaks up the hollow sound common in budget boards, and the software makes it easy to set lighter actuation on WASD and deeper actuation elsewhere to avoid typos."]},
+    {prods:[6,7]},
+    {h:"Should you buy it?", p:["At ৳6,300 the Captain87 brings a feature that cost three times as much two years ago. If you play competitive shooters, it is an easy recommendation. If you mostly type, a traditional hot-swappable board like the Furycube G87 is cheaper and just as pleasant."]}
+  ],
+  5: [
+    {h:"Start with the room", p:["Measure the wall and the distance to where the projector will sit. Most portable projectors need about 2.6 metres to throw a 100-inch image. In a typical Dhaka bedroom, an 80-inch picture is often the realistic sweet spot."]},
+    {h:"Brightness matters more than resolution", p:["For a room you can darken, 400 to 650 ANSI lumens is plenty. Ignore 'LED lumens' or 'lux' figures on spec sheets; only ANSI lumens is a comparable measure. A bright 1080p projector beats a dim '4K-supported' one every time."]},
+    {prods:[1,2]},
+    {h:"Finish the setup", p:["A matte white wall works, but a simple pull-down screen improves contrast noticeably. Add a Bluetooth soundbar, since built-in speakers are fine for YouTube but not for movies, and you have a home cinema for less than the price of a large TV."]}
+  ],
+  6: [
+    {h:"First impressions", p:["The 2026 REDMI G34WQ is a 34-inch 1500R curved VA panel with 3440×1440 resolution and a 180Hz refresh rate. The stand is basic but sturdy, and the thin bezels make it look more expensive than it is."]},
+    {h:"Gaming and work", p:["Ultrawide support is excellent in racing games, flight sims and most single-player titles. Motion is smooth at 180Hz with minimal dark-level smearing for a VA panel. For work, the extra width replaces a dual-monitor setup: two full-size windows side by side with no bezel in the middle."]},
+    {prods:[3,4]},
+    {h:"Verdict", p:["For ৳37,499 the G34WQ is one of the best-value ultrawides you can buy. If you want to go even wider, the 49-inch AOC AGON AG493QCX is essentially two 27-inch screens in one."]}
+  ],
+  7: [
+    {h:"Now available", p:["Our Ryzen 5 7500F + RTX 5060 16GB DDR5 gaming PC is now in stock. NVIDIA's new mid-range card brings DLSS 4 with multi-frame generation, making high-refresh 1080p and comfortable 1440p gaming affordable."]},
+    {h:"What's included", ul:["Official warranty on every component","Free assembly, cable management and stress testing","Windows-ready with the latest drivers installed","0% EMI on selected bank cards"]},
+    {prods:[11,13]},
+    {h:"Want to customize?", p:["Use our PC Builder to swap the case, storage or RAM. Our team checks every custom build for compatibility before assembly."]}
+  ],
+  8: [
+    {h:"Why the G923?", p:["The Logitech G923 is the most popular entry point into sim racing. TRUEFORCE feedback reads physics and engine data straight from supported games, so you feel the tyres lose grip, and the included three-pedal set has a progressive brake spring that rewards smooth driving."]},
+    {h:"Mounting and display", p:["A desk clamp works to start, but a wheel stand or cockpit stops flex under heavy braking. For visuals, a wide curved monitor wraps the track around your peripheral vision, which is a big help for judging corners."]},
+    {prods:[5,4]},
+    {h:"Games to start with", ul:["<b>Forza Horizon 5</b>: forgiving and fun to learn wheel control","<b>Assetto Corsa</b>: realistic physics and a huge mod scene","<b>F1 25</b>: full TRUEFORCE support and familiar tracks","<b>iRacing</b>: when you are ready for competitive online racing"]}
+  ],
+  9: [
+    {h:"1. Raise the polling rate", p:["Wireless mice like the Furycube G9 Pro support 1000Hz or higher. Raise it in the software for smoother tracking on high-refresh monitors, and drop it back to save battery when working."]},
+    {h:"2. Pick one DPI and stick with it", p:["800 or 1600 DPI with in-game sensitivity tuned to taste is what most pros use. Disable extra DPI stages so you never switch by accident mid-game."]},
+    {h:"3. Lower the lift-off distance", p:["A 1mm lift-off distance stops the cursor drifting when you reposition the mouse, which is essential for low-sensitivity players."]},
+    {prods:[8,9]},
+    {h:"4 & 5. Keep the receiver close and update firmware", p:["Use the USB extender to keep the receiver within 30cm of the mouse, away from USB 3.0 ports that cause interference. Finally, update firmware: manufacturers regularly improve sensor tuning and battery life."]}
+  ]
+};
+
+const fmtDate = d => new Date(d + "T00:00:00").toLocaleDateString("en-GB", {day:"numeric", month:"short", year:"numeric"});
+const link = p => `blog-post.html?id=${p.id}`;
+const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const idx = Math.max(0, POSTS.findIndex(p => p.id === +qp("id")));
+const post = POSTS[idx];
+const sections = BODY[post.id] || [{h:"Overview", p:[esc(post.x)]}];
+document.title = post.t + " | TechStore BD";
+
+$("#crumb").innerHTML = `<a href="index.html"><i class="fa-solid fa-house" style="font-size:11px"></i></a><i class="fa-solid fa-chevron-right"></i><a href="blog.html">Blog</a><i class="fa-solid fa-chevron-right"></i><a href="blog.html?cat=${encodeURIComponent(post.cat)}">${post.cat}</a><i class="fa-solid fa-chevron-right"></i><span>${esc(post.t.length > 40 ? post.t.slice(0, 40) + "…" : post.t)}</span>`;
+$("#ph").innerHTML = `
+  <a href="blog.html?cat=${encodeURIComponent(post.cat)}" class="pill">${post.cat}</a>
+  <h1>${esc(post.t)}</h1>
+  <p class="lead">${esc(post.x)}</p>
+  <div class="byline">
+    <span class="author-i"><span class="av">PC</span>TechStore Team</span>
+    <span><i class="fa-regular fa-calendar"></i>${fmtDate(post.d)}</span>
+    <span><i class="fa-regular fa-clock"></i>${post.r} min read</span>
+    <span><i class="fa-regular fa-eye"></i>${post.v.toLocaleString("en-IN")} views</span>
+  </div>`;
+$("#heroImg").innerHTML = `<img src="img/${post.img}" alt="${esc(post.t)}">`;
+
+// Article
+const used = new Set();
+let html = "";
+sections.forEach(s => {
+  if (s.h) html += `<h2 id="${slugify(s.h)}">${s.h}</h2>`;
+  if (s.verdict) html += `<div class="verdict"><b>OUR VERDICT</b>${s.verdict}</div>`;
+  (s.p || []).forEach(t => html += `<p>${t}</p>`);
+  if (s.ul) html += `<ul>${s.ul.map(li => `<li>${li}</li>`).join("")}</ul>`;
+  if (s.table) html += `<div class="tbl"><table><thead><tr>${s.table[0].map(c => `<th>${c}</th>`).join("")}</tr></thead><tbody>${s.table.slice(1).map(r => `<tr>${r.map(c => `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  if (s.tip) html += `<div class="tip"><i class="fa-solid fa-lightbulb"></i><div><b>Pro tip:</b> ${s.tip}</div></div>`;
+  if (s.prods) { s.prods.forEach(i => used.add(i)); html += `<div class="inline-prod"><h5><i class="fa-solid fa-bag-shopping" style="color:var(--orange)"></i> Products mentioned</h5><div class="grid" data-ids="${s.prods.join(",")}"></div></div>`; }
+});
+html += `<div class="art-tags">${post.tags.map(t => `<a href="blog.html">#${esc(t)}</a>`).join("")}</div>`;
+$("#article").innerHTML = html;
+$$("#article .grid[data-ids]").forEach(g => fill(g, g.dataset.ids.split(",").map(Number).filter(i => P[i])));
+
+// TOC with scroll-spy
+const heads = $$("#article h2");
+$("#toc").innerHTML = heads.map(h => `<li><a href="#${h.id}">${h.textContent}</a></li>`).join("");
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) $$("#toc a").forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id));
+  }), {rootMargin: "-140px 0px -65% 0px"});
+  heads.forEach(h => io.observe(h));
+}
+
+// Share
+const url = location.href;
+$("#share").innerHTML = `
+  <button class="fb" data-s="fb" aria-label="Share on Facebook"><i class="fa-brands fa-facebook-f"></i></button>
+  <button class="wa" data-s="wa" aria-label="Share on WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
+  <button data-s="x" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></button>
+  <button data-s="copy" aria-label="Copy link"><i class="fa-solid fa-link"></i></button>`;
+$("#share").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  const u = encodeURIComponent(url), t = encodeURIComponent(post.t);
+  const go = {fb:`https://www.facebook.com/sharer/sharer.php?u=${u}`, wa:`https://wa.me/?text=${t}%20${u}`, x:`https://twitter.com/intent/tweet?text=${t}&url=${u}`}[b.dataset.s];
+  if (go) window.open(go, "_blank", "noopener");
+  else if (navigator.clipboard?.writeText) navigator.clipboard.writeText(url).then(() => toast("Link copied"), () => toast("Couldn't copy link"));
+  else toast("Copy the link from your address bar");
+});
+
+// Side products
+$("#sideProds").innerHTML = (used.size ? [...used] : post.pr).filter(i => P[i]).slice(0, 4).map(i => `
+  <a class="sp" href="product.html?id=${i}"><div class="media"><img src="img/${P[i].i}" alt=""></div><div><b>${esc(P[i].n)}</b><span>${tk(P[i].p)}</span></div></a>`).join("");
+
+// Author
+$("#author").innerHTML = `<span class="av">PC</span><div style="flex:1"><h4>TechStore Team</h4><p>Our in-house product specialists and PC builders test hundreds of laptops, monitors and components every year at our Demo Tower store to help you buy the right tech.</p></div>
+  <div class="social" style="margin-top:0"><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></div>`;
+
+// Prev / next (POSTS is newest first: "previous" = older)
+const prev = POSTS[idx + 1], next = POSTS[idx - 1];
+$("#pn").innerHTML =
+  (prev ? `<a href="${link(prev)}"><small><i class="fa-solid fa-arrow-left"></i> Previous post</small><b>${esc(prev.t)}</b></a>` : `<a class="ph-empty" aria-hidden="true"></a>`) +
+  (next ? `<a href="${link(next)}" class="nx"><small>Next post <i class="fa-solid fa-arrow-right"></i></small><b>${esc(next.t)}</b></a>` : "");
+
+// Related: same category first, then shared tags
+const score = p => (p.cat === post.cat ? 3 : 0) + p.tags.filter(t => post.tags.includes(t)).length;
+$("#related").innerHTML = POSTS.filter(p => p.id !== post.id).sort((a, b) => score(b) - score(a)).slice(0, 3).map(p => `
+  <article class="post">
+    <a href="${link(p)}" class="media"><img src="img/${p.img}" alt="${esc(p.t)}" loading="lazy"></a>
+    <div class="body"><span class="pill cat">${p.cat}</span>
+      <div class="meta"><span><i class="fa-regular fa-calendar"></i>${fmtDate(p.d)}</span><span><i class="fa-regular fa-clock"></i>${p.r} min read</span></div>
+      <h3><a href="${link(p)}">${esc(p.t)}</a></h3></div>
+  </article>`).join("");
+
+// Comments (store "comments": {postId: [{n, t, d}]})
+const SEED = [{n:"Rafiul H.", t:"Very helpful, thanks! Does TechStore offer EMI on these?", d:"2026-10-15T10:20:00", seed:1}];
+function renderComments(){
+  const all = store.get("comments", {});
+  const list = [...SEED, ...(all[post.id] || [])];
+  $("#cmCount").textContent = list.length + " comment" + (list.length === 1 ? "" : "s");
+  $("#cmList").innerHTML = list.slice().reverse().map(c => `
+    <div class="cm"><span class="av">${esc(c.n.trim()[0] || "?").toUpperCase()}</span>
+      <div><b>${esc(c.n)}</b><small>${new Date(c.d).toLocaleDateString("en-GB", {day:"numeric", month:"short", year:"numeric"})}</small><p>${esc(c.t)}</p></div></div>`).join("");
+}
+$("#cmForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const all = store.get("comments", {});
+  (all[post.id] ||= []).push({n: $("#cmName").value.trim(), e: $("#cmEmail").value.trim(), t: $("#cmText").value.trim(), d: new Date().toISOString()});
+  store.set("comments", all);
+  e.target.reset(); renderComments(); toast("Comment posted");
+});
+renderComments();
+</script>
+</body>
+</html>

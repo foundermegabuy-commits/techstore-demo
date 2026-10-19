@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Account – TechStore BD</title>
+<script>try{if(!JSON.parse(localStorage.getItem("pch_user")))location.replace("login.html")}catch(e){location.replace("login.html")}</script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.acc{display:grid;grid-template-columns:280px 1fr;gap:22px;margin-top:14px;align-items:start}
+.side{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;position:sticky;top:150px}
+.side .me{padding:24px 20px;display:flex;gap:14px;align-items:center;color:#fff;background:radial-gradient(circle at 100% 0%,rgba(255,74,3,.45),transparent 55%),linear-gradient(135deg,var(--navy),var(--navy-3))}
+.avatar{width:54px;height:54px;flex:none;border-radius:16px;display:grid;place-items:center;font-weight:700;font-size:19px;color:#fff;background:linear-gradient(135deg,var(--orange),var(--orange-2));box-shadow:0 8px 20px rgba(255,74,3,.35);letter-spacing:.5px}
+.me b{display:block;font-size:15px;font-weight:600;line-height:1.3;word-break:break-word}
+.me span{font-size:12px;color:#B4BAD8;word-break:break-all}
+.side nav{padding:10px}
+.side nav a{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:11px;font-size:13.5px;font-weight:500;color:var(--text);transition:.2s}
+.side nav a i{width:18px;text-align:center;color:var(--muted);transition:.2s}
+.side nav a:hover{background:var(--bg)}
+.side nav a.on{background:var(--orange-soft);color:var(--orange)}
+.side nav a.on i{color:var(--orange)}
+.side nav a.out{color:#D33;border-top:1px solid var(--line);border-radius:0 0 11px 11px;margin-top:6px}
+.side nav a.out i{color:#D33}
+.side nav a .n{margin-left:auto;background:var(--navy);color:#fff;font-size:10.5px;font-weight:700;border-radius:9px;min-width:20px;height:20px;display:grid;place-items:center;padding:0 6px}
+
+.view{display:none}.view.on{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.vhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.vhead h2{font-size:22px;font-weight:700;letter-spacing:-.3px}
+.vhead p{color:var(--muted);font-size:13px}
+
+.greet{border-radius:20px;color:#fff;padding:28px 30px;position:relative;overflow:hidden;background:radial-gradient(circle at 90% 0%,rgba(255,74,3,.4),transparent 45%),linear-gradient(135deg,var(--navy),var(--navy-3))}
+.greet small{color:var(--gold);font-weight:600;letter-spacing:1.5px;font-size:11.5px}
+.greet h2{font-size:26px;font-weight:700;margin:4px 0}
+.greet p{color:#B4BAD8;font-size:13.5px;max-width:460px}
+.greet img{position:absolute;right:20px;bottom:-16px;width:220px;filter:drop-shadow(0 18px 30px rgba(0,0,0,.45))}
+.greet .btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;position:relative;z-index:1}
+.greet .btn.ghost{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff;height:42px}
+.greet .btn.primary{height:42px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:18px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:flex;gap:14px;align-items:center;transition:.25s}
+.stat:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.stat i{width:48px;height:48px;flex:none;border-radius:14px;display:grid;place-items:center;font-size:19px}
+.stat b{display:block;font-size:22px;font-weight:700;line-height:1.1;color:var(--ink)}
+.stat span{font-size:12px;color:var(--muted)}
+.s1 i{background:#E8F2FB;color:#0381C5}.s2 i{background:#FFF4E0;color:#C77700}.s3 i{background:#FDECEC;color:#E5484D}.s4 i{background:var(--orange-soft);color:var(--orange)}
+
+.tbl-wrap{overflow-x:auto;border-radius:12px}
+table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:620px}
+.tbl th{text-align:left;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;padding:12px 14px;background:var(--soft);border-bottom:1px solid var(--line)}
+.tbl td{padding:14px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tr:hover td{background:#FCFCFE}
+.oid{font-weight:600;color:var(--ink)}
+.thumbs{display:flex;align-items:center}
+.thumbs img{width:38px;height:38px;border-radius:10px;border:2px solid #fff;background:var(--soft);object-fit:contain;box-shadow:0 2px 6px rgba(0,0,0,.08);margin-left:-8px}
+.thumbs img:first-child{margin-left:0}
+.thumbs em{font-style:normal;font-size:11.5px;color:var(--muted);margin-left:8px}
+.acts{display:flex;gap:6px;justify-content:flex-end}
+.sm{height:34px;padding:0 12px;border-radius:9px;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);color:var(--ink);background:var(--card);transition:.2s;white-space:nowrap}
+.sm:hover{border-color:var(--orange);color:var(--orange)}
+.sm.dk{background:var(--navy);color:#fff;border-color:var(--ink)}
+.sm.dk:hover{background:var(--orange);border-color:var(--orange);color:#fff}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{padding:7px 14px;border-radius:9px;font-size:12.5px;font-weight:500;color:var(--muted);background:var(--card);border:1px solid var(--line)}
+.filters button.on{background:var(--navy);color:#fff;border-color:var(--ink)}
+
+/* order detail */
+.odetail td{background:var(--soft)!important;padding:0}
+.odetail .in{padding:16px 18px;display:grid;gap:10px}
+.oline{display:flex;gap:12px;align-items:center}
+.oline img{width:48px;height:48px;border-radius:10px;background:var(--card);border:1px solid var(--line);object-fit:contain;padding:4px}
+.oline a{flex:1;font-size:13px;font-weight:500}
+.oline a:hover{color:var(--orange)}
+.oline b{font-size:13px;white-space:nowrap}
+
+/* wishlist mini */
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+/* addresses */
+.addrs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:18px}
+.addr{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 16px;position:relative;transition:.2s}
+.addr.def{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,74,3,.08)}
+.addr .lbl{display:inline-flex;gap:6px;align-items:center;font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--orange);margin-bottom:6px}
+.addr h4{font-size:15px;font-weight:600}
+.addr p{color:var(--muted);font-size:13px;margin:4px 0 12px}
+.addr .row-a{display:flex;gap:8px;flex-wrap:wrap}
+.addr .pill{position:absolute;top:16px;right:16px}
+.add-tile{border:2px dashed #D5DAEA;border-radius:var(--radius);display:grid;place-items:center;text-align:center;color:var(--muted);min-height:160px;transition:.2s;padding:16px}
+.add-tile:hover{border-color:var(--orange);color:var(--orange);background:var(--orange-soft)}
+.add-tile i{font-size:24px;margin-bottom:6px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.form-act{display:flex;gap:10px;flex-wrap:wrap}
+
+.prof-top{display:flex;gap:18px;align-items:center;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.prof-top .avatar{width:72px;height:72px;font-size:24px;border-radius:20px}
+.prof-top b{font-size:17px;display:block}
+.prof-top span{color:var(--muted);font-size:13px}
+.ifield{position:relative}
+.ifield .eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:36px;height:36px;color:var(--muted)}
+.hint{font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:flex-start;background:var(--soft);border-radius:10px;padding:10px 12px;margin-bottom:16px}
+.hint i{color:var(--orange);margin-top:3px}
+.mob-nav{display:none}
+
+/* rewards */
+.rw-card{border-radius:20px;color:#fff;padding:24px 26px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;background:radial-gradient(circle at 95% 0%,rgba(232,199,122,.35),transparent 45%),linear-gradient(135deg,var(--navy),var(--navy-3))}
+.rw-card small{color:var(--gold);font-weight:600;letter-spacing:1.5px;font-size:11.5px}
+.rw-card .big{font-size:40px;font-weight:800;line-height:1.1;margin:4px 0}
+.rw-card .big span{font-size:14px;font-weight:500;color:#B4BAD8;margin-left:6px}
+.rw-card .bar{height:8px;border-radius:6px;background:rgba(255,255,255,.15);overflow:hidden;margin:10px 0 6px;max-width:420px}
+.rw-card .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--orange),var(--gold))}
+.rw-card p{font-size:12.5px;color:#B4BAD8}
+.rw-tier{width:110px;height:110px;border-radius:24px;display:grid;place-items:center;align-content:center;gap:4px;text-align:center;font-weight:800;letter-spacing:1.5px;font-size:13px;color:var(--ink)}
+.rw-tier i{font-size:30px}
+.rw-tier.silver{background:linear-gradient(135deg,#E9ECF4,#AEB6CC)}
+.rw-tier.gold{background:linear-gradient(135deg,#F7E3AE,#C9A24F)}
+.rw-tier.platinum{background:linear-gradient(135deg,#4A5378,#1D2346);color:#fff}
+.rw-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.rw-code{display:flex;align-items:center;gap:10px;border:2px dashed var(--orange);background:var(--orange-soft);border-radius:12px;padding:8px 8px 8px 14px}
+.rw-code code{flex:1;min-width:0;font-family:inherit;font-weight:800;font-size:19px;letter-spacing:1.5px;color:var(--orange);overflow:hidden;text-overflow:ellipsis}
+.rw-p{font-size:12.5px;color:var(--muted);margin-top:10px}
+
+@media (max-width:1200px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:992px){
+  .acc{grid-template-columns:1fr}
+  .side{position:static}
+  .side nav{display:flex;overflow-x:auto;gap:4px;scrollbar-width:none}
+  .side nav::-webkit-scrollbar{display:none}
+  .side nav a{white-space:nowrap;flex:none}
+  .side nav a .n{display:none}
+  .side nav a.out{border-top:0;margin-top:0;border-radius:11px}
+  .greet img{width:160px;opacity:.5}
+  .wgrid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .stats{gap:10px}
+  .stat{padding:14px;flex-direction:column;align-items:flex-start;gap:10px}
+  .stat i{width:40px;height:40px;font-size:16px}
+  .stat b{font-size:19px}
+  .rw-card{grid-template-columns:1fr;padding:20px}.rw-card .big{font-size:32px}.rw-tier{width:auto;height:auto;grid-row:1;justify-self:start;display:flex;justify-content:center;padding:10px 14px;border-radius:14px}.rw-tier i{font-size:16px}
+  .rw-grid{grid-template-columns:1fr}
+  .greet{padding:22px 20px}.greet h2{font-size:21px}.greet img{display:none}
+  .addrs,.three{grid-template-columns:1fr}
+  .wgrid{gap:12px}
+  .vhead h2{font-size:19px}
+  /* orders table becomes cards */
+  table.tbl{min-width:0}
+  .tbl thead{display:none}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl tr.orow{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;padding:6px 4px;background:var(--card)}
+  .tbl tr.orow td{border:0;padding:6px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .tbl tr.orow td::before{content:attr(data-l);font-size:11.5px;color:var(--muted);font-weight:500}
+  .tbl tr.orow td.acts-td::before{display:none}
+  .tbl tr.orow td.acts-td .acts{width:100%}
+  .tbl tr.orow td.acts-td .sm{flex:1;justify-content:center}
+  .tbl tr.odetail{margin:-14px 0 12px;border:1px solid var(--line);border-top:0;border-radius:0 0 14px 14px;overflow:hidden}
+  .tbl tr:hover td{background:none}
+  .tbl-wrap.box{padding:0;border:0;background:none}
+}
+</style>
+</head>
+<body data-page="account">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <div class="crumb"><a href="index.html">Home</a><i class="fa-solid fa-chevron-right"></i><a href="account.html">My Account</a><i class="fa-solid fa-chevron-right"></i><span id="crumbNow">Dashboard</span></div>
+
+  <div class="acc">
+    <aside class="side">
+      <div class="me"><div class="avatar" id="avatar">PC</div><div><b id="meName">Customer</b><span id="meMail"></span></div></div>
+      <nav id="sideNav">
+        <a href="#dashboard" data-v="dashboard"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+        <a href="#orders" data-v="orders"><i class="fa-solid fa-box"></i>My Orders<span class="n" id="nOrders">0</span></a>
+        <a href="#wishlist" data-v="wishlist"><i class="fa-regular fa-heart"></i>Wishlist<span class="n" id="nWish">0</span></a>
+        <a href="#rewards" data-v="rewards"><i class="fa-solid fa-gift"></i>Rewards<span class="n" id="nPts">0</span></a>
+        <a href="#addresses" data-v="addresses"><i class="fa-solid fa-location-dot"></i>Addresses</a>
+        <a href="#profile" data-v="profile"><i class="fa-regular fa-id-card"></i>Profile</a>
+        <a href="#password" data-v="password"><i class="fa-solid fa-key"></i>Change Password</a>
+        <a href="#" class="out" id="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+      </nav>
+    </aside>
+
+    <div>
+      <!-- Dashboard -->
+      <div class="view" id="v-dashboard">
+        <div class="greet">
+          <small id="greetTime">GOOD DAY</small>
+          <h2>Hello, <span id="greetName">there</span> 👋</h2>
+          <p>From your dashboard you can track recent orders, manage your addresses and edit your account details.</p>
+          <div class="btns"><a href="category.html" class="btn primary"><i class="fa-solid fa-bag-shopping"></i> Continue Shopping</a><a href="track-order.html" class="btn ghost"><i class="fa-solid fa-truck-fast"></i> Track Order</a></div>
+          <img src="img/p17.png" alt="">
+        </div>
+        <div class="stats">
+          <a href="#orders" class="stat s1"><i class="fa-solid fa-box"></i><div><b id="stTotal">0</b><span>Total Orders</span></div></a>
+          <a href="#orders" class="stat s2"><i class="fa-solid fa-hourglass-half"></i><div><b id="stPending">0</b><span>Pending Orders</span></div></a>
+          <a href="#wishlist" class="stat s3"><i class="fa-solid fa-heart"></i><div><b id="stWish">0</b><span>Wishlist Items</span></div></a>
+          <a href="#rewards" class="stat s4"><i class="fa-solid fa-gift"></i><div><b id="stPts">0</b><span>Reward Points</span></div></a>
+        </div>
+        <div class="box">
+          <div class="vhead" style="margin-bottom:12px"><h3 style="margin:0">Recent Orders</h3><a href="#orders" class="show-all">View All <i class="fa-solid fa-arrow-right"></i></a></div>
+          <div class="tbl-wrap"><table class="tbl" id="recentTbl"></table></div>
+        </div>
+      </div>
+
+      <!-- Orders -->
+      <div class="view" id="v-orders">
+        <div class="vhead"><div><h2>My Orders</h2><p>View and track all your purchases</p></div>
+          <div class="filters" id="oFilter"><button class="on" data-f="all">All</button><button data-f="active">Active</button><button data-f="Delivered">Delivered</button><button data-f="Cancelled">Cancelled</button></div>
+        </div>
+        <div class="box tbl-wrap"><table class="tbl" id="ordersTbl"></table></div>
+      </div>
+
+      <!-- Wishlist -->
+      <div class="view" id="v-wishlist">
+        <div class="vhead"><div><h2>My Wishlist</h2><p>Products you've saved for later</p></div><a href="wishlist.html" class="show-all">Open Full Wishlist <i class="fa-solid fa-arrow-right"></i></a></div>
+        <div class="wgrid" id="wGrid"></div>
+      </div>
+
+      <!-- Rewards -->
+      <div class="view" id="v-rewards">
+        <div class="vhead"><div><h2>TechStore Rewards</h2><p>Your points, tier and referral code</p></div><a href="rewards.html" class="show-all">Open Rewards <i class="fa-solid fa-arrow-right"></i></a></div>
+        <div class="rw-card" id="rwCard"></div>
+        <div class="rw-grid">
+          <div class="box">
+            <h3><i class="fa-solid fa-user-plus" style="color:var(--orange);margin-right:8px"></i>Your referral code</h3>
+            <div class="rw-code"><code id="rwCode">TSD-</code><button type="button" class="sm dk" id="rwCopy"><i class="fa-regular fa-copy"></i>Copy</button></div>
+            <p class="rw-p">Friends get ৳300 off their first order, you earn 200 points when it's delivered.</p>
+            <a href="rewards.html#refer" class="sm" style="margin-top:12px"><i class="fa-solid fa-share-nodes"></i>Share &amp; track referrals</a>
+          </div>
+          <div class="box">
+            <h3><i class="fa-solid fa-ticket" style="color:var(--orange);margin-right:8px"></i>Redeem points</h3>
+            <p class="rw-p" id="rwRedeem"></p>
+            <a href="rewards.html#redeem" class="sm dk" style="margin-top:12px"><i class="fa-solid fa-coins"></i>Go to redeem</a>
+          </div>
+        </div>
+        <p class="rw-p" style="margin-top:12px"><i class="fa-solid fa-circle-info" style="color:var(--orange)"></i> Sample program values: 1 point per ৳100 on delivered orders, 1 point = ৳1, redeem from 500 points.</p>
+      </div>
+
+      <!-- Addresses -->
+      <div class="view" id="v-addresses">
+        <div class="vhead"><div><h2>Addresses</h2><p>Manage your shipping &amp; billing addresses</p></div></div>
+        <div class="addrs" id="addrs"></div>
+        <form class="box" id="addrForm" hidden>
+          <h3 id="addrTitle">Add New Address</h3>
+          <div class="two">
+            <div class="field"><label>Full Name</label><input name="name" required></div>
+            <div class="field"><label>Phone</label><input name="phone" required placeholder="01XXXXXXXXX"></div>
+          </div>
+          <div class="field"><label>Street Address</label><input name="line" required placeholder="House, road, area"></div>
+          <div class="three">
+            <div class="field"><label>Division</label><select name="division"><option>Dhaka</option><option>Chattogram</option><option>Khulna</option><option>Rajshahi</option><option>Sylhet</option><option>Barishal</option><option>Rangpur</option><option>Mymensingh</option></select></div>
+            <div class="field"><label>City / District</label><input name="city" required placeholder="e.g. Dhaka"></div>
+            <div class="field"><label>Label</label><select name="label"><option>Home</option><option>Office</option><option>Other</option></select></div>
+          </div>
+          <label style="display:flex;gap:8px;align-items:center;font-size:13px;margin-bottom:16px;cursor:pointer"><input type="checkbox" name="def" style="accent-color:var(--orange);width:16px;height:16px"> Set as default address</label>
+          <div class="form-act"><button class="btn primary"><i class="fa-solid fa-check"></i> Save Address</button><button type="button" class="btn ghost" id="addrCancel">Cancel</button></div>
+        </form>
+      </div>
+
+      <!-- Profile -->
+      <div class="view" id="v-profile">
+        <div class="vhead"><div><h2>Profile</h2><p>Update your personal information</p></div></div>
+        <form class="box" id="profForm">
+          <div class="prof-top"><div class="avatar" id="avatar2">PC</div><div><b id="pName"></b><span id="pSince">Member since 2026</span></div></div>
+          <div class="field"><label>Full Name</label><input name="name" required></div>
+          <div class="two">
+            <div class="field"><label>Phone</label><input name="phone" placeholder="01XXXXXXXXX"></div>
+            <div class="field"><label>Email</label><input name="email" type="email"></div>
+          </div>
+          <div class="two">
+            <div class="field"><label>Gender</label><select name="gender"><option value="">Prefer not to say</option><option>Male</option><option>Female</option></select></div>
+            <div class="field"><label>Date of Birth</label><input name="dob" type="date"></div>
+          </div>
+          <div class="form-act"><button class="btn primary"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button></div>
+        </form>
+      </div>
+
+      <!-- Password -->
+      <div class="view" id="v-password">
+        <div class="vhead"><div><h2>Change Password</h2><p>Keep your account secure</p></div></div>
+        <form class="box" id="pwForm" style="max-width:560px">
+          <div class="hint"><i class="fa-solid fa-circle-info"></i><span>Use at least 8 characters with a mix of letters, numbers and symbols. Don't reuse your old password.</span></div>
+          <div class="field"><label>Current Password</label><div class="ifield"><input type="password" name="cur" required><button type="button" class="eye" aria-label="Show"><i class="fa-regular fa-eye"></i></button></div></div>
+          <div class="field"><label>New Password</label><div class="ifield"><input type="password" name="pw" required minlength="8"><button type="button" class="eye" aria-label="Show"><i class="fa-regular fa-eye"></i></button></div></div>
+          <div class="field"><label>Confirm New Password</label><div class="ifield"><input type="password" name="pw2" required><button type="button" class="eye" aria-label="Show"><i class="fa-regular fa-eye"></i></button></div></div>
+          <button class="btn primary"><i class="fa-solid fa-key"></i> Update Password</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+const user = store.get("user", null);
+if (!user) location.replace("login.html");
+
+/* ---------- Data ---------- */
+const DEMO_ORDERS = [
+  {id:"TSD-118274", items:{16:1, 8:1}, total:133490 + 120, date:"2026-10-14", status:"Processing", payment:"bKash"},
+  {id:"TSD-102938", items:{10:1, 6:1}, total:32800 + 120, date:"2026-09-22", status:"Delivered", payment:"Cash on Delivery"}
+];
+const getOrders = () => { const o = store.get("orders", []); return (o && o.length ? o : DEMO_ORDERS).slice().sort((a, b) => (b.date || "").localeCompare(a.date || "")); };
+const PILL = {Delivered:"ok", Processing:"info", Pending:"warn", Confirmed:"info", Shipped:"info", "On the way":"info", Cancelled:"bad", Returned:"bad"};
+const ICON = {Delivered:"fa-circle-check", Processing:"fa-gear", Pending:"fa-clock", Shipped:"fa-truck", Cancelled:"fa-circle-xmark"};
+const pill = s => `<span class="pill ${PILL[s] || "warn"}"><i class="fa-solid ${ICON[s] || "fa-circle"}"></i>${esc(s || "Pending")}</span>`;
+const isActive = s => !["Delivered","Cancelled","Returned"].includes(s);
+const fmtDate = d => { const x = new Date(d); return isNaN(x) ? esc(d || "") : x.toLocaleDateString("en-GB", {day:"2-digit", month:"short", year:"numeric"}); };
+const initials = n => (n || "PC").trim().split(/\s+/).slice(0, 2).map(w => w[0]).join("").toUpperCase();
+const itemCount = o => Object.values(o.items || {}).reduce((a, b) => a + b, 0);
+const orderTotal = o => o.total ?? Object.entries(o.items || {}).reduce((s, [id, q]) => s + (P[id]?.p || 0) * q, 0);
+
+/* ---------- Header / sidebar ---------- */
+function paintUser(){
+  const u = store.get("user", {});
+  ["#avatar","#avatar2"].forEach(s => $(s).textContent = initials(u.name));
+  $("#meName").textContent = u.name || "Customer";
+  $("#meMail").textContent = u.email || u.phone || "";
+  $("#greetName").textContent = (u.name || "there").split(" ")[0];
+  $("#pName").textContent = u.name || "Customer";
+  const h = new Date().getHours();
+  $("#greetTime").textContent = h < 12 ? "GOOD MORNING" : h < 17 ? "GOOD AFTERNOON" : "GOOD EVENING";
+}
+
+/* ---------- Orders ---------- */
+function orderRows(list, detail){
+  if (!list.length) return `<tr><td colspan="6"><div class="empty" style="padding:40px 10px"><i class="fa-solid fa-box-open"></i><h3>No orders here</h3><p>Orders matching this filter will appear here.</p></div></td></tr>`;
+  return `<thead><tr><th>Order</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th><th style="text-align:right">Actions</th></tr></thead><tbody>` +
+  list.map(o => {
+    const ids = Object.keys(o.items || {}).filter(id => P[id]);
+    return `<tr class="orow">
+      <td data-l="Order"><span class="oid">#${esc(o.id)}</span></td>
+      <td data-l="Date">${fmtDate(o.date)}</td>
+      <td data-l="Items"><div class="thumbs">${ids.slice(0, 3).map(id => `<img src="img/${P[id].i}" alt="${esc(P[id].n)}" title="${esc(P[id].n)}">`).join("")}<em>${itemCount(o)} item${itemCount(o) > 1 ? "s" : ""}</em></div></td>
+      <td data-l="Total"><b>${tk(orderTotal(o))}</b></td>
+      <td data-l="Status">${pill(o.status)}</td>
+      <td class="acts-td"><div class="acts">${detail ? `<button class="sm" data-view="${esc(o.id)}"><i class="fa-regular fa-eye"></i>View</button>` : ""}<a class="sm dk" href="track-order.html?id=${encodeURIComponent(o.id)}"><i class="fa-solid fa-truck-fast"></i>Track</a></div></td>
+    </tr>
+    ${detail ? `<tr class="odetail" id="d-${esc(o.id)}" hidden><td colspan="6"><div class="in">
+      ${ids.map(id => `<div class="oline"><img src="img/${P[id].i}" alt=""><a href="product.html?id=${id}">${esc(P[id].n)} <span style="color:var(--muted)">× ${o.items[id]}</span></a><b>${tk(P[id].p * o.items[id])}</b></div>`).join("")}
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px"><span>Payment: <b style="color:var(--text)">${esc(o.payment || "Cash on Delivery")}</b></span><span>Order total: <b style="color:var(--orange)">${tk(orderTotal(o))}</b></span></div>
+    </div></td></tr>` : ""}`;
+  }).join("") + "</tbody>";
+}
+let filter = "all";
+function renderOrders(){
+  const all = getOrders();
+  const list = all.filter(o => filter === "all" ? true : filter === "active" ? isActive(o.status) : o.status === filter);
+  $("#ordersTbl").innerHTML = orderRows(list, true);
+  $("#recentTbl").innerHTML = orderRows(all.slice(0, 5), false);
+  $("#nOrders").textContent = all.length;
+  $("#stTotal").textContent = all.length;
+  $("#stPending").textContent = all.filter(o => isActive(o.status)).length;
+  $("#stPts").textContent = rewardBalance().toLocaleString("en-IN");
+  renderRewards();
+}
+
+/* ---------- Rewards (same sample rules as rewards.html) ---------- */
+const RW_TIERS = [{k:"silver", n:"Silver", min:0, ic:"fa-medal"}, {k:"gold", n:"Gold", min:5000, ic:"fa-crown"}, {k:"platinum", n:"Platinum", min:20000, ic:"fa-gem"}];
+const purchasePts = () => Math.floor(getOrders().filter(o => o.status === "Delivered").reduce((s, o) => s + orderTotal(o), 0) / 100);
+const rewardBalance = () => Math.max(0, purchasePts() + (Number(store.get("bonusPoints", 0)) || 0));
+function refCode(u){
+  const name = ((u && u.name) || "MEMBER").split(/\s+/)[0].toUpperCase().replace(/[^A-Z]/g, "").slice(0, 8) || "MEMBER";
+  let tail = String((u && u.phone) || "").replace(/\D/g, "").slice(-2);
+  if (tail.length < 2) { let h = 0; for (const c of ((u && u.name) || "") + ((u && u.email) || "")) h = (h * 31 + c.charCodeAt(0)) % 97; tail = String(h + 10).slice(-2); }
+  return "TSD-" + name + tail;
+}
+function renderRewards(){
+  const life = purchasePts(), bal = rewardBalance();
+  const t = RW_TIERS.slice().reverse().find(x => life >= x.min), nx = RW_TIERS.find(x => x.min > life);
+  const pct = nx ? Math.min(100, Math.round((life - t.min) / (nx.min - t.min) * 100)) : 100;
+  $("#nPts").textContent = bal > 999 ? Math.floor(bal / 1000) + "k" : bal;
+  $("#rwCard").innerHTML = `<div><small>${t.n.toUpperCase()} MEMBER</small><div class="big">${bal.toLocaleString("en-IN")}<span>points · worth ${tk(bal)}</span></div>
+    <div class="bar"><i style="width:${pct}%"></i></div><p>${nx ? `${(nx.min - life).toLocaleString("en-IN")} more lifetime points to reach ${nx.n}` : "You've reached the top tier"}</p></div>
+    <div class="rw-tier ${t.k}"><i class="fa-solid ${t.ic}"></i>${t.n.toUpperCase()}</div>`;
+  $("#rwCode").textContent = refCode(store.get("user", {}));
+  $("#rwRedeem").innerHTML = bal >= 500 ? `You can convert up to <b style="color:var(--text)">${(Math.floor(bal / 100) * 100).toLocaleString("en-IN")} points</b> into a ${tk(Math.floor(bal / 100) * 100)} coupon.` : `Redeem from 500 points. You need <b style="color:var(--text)">${(500 - bal).toLocaleString("en-IN")}</b> more points for your first ${tk(500)} coupon.`;
+}
+$("#rwCopy").addEventListener("click", () => {
+  const code = $("#rwCode").textContent, ok = () => toast("Referral code " + code + " copied");
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(code).then(ok, ok); else ok();
+});
+$("#oFilter").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  filter = b.dataset.f; $$("#oFilter button").forEach(x => x.classList.toggle("on", x === b)); renderOrders();
+});
+$("#ordersTbl").addEventListener("click", e => {
+  const b = e.target.closest("[data-view]"); if (!b) return;
+  const d = document.getElementById("d-" + b.dataset.view); d.hidden = !d.hidden;
+  b.innerHTML = d.hidden ? `<i class="fa-regular fa-eye"></i>View` : `<i class="fa-regular fa-eye-slash"></i>Hide`;
+});
+
+/* ---------- Wishlist ---------- */
+function renderWish(){
+  const w = store.get("wish", []).filter(id => P[id]);
+  $("#nWish").textContent = w.length; $("#stWish").textContent = w.length;
+  if (!w.length) $("#wGrid").outerHTML = `<div class="box empty" id="wGrid" style="grid-column:1/-1"><i class="fa-regular fa-heart"></i><h3>Your wishlist is empty</h3><p>Tap the heart on any product to save it here.</p><a href="category.html" class="btn primary" style="margin-top:16px">Browse Products</a></div>`;
+  else { if (!$("#wGrid").classList.contains("wgrid")) $("#wGrid").outerHTML = `<div class="wgrid" id="wGrid"></div>`; fill("wGrid", w); }
+}
+// keep wishlist view in sync when hearts are toggled inside it
+const _tl = toggleList;
+toggleList = function(...a){ _tl(...a); if (a[0] === "wish") renderWish(); };
+
+/* ---------- Addresses ---------- */
+const getAddr = () => store.get("addresses", null) ?? [
+  {name:user?.name || "Customer", phone:user?.phone || "01712345678", line:"House 12, Road 5, Dhanmondi", city:"Dhaka", division:"Dhaka", label:"Home", def:true},
+  {name:user?.name || "Customer", phone:user?.phone || "01712345678", line:"Level 4, Demo Tower, Road 1", city:"Dhaka", division:"Dhaka", label:"Office", def:false}
+];
+let editIdx = -1;
+function renderAddr(){
+  const a = getAddr();
+  $("#addrs").innerHTML = a.map((x, k) => `<div class="addr ${x.def ? "def" : ""}">
+    ${x.def ? `<span class="pill ok"><i class="fa-solid fa-check"></i>Default</span>` : ""}
+    <div class="lbl"><i class="fa-solid ${x.label === "Office" ? "fa-building" : x.label === "Home" ? "fa-house" : "fa-location-dot"}"></i>${esc(x.label)}</div>
+    <h4>${esc(x.name)}</h4>
+    <p>${esc(x.line)}<br>${esc(x.city)}, ${esc(x.division)}<br><i class="fa-solid fa-phone" style="font-size:11px"></i> ${esc(x.phone)}</p>
+    <div class="row-a"><button class="sm" data-edit="${k}"><i class="fa-regular fa-pen-to-square"></i>Edit</button>${x.def ? "" : `<button class="sm" data-def="${k}">Set Default</button>`}<button class="sm" data-del="${k}" style="color:#D33"><i class="fa-regular fa-trash-can"></i></button></div>
+  </div>`).join("") + `<button class="add-tile" id="addTile"><div><i class="fa-solid fa-plus"></i><br><b>Add New Address</b></div></button>`;
+}
+function openAddr(k){
+  editIdx = k; const f = $("#addrForm"); f.reset(); f.hidden = false;
+  $("#addrTitle").textContent = k >= 0 ? "Edit Address" : "Add New Address";
+  const x = k >= 0 ? getAddr()[k] : {name:user.name, phone:user.phone};
+  Object.entries(x).forEach(([n, v]) => { const el = f.elements[n]; if (el) el.type === "checkbox" ? el.checked = !!v : el.value = v; });
+  f.scrollIntoView({behavior:"smooth", block:"start"});
+}
+$("#addrs").addEventListener("click", e => {
+  const t = e.target.closest("button"); if (!t) return;
+  const a = getAddr();
+  if (t.id === "addTile") return openAddr(-1);
+  if (t.dataset.edit) return openAddr(+t.dataset.edit);
+  if (t.dataset.def) { a.forEach((x, k) => x.def = k === +t.dataset.def); toast("Default address updated"); }
+  if (t.dataset.del) { const was = a[+t.dataset.del].def; a.splice(+t.dataset.del, 1); if (was && a[0]) a[0].def = true; toast("Address removed"); }
+  store.set("addresses", a); renderAddr();
+});
+$("#addrCancel").onclick = () => { $("#addrForm").hidden = true; };
+$("#addrForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target, a = getAddr();
+  const x = {name:f.name.value.trim(), phone:f.phone.value.trim(), line:f.line.value.trim(), city:f.city.value.trim(), division:f.division.value, label:f.label.value, def:f.def.checked || !a.length};
+  if (x.def) a.forEach(y => y.def = false);
+  if (editIdx >= 0) a[editIdx] = x; else a.push(x);
+  if (!a.some(y => y.def)) a[0].def = true;
+  store.set("addresses", a); f.hidden = true; renderAddr(); toast(editIdx >= 0 ? "Address updated" : "Address added");
+});
+
+/* ---------- Profile ---------- */
+function fillProfile(){
+  const u = store.get("user", {}), f = $("#profForm");
+  ["name","phone","email","gender","dob"].forEach(k => f.elements[k].value = u[k] || "");
+}
+$("#profForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target, u = store.get("user", {});
+  ["name","phone","email","gender","dob"].forEach(k => u[k] = f.elements[k].value.trim());
+  if (!u.name) { toast("Name is required"); return; }
+  store.set("user", u); paintUser(); toast("Profile saved successfully");
+});
+
+/* ---------- Password ---------- */
+$$(".eye").forEach(b => b.addEventListener("click", () => {
+  const i = b.previousElementSibling, s = i.type === "password"; i.type = s ? "text" : "password";
+  b.innerHTML = `<i class="fa-regular fa-eye${s ? "-slash" : ""}"></i>`;
+}));
+$("#pwForm").addEventListener("submit", e => {
+  e.preventDefault(); const f = e.target;
+  if (f.pw.value.length < 8) return toast("New password must be at least 8 characters");
+  if (f.pw.value !== f.pw2.value) return toast("Passwords do not match");
+  if (f.pw.value === f.cur.value) return toast("New password must differ from current");
+  f.reset(); toast("Password updated successfully");
+});
+
+/* ---------- Logout ---------- */
+$("#logout").addEventListener("click", e => {
+  e.preventDefault(); store.set("user", null); toast("You have been logged out");
+  setTimeout(() => location.href = "index.html", 500);
+});
+
+/* ---------- Router ---------- */
+const VIEWS = {dashboard:"Dashboard", orders:"My Orders", wishlist:"Wishlist", rewards:"Rewards", addresses:"Addresses", profile:"Profile", password:"Change Password"};
+function route(){
+  let v = location.hash.slice(1); if (!VIEWS[v]) v = "dashboard";
+  $$(".view").forEach(x => x.classList.toggle("on", x.id === "v-" + v));
+  $$("#sideNav a[data-v]").forEach(a => a.classList.toggle("on", a.dataset.v === v));
+  $("#crumbNow").textContent = VIEWS[v];
+  document.title = VIEWS[v] + " – TechStore BD";
+  if (v === "wishlist") renderWish();
+  if (v === "profile") fillProfile();
+  if (v === "rewards") renderRewards();
+  const on = $("#sideNav a.on"); if (on && innerWidth <= 992) on.scrollIntoView({inline:"center", block:"nearest"});
+  if (innerWidth <= 992 && location.hash) $(".acc > div").scrollIntoView({behavior:"smooth", block:"start"});
+}
+addEventListener("hashchange", () => { route(); if (innerWidth > 992) scrollTo({top:0, behavior:"smooth"}); });
+
+if (user) { paintUser(); renderOrders(); renderWish(); renderAddr(); route(); }
+</script>
+</body>
+</html>

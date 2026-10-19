@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All Brands | TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.br-hero{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;padding:34px 36px}
+.br-hero small{color:var(--gold);font-weight:600;letter-spacing:2px;font-size:11.5px}
+.br-hero h1{font-size:32px;margin-top:6px}
+.br-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.br-stats div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:16px 10px;text-align:center}
+.br-stats b{display:block;font-size:26px;font-weight:800;color:var(--gold);line-height:1.1}
+.br-stats span{font-size:11.5px;color:#B4BAD8}
+
+/* Featured */
+.feat-br{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.fb{position:relative;border-radius:18px;overflow:hidden;color:#fff;padding:22px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(135deg,var(--navy),var(--navy-3));transition:.25s;isolation:isolate}
+.fb:hover{transform:translateY(-4px);box-shadow:var(--shadow-h)}
+.fb::after{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(var(--glow,rgba(255,74,3,.5)),transparent 65%);z-index:-1}
+.fb .wm{font-size:28px;font-weight:800;letter-spacing:1px;line-height:1}
+.fb p{font-size:12px;color:#B4BAD8;margin-top:6px}
+.fb .ft{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600}
+.fb .ft span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:4px 10px;border-radius:20px}
+.fb .ft i{width:32px;height:32px;border-radius:50%;background:var(--orange);display:grid;place-items:center;font-size:12px;transition:.2s}
+.fb:hover .ft i{transform:translateX(3px)}
+
+/* Filter bar */
+.fbar{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.az{display:flex;flex-wrap:wrap;gap:4px;flex:1;min-width:0}
+.az button{min-width:32px;height:32px;padding:0 6px;border-radius:8px;font-size:12.5px;font-weight:600;color:var(--ink);transition:.2s}
+.az button:hover:not(:disabled){background:var(--orange-soft);color:var(--orange)}
+.az button.on{background:var(--navy);color:#fff}
+.az button:disabled{color:#C8CCDD;cursor:default}
+.bsearch{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:11px;padding:0 12px;height:42px;background:var(--soft);width:260px;max-width:100%}
+.bsearch:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,74,3,.12);background:var(--card)}
+.bsearch i{color:var(--muted)}
+.bsearch input{border:0;outline:0;background:none;font-family:inherit;font-size:13.5px;flex:1;min-width:0}
+.rescount{font-size:12.5px;color:var(--muted);margin:14px 2px 0}
+
+/* Brand grid */
+.bgroup{margin-top:22px}
+.bgroup h3{font-size:20px;font-weight:800;color:var(--orange);display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.bgroup h3::after{content:"";flex:1;height:1px;background:var(--line)}
+.bgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.bt{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 16px 14px;display:flex;flex-direction:column;gap:10px;transition:.25s;min-width:0}
+.bt:hover{border-color:transparent;box-shadow:var(--shadow-h);transform:translateY(-3px)}
+.bt .logo-t{height:64px;border-radius:12px;background:linear-gradient(135deg,var(--bg),#E9EDF8);display:grid;place-items:center;font-weight:800;font-size:19px;letter-spacing:.5px;color:var(--ink);transition:.25s;overflow:hidden;padding:0 8px;text-align:center;line-height:1.1}
+.bt:hover .logo-t{background:linear-gradient(135deg,var(--navy),var(--navy-3));color:#fff}
+.bt{position:relative}
+.bt .ltr{position:absolute;top:10px;left:10px;width:22px;height:22px;border-radius:7px;background:var(--orange);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;z-index:1}
+.bt .row1{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.bt b{font-size:14px;font-weight:600}
+.bt .cnt{font-size:11px;color:var(--muted);white-space:nowrap}
+.bt .cnt.has{color:var(--green);font-weight:600}
+.bt .tags{display:flex;flex-wrap:wrap;gap:5px}
+.bt .tags span{font-size:10.5px;background:var(--orange-soft);color:var(--orange);padding:2px 8px;border-radius:12px;font-weight:500}
+.w-it{font-style:italic}.w-lc{text-transform:lowercase}.w-sp{letter-spacing:4px}.w-th{font-weight:600}
+
+@media (max-width:1200px){.bgrid{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:992px){
+  .br-hero{grid-template-columns:1fr}
+  .feat-br{grid-template-columns:1fr 1fr}
+  .bgrid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:640px){
+  .br-hero{padding:22px 18px}.br-hero h1{font-size:24px}
+  .br-stats b{font-size:20px}
+  .feat-br{gap:10px}.fb{padding:16px;min-height:140px}.fb .wm{font-size:20px}.fb p{display:none}
+  .bgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .bt{padding:12px}.bt .logo-t{height:54px;font-size:15px}
+  .fbar{padding:10px}
+  .az{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;flex-basis:100%}
+  .az::-webkit-scrollbar{display:none}
+  .az button{flex:none}
+  .bsearch{width:100%}
+}
+</style>
+</head>
+<body data-page="brands">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <nav class="crumb"><a href="index.html"><i class="fa-solid fa-house" style="font-size:11px"></i></a><i class="fa-solid fa-chevron-right"></i><span>All Brands</span></nav>
+
+  <div class="page-hero br-hero">
+    <div>
+      <small>OFFICIAL PARTNERS</small>
+      <h1>All Brands</h1>
+      <p>Shop genuine products from the world's leading tech brands, with official warranty and after-sales support across Bangladesh.</p>
+    </div>
+    <div class="br-stats">
+      <div><b id="stBrands">0</b><span>Brands</span></div>
+      <div><b>100%</b><span>Genuine</span></div>
+      <div><b>3 yr</b><span>Max warranty</span></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="shead"><div><h2>Featured Brands</h2><p>Our most popular partners this season</p></div></div>
+    <div class="feat-br" id="featBr"></div>
+  </section>
+
+  <section>
+    <div class="shead"><div><h2>Browse A–Z</h2><p>Find a brand by name or first letter</p></div></div>
+    <div class="fbar">
+      <div class="az" id="az"></div>
+      <label class="bsearch"><i class="fa-solid fa-magnifying-glass"></i><input id="bq" type="search" placeholder="Search brands..." aria-label="Search brands"></label>
+    </div>
+    <div class="rescount" id="rescount"></div>
+    <div id="brandList"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+// n: name, w: wordmark class, t: categories, f: featured blurb
+const BRANDS = [
+  {n:"Acer",t:["Laptops","Monitor"]},
+  {n:"AMD",t:["Processor","Graphics Card"],f:"Ryzen CPUs & Radeon GPUs",g:"rgba(255,74,3,.55)"},
+  {n:"Antec",t:["Casing","Power Supply"]},
+  {n:"AOC",t:["Monitor"],w:"w-sp"},
+  {n:"Arzopa",t:["Portable Monitor"]},
+  {n:"ASUS",t:["Laptops","Motherboard","Graphics Card","Monitor"],w:"w-sp",f:"ROG, TUF & Zenbook",g:"rgba(255,74,3,.5)"},
+  {n:"Corsair",t:["RAM","Power Supply","Peripherals"]},
+  {n:"Deepcool",t:["CPU Cooler","Casing"]},
+  {n:"Dell",t:["Laptops","Monitor"]},
+  {n:"Furycube",t:["Keyboard","Mouse"]},
+  {n:"Gigabyte",t:["Motherboard","Graphics Card","Monitor"],w:"w-sp"},
+  {n:"HP",t:["Laptops","Printer","Monitor"],w:"w-it"},
+  {n:"Intel",t:["Processor","Graphics Card"],w:"w-lc",f:"Core Ultra & Arc GPUs",g:"rgba(3,129,197,.6)"},
+  {n:"Kingston",t:["RAM","SSD"]},
+  {n:"Lenovo",t:["Laptops","Tablet"]},
+  {n:"Logitech",t:["Mouse","Keyboard","Racing Wheel"],w:"w-th",f:"Pro gaming & office gear",g:"rgba(0,180,220,.5)"},
+  {n:"MageGee",t:["Keyboard"]},
+  {n:"Magcubic",t:["Projector"]},
+  {n:"MCHOSE",t:["Mouse","Keyboard"],w:"w-sp"},
+  {n:"MSI",t:["Laptops","Motherboard","Graphics Card"],w:"w-it",f:"Gaming laptops & GPUs",g:"rgba(220,30,40,.55)"},
+  {n:"NVIDIA",t:["Graphics Card"],w:"w-sp"},
+  {n:"Samsung",t:["SSD","Monitor"],w:"w-sp"},
+  {n:"Seagate",t:["Hard Disk"]},
+  {n:"Teclast",t:["Tablet"]},
+  {n:"Titan Army",t:["Monitor"]},
+  {n:"TP-Link",t:["Networking","Router"]},
+  {n:"Wanbo",t:["Projector"],f:"Smart portable projectors",g:"rgba(232,199,122,.55)"},
+  {n:"Western Digital",t:["SSD","Hard Disk"]},
+  {n:"Xiaomi",t:["Monitor","Gadget"],f:"REDMI gaming monitors",g:"rgba(255,105,0,.55)"},
+  {n:"XP-Pen",t:["Drawing Tablet"]},
+  {n:"Zotac",t:["Graphics Card","Mini PC"]}
+];
+const FEATURED = ["ASUS","MSI","AMD","Intel","Logitech","Xiaomi","Wanbo","AOC"];
+const count = n => Object.values(P).filter(x => x.b.toLowerCase() === n.toLowerCase()).length;
+const href = n => "category.html?q=" + encodeURIComponent(n);
+const sorted = [...BRANDS].sort((a, b) => a.n.localeCompare(b.n));
+$("#stBrands").textContent = BRANDS.length + "+";
+
+$("#featBr").innerHTML = FEATURED.map(n => sorted.find(b => b.n === n)).filter(Boolean).map(b => {
+  const c = count(b.n);
+  return `<a class="fb" href="${href(b.n)}" style="--glow:${b.g || "rgba(255,74,3,.5)"}">
+    <div><div class="wm ${b.w || ""}">${esc(b.n)}</div><p>${esc(b.f || b.t.join(", "))}</p></div>
+    <div class="ft"><span>${c ? c + " product" + (c > 1 ? "s" : "") : b.t[0]}</span><i class="fa-solid fa-arrow-right"></i></div>
+  </a>`;
+}).join("");
+
+let letter = "", query = "";
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const has = new Set(sorted.map(b => b.n[0].toUpperCase()));
+$("#az").innerHTML = `<button class="on" data-l="">All</button>` + letters.map(l => `<button data-l="${l}" ${has.has(l) ? "" : "disabled"}>${l}</button>`).join("");
+$("#az").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b || b.disabled) return;
+  letter = b.dataset.l; $$("#az button").forEach(x => x.classList.toggle("on", x === b)); render();
+});
+$("#bq").addEventListener("input", e => { query = e.target.value.trim().toLowerCase(); render(); });
+
+function tile(b){
+  const c = count(b.n);
+  return `<a class="bt" href="${href(b.n)}"><span class="ltr">${b.n[0].toUpperCase()}</span>
+    <div class="logo-t ${b.w || ""}">${esc(b.n)}</div>
+    <div class="row1"><b>${esc(b.n)}</b><span class="cnt ${c ? "has" : ""}">${c ? c + " in stock" : "View all"}</span></div>
+    <div class="tags">${b.t.slice(0, 3).map(t => `<span>${esc(t)}</span>`).join("")}</div>
+  </a>`;
+}
+function render(){
+  const list = sorted.filter(b => (!letter || b.n[0].toUpperCase() === letter) &&
+    (!query || b.n.toLowerCase().includes(query) || b.t.some(t => t.toLowerCase().includes(query))));
+  $("#rescount").textContent = `Showing ${list.length} of ${sorted.length} brands`;
+  if (!list.length) {
+    $("#brandList").innerHTML = `<div class="empty box" style="margin-top:14px"><i class="fa-solid fa-magnifying-glass"></i><h3>No brands found</h3><p>Can't find the brand you need? We can source it for you.</p><a href="request-order.html" class="btn primary" style="margin-top:14px"><i class="fa-solid fa-paper-plane"></i>Request a Product</a></div>`;
+    return;
+  }
+  $("#brandList").innerHTML = `<div class="bgrid" style="margin-top:14px">${list.map(tile).join("")}</div>`;
+}
+render();
+</script>
+</body>
+</html>

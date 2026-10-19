@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login / Register – TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.auth{display:grid;grid-template-columns:1fr 1fr;margin-top:14px;background:var(--card);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.auth-brand{position:relative;overflow:hidden;color:#fff;padding:44px 44px 40px;display:flex;flex-direction:column;
+  background:radial-gradient(circle at 100% 0%,rgba(255,74,3,.45),transparent 45%),radial-gradient(circle at 0% 100%,rgba(232,199,122,.16),transparent 40%),linear-gradient(150deg,var(--navy),var(--navy-3))}
+.auth-brand .logo-img{height:44px;width:auto;align-self:flex-start}
+.auth-brand small{display:block;color:var(--gold);font-weight:600;letter-spacing:2px;font-size:11.5px;margin-top:34px}
+.auth-brand h1{font-size:32px;line-height:1.18;font-weight:800;letter-spacing:-.4px;margin:8px 0 12px;max-width:400px}
+.auth-brand h1 em{font-style:normal;color:var(--orange-2)}
+.auth-brand p{color:#B4BAD8;max-width:380px;font-size:13.5px}
+.perks{list-style:none;display:grid;gap:12px;margin-top:26px;position:relative;z-index:1}
+.perks li{display:flex;gap:12px;align-items:center;font-size:13.5px}
+.perks i{width:36px;height:36px;flex:none;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--orange-2)}
+.perks span{color:#9CA3C7;font-size:12px;display:block}
+.float{position:relative;margin-top:auto;padding-top:30px;min-height:220px}
+.float img{position:absolute;right:-30px;bottom:-20px;width:min(380px,90%);filter:drop-shadow(0 24px 40px rgba(0,0,0,.5));animation:bob 5s ease-in-out infinite}
+.float .chip{position:absolute;left:0;bottom:24px;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:10px 14px;font-size:12px;display:flex;gap:10px;align-items:center;z-index:1}
+.float .chip i{color:var(--gold);font-size:18px}
+.float .chip b{display:block;font-size:13px}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(0)}}
+
+.auth-form{padding:44px 48px}
+.auth-form h2{font-size:24px;font-weight:700;letter-spacing:-.3px}
+.auth-form .sub{color:var(--muted);font-size:13px;margin:4px 0 22px}
+.atabs{display:grid;grid-template-columns:1fr 1fr;background:var(--soft-2);padding:5px;border-radius:13px;margin-bottom:26px}
+.atabs button{height:42px;border-radius:10px;font-weight:600;font-size:14px;color:var(--muted);transition:.2s}
+.atabs button.on{background:var(--card);color:var(--ink);box-shadow:0 4px 12px rgba(5,12,46,.08)}
+.pane{display:none}.pane.on{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.ifield{position:relative}
+.ifield>i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#A0A6C2;font-size:14px;pointer-events:none}
+.ifield input{padding-left:40px!important}
+.ifield .eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:36px;height:36px;color:var(--muted);border-radius:8px}
+.ifield .eye:hover{color:var(--orange)}
+.row-between{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:-2px 0 18px;font-size:13px;flex-wrap:wrap}
+.chk{display:flex;gap:8px;align-items:center;cursor:pointer;color:var(--text);font-size:13px}
+.chk input{width:17px;height:17px;accent-color:var(--orange)}
+.link{color:var(--orange);font-weight:600}
+.link:hover{text-decoration:underline}
+.or{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px;margin:22px 0 16px}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.social-btns{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.social-btns .btn{font-weight:500;font-size:13.5px}
+.social-btns .fa-google{color:#EA4335}.social-btns .fa-facebook{color:#1877F2}
+.otp-toggle{margin-top:12px;width:100%}
+.switch-note{text-align:center;margin-top:22px;font-size:13px;color:var(--muted)}
+.err{color:#D33;font-size:12px;margin:-8px 0 12px;display:none}
+.err.show{display:block}
+
+/* OTP */
+.otp-box{display:flex;gap:10px;justify-content:space-between;margin:6px 0 16px}
+.otp-box input{width:100%;max-width:54px;aspect-ratio:1/1.1;border:1px solid var(--line);border-radius:12px;text-align:center;font-family:inherit;font-size:22px;font-weight:700;color:var(--ink);background:var(--soft);outline:0;transition:.2s;min-width:0}
+.otp-box input:focus{border-color:var(--orange);background:var(--card);box-shadow:0 0 0 3px rgba(255,74,3,.12)}
+.otp-box input.filled{border-color:var(--ink)}
+.otp-meta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-bottom:16px}
+.back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;margin-bottom:16px}
+.back:hover{color:var(--orange)}
+.phone-in{display:flex;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--soft);height:46px;transition:.2s}
+.phone-in:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,74,3,.12);background:var(--card)}
+.phone-in span{display:flex;align-items:center;gap:6px;padding:0 12px;border-right:1px solid var(--line);font-weight:600;font-size:13.5px;color:var(--ink)}
+.phone-in input{flex:1;border:0!important;background:none!important;box-shadow:none!important;min-width:0}
+
+/* Strength */
+.meter{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:8px}
+.meter span{height:5px;border-radius:3px;background:var(--line);transition:.25s}
+.meter-l{font-size:11.5px;color:var(--muted);margin-top:5px;display:flex;justify-content:space-between}
+.meter[data-s="1"] span:nth-child(-n+1){background:#E5484D}
+.meter[data-s="2"] span:nth-child(-n+2){background:#F5A623}
+.meter[data-s="3"] span:nth-child(-n+3){background:#3BA3E0}
+.meter[data-s="4"] span{background:var(--green)}
+
+@media (max-width:992px){
+  .auth{grid-template-columns:1fr}
+  .auth-brand{padding:30px 28px}
+  .float{display:none}
+  .perks{grid-template-columns:1fr 1fr}
+  .auth-brand h1{font-size:26px}
+}
+@media (max-width:640px){
+  .auth{border-radius:18px}
+  .auth-brand small{margin-top:20px}
+  .perks{grid-template-columns:1fr;gap:10px}
+  .auth-form{padding:26px 18px}
+  .social-btns{grid-template-columns:1fr}
+  .otp-box{gap:6px}
+  .otp-box input{font-size:18px;border-radius:10px}
+}
+</style>
+</head>
+<body data-page="login">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <div class="crumb"><a href="index.html"><i class="fa-solid fa-house" style="font-size:11px"></i> Home</a><i class="fa-solid fa-chevron-right"></i><span>Account</span></div>
+
+  <div class="auth">
+    <aside class="auth-brand">
+      <img src="img/logo.svg" alt="TechStore BD" class="logo-img">
+      <small>WELCOME TO TECHSTORE BD</small>
+      <h1>Your <em>tech journey</em> starts with one sign in.</h1>
+      <p>Track orders, save your favourite gear and unlock member-only prices across laptops, PCs and gaming.</p>
+      <ul class="perks">
+        <li><i class="fa-solid fa-truck-fast"></i><div><b>Real-time order tracking</b><span>From warehouse to your door</span></div></li>
+        <li><i class="fa-solid fa-heart"></i><div><b>Synced wishlist</b><span>Save products across devices</span></div></li>
+        <li><i class="fa-solid fa-gift"></i><div><b>Reward points</b><span>Earn on every purchase</span></div></li>
+        <li><i class="fa-solid fa-credit-card"></i><div><b>Faster checkout</b><span>Saved addresses &amp; 0% EMI</span></div></li>
+      </ul>
+      <div class="float">
+        <div class="chip"><i class="fa-solid fa-bolt"></i><div><b>Member Deal</b>ASUS TUF F15 – Save ৳45,500</div></div>
+        <img src="img/p16.png" alt="ASUS TUF Gaming laptop">
+      </div>
+    </aside>
+
+    <section class="auth-form" style="margin-top:0">
+      <div class="atabs" role="tablist">
+        <button class="on" data-tab="login" role="tab">Login</button>
+        <button data-tab="register" role="tab">Register</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="pane on" id="pane-login">
+        <h2>Welcome back</h2>
+        <p class="sub">Login with your phone number or email address.</p>
+        <form id="loginForm" novalidate>
+          <div class="field"><label for="lId">Phone or Email</label>
+            <div class="ifield"><i class="fa-regular fa-user"></i><input id="lId" placeholder="01XXXXXXXXX or you@email.com" autocomplete="username"></div>
+          </div>
+          <div class="field"><label for="lPw">Password</label>
+            <div class="ifield"><i class="fa-solid fa-lock"></i><input id="lPw" type="password" placeholder="Enter your password" autocomplete="current-password"><button type="button" class="eye" aria-label="Show password"><i class="fa-regular fa-eye"></i></button></div>
+          </div>
+          <p class="err" id="lErr"></p>
+          <div class="row-between">
+            <label class="chk"><input type="checkbox" checked> Remember me</label>
+            <a href="forgot-password.html" class="link">Forgot password?</a>
+          </div>
+          <button class="btn primary block">Login <i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+        <button class="btn ghost otp-toggle" onclick="showPane('otp')"><i class="fa-solid fa-mobile-screen-button"></i> Login with OTP instead</button>
+        <div class="or">or continue with</div>
+        <div class="social-btns">
+          <button class="btn ghost" onclick="social('Google')"><i class="fa-brands fa-google"></i> Google</button>
+          <button class="btn ghost" onclick="social('Facebook')"><i class="fa-brands fa-facebook"></i> Facebook</button>
+        </div>
+        <p class="switch-note">New to TechStore? <a href="#" class="link" onclick="setTab('register');return false">Create an account</a></p>
+      </div>
+
+      <!-- OTP -->
+      <div class="pane" id="pane-otp">
+        <a href="#" class="back" onclick="setTab('login');return false"><i class="fa-solid fa-arrow-left"></i> Back to password login</a>
+        <div id="otpStep1">
+          <h2>Login with OTP</h2>
+          <p class="sub">We'll send a 6-digit code to your mobile number.</p>
+          <form id="otpPhoneForm" novalidate>
+            <div class="field"><label for="oPhone">Mobile Number</label>
+              <div class="phone-in"><span>🇧🇩 +880</span><input id="oPhone" inputmode="numeric" maxlength="11" placeholder="1XXXXXXXXX"></div>
+            </div>
+            <p class="err" id="oErr"></p>
+            <button class="btn primary block">Send OTP <i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+        </div>
+        <div id="otpStep2" hidden>
+          <h2>Verify your number</h2>
+          <p class="sub">Enter the code sent to <b id="oTo"></b>. <span style="opacity:.7">(Demo: any 6 digits)</span></p>
+          <form id="otpForm" novalidate>
+            <div class="otp-box" id="otpBox">
+              <input inputmode="numeric" maxlength="1" aria-label="Digit 1"><input inputmode="numeric" maxlength="1" aria-label="Digit 2"><input inputmode="numeric" maxlength="1" aria-label="Digit 3"><input inputmode="numeric" maxlength="1" aria-label="Digit 4"><input inputmode="numeric" maxlength="1" aria-label="Digit 5"><input inputmode="numeric" maxlength="1" aria-label="Digit 6">
+            </div>
+            <div class="otp-meta"><span id="otpTimer">Resend in 00:30</span><a href="#" class="link" id="resend" style="display:none">Resend OTP</a></div>
+            <button class="btn primary block">Verify &amp; Login <i class="fa-solid fa-shield-halved"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <!-- REGISTER -->
+      <div class="pane" id="pane-register">
+        <h2>Create your account</h2>
+        <p class="sub">Join thousands of happy TechStore customers.</p>
+        <form id="regForm" novalidate>
+          <div class="field"><label for="rName">Full Name</label>
+            <div class="ifield"><i class="fa-regular fa-user"></i><input id="rName" placeholder="Your full name" autocomplete="name"></div>
+          </div>
+          <div class="two">
+            <div class="field"><label for="rPhone">Phone</label>
+              <div class="ifield"><i class="fa-solid fa-phone"></i><input id="rPhone" inputmode="tel" placeholder="01XXXXXXXXX" autocomplete="tel"></div>
+            </div>
+            <div class="field"><label for="rEmail">Email</label>
+              <div class="ifield"><i class="fa-regular fa-envelope"></i><input id="rEmail" type="email" placeholder="you@email.com" autocomplete="email"></div>
+            </div>
+          </div>
+          <div class="field"><label for="rPw">Password</label>
+            <div class="ifield"><i class="fa-solid fa-lock"></i><input id="rPw" type="password" placeholder="Min. 8 characters" autocomplete="new-password"><button type="button" class="eye" aria-label="Show password"><i class="fa-regular fa-eye"></i></button></div>
+            <div class="meter" id="meter" data-s="0"><span></span><span></span><span></span><span></span></div>
+            <div class="meter-l"><span id="meterL">Use 8+ chars with numbers &amp; symbols</span><span id="meterS"></span></div>
+          </div>
+          <div class="field"><label for="rPw2">Confirm Password</label>
+            <div class="ifield"><i class="fa-solid fa-lock"></i><input id="rPw2" type="password" placeholder="Re-enter password" autocomplete="new-password"><button type="button" class="eye" aria-label="Show password"><i class="fa-regular fa-eye"></i></button></div>
+          </div>
+          <label class="chk" style="margin-bottom:18px"><input type="checkbox" id="rAgree"> I agree to the <a href="policy.html?p=terms" class="link">Terms</a> &amp; <a href="policy.html?p=privacy" class="link">Privacy Policy</a></label>
+          <p class="err" id="rErr"></p>
+          <button class="btn primary block">Create Account <i class="fa-solid fa-user-plus"></i></button>
+        </form>
+        <div class="or">or sign up with</div>
+        <div class="social-btns">
+          <button class="btn ghost" onclick="social('Google')"><i class="fa-brands fa-google"></i> Google</button>
+          <button class="btn ghost" onclick="social('Facebook')"><i class="fa-brands fa-facebook"></i> Facebook</button>
+        </div>
+        <p class="switch-note">Already have an account? <a href="#" class="link" onclick="setTab('login');return false">Login</a></p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+if (store.get("user", null) && !location.hash) location.replace("account.html");
+
+const panes = ["login","register","otp"];
+function showPane(p){ panes.forEach(x => $("#pane-"+x).classList.toggle("on", x === p)); }
+function setTab(t){ $$(".atabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === t)); showPane(t); history.replaceState(null, "", "#" + t); }
+$(".atabs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) setTab(b.dataset.tab); });
+if (location.hash === "#register") setTab("register");
+
+const login = (user, msg) => { store.set("user", user); toast(msg || "Welcome, " + user.name.split(" ")[0] + "!"); setTimeout(() => location.href = "account.html", 600); };
+const err = (id, m) => { const e = $(id); e.textContent = m; e.classList.toggle("show", !!m); return !m; };
+const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+const isPhone = v => /^(\+?880)?0?1[3-9]\d{8}$/.test(v.replace(/[\s-]/g, ""));
+const nameFrom = v => isEmail(v) ? v.split("@")[0].replace(/[._\d]+/g, " ").trim().replace(/\b\w/g, c => c.toUpperCase()) || "Customer" : "TechStore Customer";
+function social(n){ toast("Connecting to " + n + "…"); setTimeout(() => login({name:"Rahim Ahmed", phone:"01712345678", email:"rahim.ahmed@gmail.com"}), 700); }
+
+// show/hide password
+$$(".eye").forEach(b => b.addEventListener("click", () => {
+  const i = b.previousElementSibling, show = i.type === "password";
+  i.type = show ? "text" : "password";
+  b.innerHTML = `<i class="fa-regular fa-eye${show ? "-slash" : ""}"></i>`;
+  b.setAttribute("aria-label", show ? "Hide password" : "Show password");
+}));
+
+// login
+$("#loginForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const id = $("#lId").value.trim(), pw = $("#lPw").value;
+  if (!err("#lErr", !id ? "Please enter your phone or email." : !(isEmail(id) || isPhone(id)) ? "Enter a valid phone number or email." : pw.length < 4 ? "Please enter your password." : "")) return;
+  const prev = store.get("lastUser", null);
+  const match = prev && (prev.email === id || prev.phone === id);
+  login(match ? prev : {name: nameFrom(id), phone: isPhone(id) ? id : "", email: isEmail(id) ? id : ""});
+});
+
+// OTP
+let timer;
+$("#otpPhoneForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const v = $("#oPhone").value.replace(/\D/g, "");
+  if (!err("#oErr", isPhone(v) ? "" : "Enter a valid Bangladeshi mobile number.")) return;
+  $("#oTo").textContent = "+880 " + v.replace(/^0/, "");
+  $("#otpStep1").hidden = true; $("#otpStep2").hidden = false;
+  $("#otpBox input").focus(); startTimer(); toast("OTP sent to your phone");
+});
+function startTimer(){
+  let s = 30; $("#resend").style.display = "none"; $("#otpTimer").style.display = "";
+  clearInterval(timer);
+  const t = () => { $("#otpTimer").textContent = "Resend in 00:" + String(s).padStart(2, "0"); if (s-- <= 0) { clearInterval(timer); $("#otpTimer").style.display = "none"; $("#resend").style.display = ""; } };
+  t(); timer = setInterval(t, 1000);
+}
+$("#resend").onclick = e => { e.preventDefault(); startTimer(); toast("A new OTP has been sent"); };
+const boxes = $$("#otpBox input");
+boxes.forEach((b, k) => {
+  b.addEventListener("input", () => {
+    b.value = b.value.replace(/\D/g, "").slice(-1); b.classList.toggle("filled", !!b.value);
+    if (b.value && boxes[k + 1]) boxes[k + 1].focus();
+    if (boxes.every(x => x.value)) $("#otpForm").requestSubmit();
+  });
+  b.addEventListener("keydown", e => { if (e.key === "Backspace" && !b.value && boxes[k - 1]) boxes[k - 1].focus(); });
+  b.addEventListener("paste", e => {
+    const d = (e.clipboardData.getData("text") || "").replace(/\D/g, "").slice(0, 6); if (!d) return;
+    e.preventDefault(); [...d].forEach((c, j) => { boxes[j].value = c; boxes[j].classList.add("filled"); });
+    (boxes[d.length] || boxes[5]).focus(); if (d.length === 6) $("#otpForm").requestSubmit();
+  });
+});
+$("#otpForm").addEventListener("submit", e => {
+  e.preventDefault();
+  if (!boxes.every(x => x.value)) { toast("Please enter the 6-digit code"); return; }
+  const ph = $("#oPhone").value.replace(/\D/g, "");
+  const prev = store.get("lastUser", null);
+  login(prev && prev.phone === ph ? prev : {name:"TechStore Customer", phone: ph, email:""}, "Phone verified – welcome!");
+});
+
+// password strength
+$("#rPw").addEventListener("input", e => {
+  const v = e.target.value;
+  let s = 0; if (v.length >= 8) s++; if (/[A-Z]/.test(v) && /[a-z]/.test(v)) s++; if (/\d/.test(v)) s++; if (/[^A-Za-z0-9]/.test(v)) s++;
+  if (v && !s) s = 1;
+  $("#meter").dataset.s = v ? s : 0;
+  $("#meterS").textContent = v ? ["", "Weak", "Fair", "Good", "Strong"][s] : "";
+  $("#meterS").style.color = ["", "#E5484D", "#F5A623", "#3BA3E0", "var(--green)"][s] || "";
+});
+
+// register
+$("#regForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const name = $("#rName").value.trim(), phone = $("#rPhone").value.trim(), email = $("#rEmail").value.trim(), pw = $("#rPw").value, pw2 = $("#rPw2").value;
+  const m = name.length < 2 ? "Please enter your full name." : !isPhone(phone) ? "Enter a valid phone number (01XXXXXXXXX)." : !isEmail(email) ? "Enter a valid email address." :
+    pw.length < 8 ? "Password must be at least 8 characters." : pw !== pw2 ? "Passwords do not match." : !$("#rAgree").checked ? "Please accept the Terms & Privacy Policy." : "";
+  if (!err("#rErr", m)) return;
+  const user = {name, phone, email};
+  store.set("lastUser", user);
+  login(user, "Account created – welcome, " + name.split(" ")[0] + "!");
+});
+</script>
+</body>
+</html>

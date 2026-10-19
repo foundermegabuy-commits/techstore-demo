@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flash Sale | TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* ---------- Hero ---------- */
+.fs-hero{margin-top:14px;border-radius:24px;overflow:hidden;position:relative;color:#fff;padding:40px 40px 36px;
+  background:radial-gradient(circle at 88% 20%,rgba(255,74,3,.6),transparent 45%),radial-gradient(circle at 0% 120%,rgba(232,199,122,.22),transparent 45%),linear-gradient(120deg,var(--navy),var(--navy-3) 60%,#3A1630);
+  display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center}
+.fs-hero::before{content:"\f0e7";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;right:38%;top:-40px;font-size:300px;color:rgba(255,255,255,.035);line-height:1;pointer-events:none}
+.fs-hero > *{position:relative;z-index:1;min-width:0}
+.fs-kick{display:inline-flex;align-items:center;gap:8px;background:rgba(255,74,3,.18);border:1px solid rgba(255,95,19,.5);color:#FFB08A;padding:5px 12px;border-radius:30px;font-weight:600;font-size:11.5px;letter-spacing:1.5px}
+.fs-kick .dot{width:8px;height:8px;border-radius:50%;background:var(--orange-2);box-shadow:0 0 0 0 rgba(255,95,19,.7);animation:fsPulse 1.6s infinite}
+@keyframes fsPulse{0%{box-shadow:0 0 0 0 rgba(255,95,19,.7)}70%{box-shadow:0 0 0 10px rgba(255,95,19,0)}100%{box-shadow:0 0 0 0 rgba(255,95,19,0)}}
+.fs-hero h1{font-size:48px;line-height:1.05;font-weight:800;margin:14px 0 10px;letter-spacing:-1px}
+.fs-hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--orange-2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.fs-hero p{color:#B4BAD8;max-width:470px}
+.fs-hero .btns{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.fs-hero .btn.line{border:1px solid rgba(255,255,255,.25);color:#fff;background:transparent}
+.fs-cd .lbl{font-size:12px;color:#9CA3C7;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;text-align:center}
+.fs-cd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fs-cd-grid div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(8px);border-radius:18px;padding:20px 6px;text-align:center}
+.fs-cd-grid b{display:block;font-size:52px;font-weight:800;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+.fs-cd-grid span{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+.fs-cd .foot{display:flex;justify-content:center;gap:8px 18px;margin-top:16px;font-size:12px;color:#B4BAD8;flex-wrap:wrap;text-align:center}
+.fs-cd .foot i{color:var(--orange-2);margin-right:6px}
+
+/* ---------- Slot tabs ---------- */
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.slot{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;text-align:left;color:var(--text);transition:.2s;min-width:0}
+.slot:hover{border-color:var(--orange)}
+.slot .ic{width:42px;height:42px;flex:none;border-radius:12px;display:grid;place-items:center;font-size:16px;background:var(--bg);color:var(--muted)}
+.slot b{display:block;font-size:17px;font-weight:700;line-height:1.2}
+.slot small{font-size:11.5px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:6px}
+.slot.live .ic{background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff}
+.slot.live small{color:var(--orange)}
+.slot.live small::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange);animation:fsPulse 1.6s infinite}
+.slot.up small{color:#0381C5}
+.slot.ended{opacity:.7}
+.slot.on{background:var(--navy);border-color:var(--ink);color:#fff;box-shadow:0 12px 26px rgba(5,12,46,.22)}
+.slot.on small{color:var(--gold)}
+.slot.on .ic{background:rgba(255,255,255,.1);color:var(--gold)}
+.slot.on.live .ic{background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff}
+
+.slot-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:18px 0 16px;padding:14px 18px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.slot-bar .t{display:flex;align-items:center;gap:10px;font-size:13.5px;min-width:0}
+.slot-bar .t i{color:var(--orange)}
+.slot-bar .t b{font-variant-numeric:tabular-nums}
+.slot-bar .btn{height:40px;font-size:13px;padding:0 16px}
+
+/* ---------- Flash cards ---------- */
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.fc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;position:relative;transition:.25s;min-width:0}
+.fc:hover{box-shadow:var(--shadow-h);transform:translateY(-4px);border-color:transparent}
+.fc .off{position:absolute;top:12px;left:12px;z-index:2;background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:8px;display:flex;align-items:center;gap:5px}
+.fc .qv-b{position:absolute;top:12px;right:12px;z-index:2;width:34px;height:34px;border-radius:50%;background:var(--card);color:var(--ink);box-shadow:0 4px 12px rgba(0,0,0,.1);font-size:13px;opacity:0;transition:.2s}
+.fc:hover .qv-b{opacity:1}
+.fc .qv-b:hover{background:var(--orange);color:#fff}
+.fc .pic{position:relative;aspect-ratio:1;border-radius:12px;background:var(--bg);display:grid;place-items:center;overflow:hidden;margin-bottom:12px}
+.fc .pic img{width:84%;height:84%;object-fit:contain;transition:transform .4s,filter .3s}
+.fc:hover .pic img{transform:scale(1.06)}
+.fc h4{font-size:13.5px;font-weight:500;line-height:1.4;margin:4px 0 8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:38px}
+.fc h4 a:hover{color:var(--orange)}
+.fc .pr{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.fc .pr b{font-size:19px;font-weight:800;color:var(--orange)}
+.fc .pr s{font-size:12.5px;color:var(--muted)}
+.fc .extra{font-size:11.5px;color:var(--green);font-weight:600;margin:2px 0 10px}
+.sold{display:grid;gap:5px;margin-bottom:12px}
+.sold .bar{height:8px;border-radius:6px;background:var(--line);overflow:hidden}
+.sold .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--orange),var(--gold))}
+.sold .row2{display:flex;justify-content:space-between;gap:8px;font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.sold .row2 b{color:var(--text);font-weight:600}
+.sold .left{color:#E5484D;font-weight:600}
+.fc .go{margin-top:auto;display:flex;gap:8px}
+.fc .go .btn{flex:1;height:42px;font-size:13px;padding:0 10px;min-width:0}
+.fc .go .btn.ghost{background:var(--card)}
+
+/* upcoming / ended states */
+.fc.locked .pic img{filter:blur(9px) grayscale(.3);transform:scale(1.05)}
+.fc.locked .lock{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:8px;color:#fff;text-align:center;background:rgba(5,12,46,.35)}
+.fc.locked .lock i{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:rgba(5,12,46,.75);font-size:19px;color:var(--gold)}
+.fc.locked .lock span{font-size:12px;font-weight:600;background:rgba(5,12,46,.75);padding:4px 10px;border-radius:20px}
+.fc.locked h4{filter:blur(3.5px);user-select:none}
+.fc.locked .pr b{filter:blur(5px);user-select:none}
+.fc .notify.on{background:var(--green);box-shadow:none}
+.fc.ended .pic img{filter:grayscale(1);opacity:.55}
+.fc.ended .stamp{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-12deg);border:3px solid #E5484D;color:#E5484D;font-weight:800;font-size:16px;letter-spacing:2px;padding:4px 14px;border-radius:10px;background:var(--card)}
+.fc.ended .pr b{color:var(--muted)}
+
+/* ---------- Rules / FAQ ---------- */
+.rules{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.rules div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start}
+.rules i{width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--orange-soft);color:var(--orange);font-size:17px}
+.rules b{display:block;font-size:13.5px;margin-bottom:2px}
+.rules span{font-size:12px;color:var(--muted);line-height:1.5;display:block}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 18px;transition:.2s}
+.faq details[open]{border-color:var(--orange)}
+.faq summary{list-style:none;cursor:pointer;padding:16px 0;font-weight:600;font-size:13.5px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"\f067";font-family:"Font Awesome 6 Free";font-weight:900;font-size:11px;color:var(--orange);flex:none;transition:.2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{font-size:13px;color:var(--muted);padding-bottom:16px;line-height:1.6}
+
+/* ---------- Mobile sticky countdown ---------- */
+.fs-sticky{display:none}
+@media (max-width:768px){
+  .fs-sticky{display:flex;position:fixed;left:10px;right:10px;bottom:74px;z-index:89;align-items:center;gap:10px;padding:9px 10px 9px 14px;border-radius:14px;color:#fff;
+    background:linear-gradient(120deg,var(--orange),#E63B00);box-shadow:0 12px 28px rgba(255,74,3,.35);transform:translateY(160%);transition:transform .3s}
+  .fs-sticky.show{transform:none}
+  .fs-sticky .s-t{flex:1;min-width:0;font-size:11.5px;line-height:1.25}
+  .fs-sticky .s-t small{display:block;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fs-sticky .s-t b{font-size:16px;font-variant-numeric:tabular-nums;letter-spacing:.5px}
+  .fs-sticky a{flex:none;background:var(--navy);color:#fff;font-weight:600;font-size:12px;padding:9px 12px;border-radius:10px}
+  body.fs-page .fab{bottom:148px}
+  body.fs-page .toast{bottom:140px}
+}
+
+@media (max-width:1200px){ .fgrid{grid-template-columns:repeat(3,1fr)} .rules{grid-template-columns:1fr 1fr} }
+@media (max-width:992px){
+  .fs-hero{grid-template-columns:1fr;padding:32px 28px}
+  .slots{grid-template-columns:repeat(2,1fr)}
+  .fgrid{grid-template-columns:repeat(2,1fr)}
+  .faq{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .fs-hero{padding:24px 18px;border-radius:20px}
+  .fs-hero h1{font-size:32px}
+  .fs-cd-grid{gap:8px}.fs-cd-grid div{padding:14px 4px;border-radius:14px}.fs-cd-grid b{font-size:34px}.fs-cd-grid span{font-size:10px;letter-spacing:1px}
+  .slots{gap:8px}
+  .slot{padding:10px;gap:8px}
+  .slot .ic{width:34px;height:34px;font-size:13px;border-radius:10px}
+  .slot b{font-size:14.5px}
+  .slot small{font-size:10.5px}
+  .slot-bar{padding:12px 14px}
+  .slot-bar .btn{width:100%}
+  .fgrid{gap:10px}
+  .fc{padding:10px}
+  .fc h4{font-size:12.5px}
+  .fc .pr b{font-size:16px}
+  .fc .off{font-size:10.5px;padding:3px 7px;top:8px;left:8px}
+  .fc .qv-b{display:none}
+  .fc .go{flex-direction:column}
+  .fc .go .btn{height:38px;font-size:12px;flex:none;width:100%}
+  .fc .go .btn.ghost{display:none}
+  .sold .row2{font-size:10.5px}
+  .rules{grid-template-columns:1fr}
+}
+@media (max-width:380px){ .fs-hero h1{font-size:28px} .fs-cd-grid b{font-size:30px} }
+</style>
+</head>
+<body data-page="flash" class="fs-page">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <nav class="crumb"><a href="index.html"><i class="fa-solid fa-house" style="font-size:11px"></i></a><i class="fa-solid fa-chevron-right"></i><a href="offers.html">Offers</a><i class="fa-solid fa-chevron-right"></i><span>Flash Sale</span></nav>
+
+  <!-- Hero -->
+  <div class="fs-hero" id="fsHero">
+    <div>
+      <span class="fs-kick"><span class="dot"></span>FLASH SALE · TODAY ONLY</span>
+      <h1>Lightning <em>Deals</em><br>Every Few Hours</h1>
+      <p>Extra discounts on top of our regular prices, in four time slots a day. Stock is limited for every slot. Once it's gone, it's gone.</p>
+      <div class="btns"><a href="#deals" class="btn primary"><i class="fa-solid fa-bolt"></i>Shop Live Deals</a><a href="offers.html" class="btn line"><i class="fa-solid fa-tags"></i>All Offers</a></div>
+    </div>
+    <div class="fs-cd">
+      <div class="lbl">Today's flash sale ends in</div>
+      <div class="fs-cd-grid">
+        <div><b id="cdH">00</b><span>Hours</span></div>
+        <div><b id="cdM">00</b><span>Minutes</span></div>
+        <div><b id="cdS">00</b><span>Seconds</span></div>
+      </div>
+      <div class="foot"><span><i class="fa-regular fa-clock"></i>Ends 11:59 PM tonight</span><span><i class="fa-solid fa-box"></i>Limited stock per slot</span></div>
+    </div>
+  </div>
+
+  <!-- Slots + deals -->
+  <section id="deals">
+    <div class="shead"><div><h2>Flash Deals</h2><p>Pick a time slot. New deals drop at every slot.</p></div></div>
+    <div class="slots" id="slots" role="tablist"></div>
+    <div class="slot-bar" id="slotBar"></div>
+    <div class="fgrid" id="fGrid"></div>
+  </section>
+
+  <!-- Rules / FAQ -->
+  <section>
+    <div class="shead"><div><h2>Flash Sale Rules</h2><p>Please read before you buy</p></div></div>
+    <div class="rules">
+      <div><i class="fa-solid fa-clock"></i><p><b>Slot pricing only</b><span>Flash prices apply only while the slot is live and stock lasts.</span></p></div>
+      <div><i class="fa-solid fa-cart-shopping"></i><p><b>Max 2 per customer</b><span>Each customer can buy up to 2 units of any flash deal.</span></p></div>
+      <div><i class="fa-solid fa-ticket"></i><p><b>No extra coupons</b><span>Coupon codes and reward points can't be combined with flash prices.</span></p></div>
+      <div><i class="fa-solid fa-shield-halved"></i><p><b>Full warranty</b><span>Flash deal items have the same official warranty and 7-day exchange.</span></p></div>
+    </div>
+    <div class="faq">
+      <details><summary>When do new flash deals start?</summary><p>New deals go live at 10 AM, 2 PM, 6 PM and 10 PM every day. The last slot runs until 11:59 PM.</p></details>
+      <details><summary>How long does the flash price stay in my cart?</summary><p>The flash price is held for 15 minutes after you add the item to your cart. Complete checkout within that time to keep it.</p></details>
+      <details><summary>Can I pay with EMI or Cash on Delivery?</summary><p>Yes. Flash deals support bKash, Nagad, cards, 0% EMI on eligible bank cards and Cash on Delivery inside Dhaka.</p></details>
+      <details><summary>How does "Notify me" work?</summary><p>We'll remind you shortly before the slot goes live, so you can grab the deal before it sells out.</p></details>
+    </div>
+  </section>
+</main>
+
+<div class="fs-sticky" id="fsSticky"><div class="s-t"><small id="stLbl">Flash sale ends in</small><b id="stT">00:00:00</b></div><a href="#deals"><i class="fa-solid fa-bolt"></i> Deals</a></div>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+/* ---------- Deterministic flash data ---------- */
+const SLOTS = [{h:10, l:"10 AM"}, {h:14, l:"2 PM"}, {h:18, l:"6 PM"}, {h:22, l:"10 PM"}];
+const IDS = Object.keys(P).map(Number);
+const flashPct = id => 3 + (id * 13) % 6;                                 // 3–8% below regular price
+const flashPrice = id => Math.round(P[id].p * (1 - flashPct(id) / 100) / 10) * 10;
+const soldPct = id => 38 + (id * 29) % 57;                                 // 38–94%
+const slotIds = k => IDS.map((_, i) => IDS[(i + k * 5) % IDS.length]).slice(0, 8);
+const pad = v => String(v).padStart(2, "0");
+const hms = s => pad(Math.floor(s / 3600)) + ":" + pad(Math.floor(s % 3600 / 60)) + ":" + pad(s % 60);
+
+/* slot k runs from its hour to the next slot's hour (last one until 11:59 PM) */
+function slotRange(k, now = new Date()){
+  const a = new Date(now); a.setHours(SLOTS[k].h, 0, 0, 0);
+  const b = new Date(now); if (k < SLOTS.length - 1) b.setHours(SLOTS[k + 1].h, 0, 0, 0); else b.setHours(23, 59, 0, 0);
+  return [a, b];
+}
+function slotState(k, now = new Date()){
+  const [a, b] = slotRange(k, now);
+  return now < a ? "up" : now < b ? "live" : "ended";
+}
+function saleEnd(now = new Date()){
+  const e = new Date(now); e.setHours(23, 59, 0, 0);
+  if (e <= now) e.setDate(e.getDate() + 1);
+  return e;
+}
+function defaultSlot(){
+  const st = SLOTS.map((_, k) => slotState(k));
+  const live = st.indexOf("live"); if (live >= 0) return live;
+  const up = st.indexOf("up"); return up >= 0 ? up : SLOTS.length - 1;
+}
+let cur = defaultSlot();
+
+/* ---------- Notify ---------- */
+const nKey = (k, id) => SLOTS[k].h + "-" + id;
+const getNotify = () => store.get("flashNotify", []);
+function toggleNotify(k, id){
+  let n = getNotify(); const key = nKey(k, id);
+  if (n.includes(key)) { n = n.filter(x => x !== key); toast("Reminder removed"); }
+  else { n.push(key); toast(`We'll remind you before the ${SLOTS[k].l} slot starts`); }
+  store.set("flashNotify", n); renderGrid();
+}
+function notifyAll(k){
+  const n = getNotify(), keys = slotIds(k).map(id => nKey(k, id));
+  const all = keys.every(x => n.includes(x));
+  store.set("flashNotify", all ? n.filter(x => !keys.includes(x)) : [...new Set([...n, ...keys])]);
+  toast(all ? "Slot reminders removed" : `Reminder set for the ${SLOTS[k].l} slot`); renderGrid();
+}
+
+/* ---------- Render ---------- */
+const SLOT_ICON = {live:"fa-bolt", up:"fa-hourglass-half", ended:"fa-circle-check"};
+const SLOT_TXT = {live:"Live now", up:"Upcoming", ended:"Ended"};
+function renderSlots(){
+  $("#slots").innerHTML = SLOTS.map((s, k) => { const st = slotState(k); return `
+    <button class="slot ${st} ${k === cur ? "on" : ""}" role="tab" aria-selected="${k === cur}" data-k="${k}">
+      <span class="ic"><i class="fa-solid ${SLOT_ICON[st]}"></i></span><span><b>${s.l}</b><small>${SLOT_TXT[st]}</small></span>
+    </button>`; }).join("");
+}
+function renderBar(){
+  const st = slotState(cur), [a, b] = slotRange(cur), now = new Date();
+  const notified = slotIds(cur).every(id => getNotify().includes(nKey(cur, id)));
+  $("#slotBar").innerHTML =
+    st === "live" ? `<div class="t"><i class="fa-solid fa-bolt"></i><span>${SLOTS[cur].l} slot is <b style="color:var(--orange)">live</b> · ends in <b id="slotT">${hms(Math.floor((b - now) / 1000))}</b></span></div><span class="pill ok"><i class="fa-solid fa-fire"></i>${slotIds(cur).length} deals</span>`
+    : st === "up" ? `<div class="t"><i class="fa-solid fa-hourglass-half"></i><span>${SLOTS[cur].l} slot starts in <b id="slotT">${hms(Math.floor((a - now) / 1000))}</b>. Prices revealed at launch</span></div><button class="btn ${notified ? "dark" : "primary"}" onclick="notifyAll(${cur})"><i class="fa-${notified ? "solid fa-bell-slash" : "regular fa-bell"}"></i>${notified ? "Reminder set" : "Notify me for this slot"}</button>`
+    : `<div class="t"><i class="fa-solid fa-circle-check"></i><span>The ${SLOTS[cur].l} slot has ended. Check the live slot for current deals</span></div>`;
+}
+function fcard(id, k){
+  const x = P[id], st = slotState(k), fp = flashPrice(id), off = Math.round((x.o - fp) / x.o * 100), s = pchStock(id), sold = soldPct(id);
+  const n = getNotify().includes(nKey(k, id));
+  const stockTxt = s.pre ? "Pre-order" : "Only " + s.left + " left";
+  return `<article class="fc ${st === "up" ? "locked" : st === "ended" ? "ended" : ""}">
+    <span class="off"><i class="fa-solid fa-bolt"></i>${off}% OFF</span>
+    ${st === "live" ? `<button class="qv-b" aria-label="Quick view" onclick="quickView(${id})"><i class="fa-regular fa-eye"></i></button>` : ""}
+    <a href="product.html?id=${id}" class="pic"><img src="img/${x.i}" alt="${esc(x.n)}" loading="lazy">
+      ${st === "up" ? `<span class="lock"><i class="fa-solid fa-lock"></i><span>Unlocks at ${SLOTS[k].l}</span></span>` : st === "ended" ? `<span class="stamp">SOLD</span>` : ""}</a>
+    <span class="brand">${esc(x.b)}</span>
+    <h4><a href="product.html?id=${id}">${esc(x.n)}</a></h4>
+    <div class="pr"><b>${tk(fp)}</b><s>${tk(x.o)}</s></div>
+    <div class="extra">${st === "up" ? "Extra discount revealed at launch" : `Extra ${tk(x.p - fp)} off today's price`}</div>
+    <div class="sold">
+      <div class="bar"><i style="width:${st === "up" ? 0 : st === "ended" ? 100 : sold}%"></i></div>
+      <div class="row2"><span><b>${st === "up" ? 0 : st === "ended" ? 100 : sold}%</b> sold</span><span class="${st === "live" ? "left" : ""}">${st === "live" ? stockTxt : st === "up" ? "Limited stock" : "Deal ended"}</span></div>
+    </div>
+    <div class="go">${
+      st === "live" ? `<button class="btn primary" onclick="addCart(${id})"><i class="fa-solid fa-cart-plus"></i>Add to Cart</button>`
+      : st === "up" ? `<button class="btn ${n ? "primary notify on" : "dark notify"}" onclick="toggleNotify(${k},${id})"><i class="fa-${n ? "solid fa-check" : "regular fa-bell"}"></i>${n ? "Reminder set" : "Notify me"}</button>`
+      : `<a class="btn ghost" href="product.html?id=${id}" style="display:flex">View product</a>`}</div>
+  </article>`;
+}
+function renderGrid(){
+  renderSlots(); renderBar();
+  $("#fGrid").innerHTML = slotIds(cur).map(id => fcard(id, cur)).join("");
+}
+$("#slots").addEventListener("click", e => {
+  const b = e.target.closest(".slot"); if (!b) return;
+  cur = +b.dataset.k; renderGrid();
+});
+
+/* ---------- Countdown ---------- */
+let lastStates = SLOTS.map((_, k) => slotState(k)).join();
+function tick(){
+  const now = new Date(), s = Math.max(0, Math.floor((saleEnd(now) - now) / 1000));
+  $("#cdH").textContent = pad(Math.floor(s / 3600)); $("#cdM").textContent = pad(Math.floor(s % 3600 / 60)); $("#cdS").textContent = pad(s % 60);
+  const states = SLOTS.map((_, k) => slotState(k, now)).join();
+  if (states !== lastStates) { lastStates = states; cur = defaultSlot(); renderGrid(); }
+  const st = slotState(cur, now), [a, b] = slotRange(cur, now), t = $("#slotT");
+  if (t) t.textContent = hms(Math.max(0, Math.floor(((st === "up" ? a : b) - now) / 1000)));
+  const live = SLOTS.findIndex((_, k) => slotState(k, now) === "live");
+  $("#stLbl").textContent = live >= 0 ? `${SLOTS[live].l} slot live · sale ends in` : "Flash sale ends in";
+  $("#stT").textContent = hms(s);
+}
+renderGrid(); tick(); setInterval(tick, 1000);
+
+/* sticky mini countdown (mobile) once the hero scrolls away */
+if ("IntersectionObserver" in window) new IntersectionObserver(([e]) => $("#fsSticky").classList.toggle("show", !e.isIntersecting)).observe($("#fsHero"));
+else $("#fsSticky").classList.add("show");
+</script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact &amp; Store Locator | TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.ct-hero{position:relative;overflow:hidden;padding:40px 36px}
+.ct-hero::after{content:"\f3c5";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;right:40px;top:50%;transform:translateY(-50%);font-size:150px;color:rgba(255,255,255,.05)}
+.ct-hero small{color:var(--gold);font-weight:600;letter-spacing:2px;font-size:12px}
+.ct-hero h1{font-size:34px!important;margin-top:4px}
+.ct-hero .open{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:7px 14px;border-radius:30px;font-size:12.5px}
+.ct-hero .dot{width:8px;height:8px;border-radius:50%;background:#2DBE73;box-shadow:0 0 0 4px rgba(45,190,115,.25)}
+.ct-hero .dot.off{background:#F5A623;box-shadow:0 0 0 4px rgba(245,166,35,.25)}
+
+.ci-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px}
+.ci{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:.25s;display:flex;flex-direction:column;gap:6px}
+.ci:hover{transform:translateY(-4px);box-shadow:var(--shadow-h);border-color:transparent}
+.ci .ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:20px;background:linear-gradient(135deg,var(--soft-2),#E2E7F6);color:var(--ink);margin-bottom:8px;transition:.25s}
+.ci:hover .ic{background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff}
+.ci div>span{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:500}
+.ci b{font-size:15.5px;font-weight:600;line-height:1.4}
+.ci a.lnk{font-size:12.5px;color:var(--orange);font-weight:600;margin-top:auto;padding-top:8px;display:inline-flex;gap:6px;align-items:center}
+
+.loc{display:grid;grid-template-columns:380px 1fr;gap:18px}
+.branch{background:linear-gradient(150deg,var(--navy),var(--navy-3));color:#fff;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden}
+.branch::before{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(rgba(255,74,3,.45),transparent 65%)}
+.branch .top{display:flex;gap:14px;align-items:center;position:relative}
+.branch .top .ic{width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,var(--orange),var(--orange-2));display:grid;place-items:center;font-size:22px;flex:none}
+.branch h3{font-size:19px;font-weight:700}
+.branch .top small{color:var(--gold);font-size:11.5px;font-weight:600;letter-spacing:1px}
+.branch ul{list-style:none;display:grid;gap:12px;font-size:13px;color:#C9CEE6;position:relative}
+.branch li{display:flex;gap:12px}
+.branch li i{color:var(--orange-2);width:16px;margin-top:3px}
+.branch li b{color:#fff;font-weight:500}
+.hrs{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:12px 14px;display:grid;gap:6px;font-size:12.5px;position:relative}
+.hrs div{display:flex;justify-content:space-between;color:#C9CEE6}
+.hrs div.today{color:#fff;font-weight:600}
+.hrs .cl{color:#FF8A6A}
+.branch .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto;position:relative}
+.branch .btns a{height:44px;font-size:13px}
+.btn.glass{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff}
+.btn.glass:hover{background:rgba(255,255,255,.15)}
+.map{border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#E9EDF6;min-height:420px;position:relative;box-shadow:var(--shadow)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+.cf{display:grid;grid-template-columns:1.25fr 1fr;gap:18px;align-items:start}
+.cf .box{padding:28px}
+.cf .box h3{font-size:20px;margin-bottom:4px}
+.cf .sub{color:var(--muted);font-size:13px;margin-bottom:20px}
+.req-star{color:var(--orange)}
+.field .ico{position:relative}
+.field .ico i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#A0A6C2;font-size:13px;pointer-events:none}
+.field .ico input,.field .ico select{padding-left:38px}
+.cf-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.cf-foot small{color:var(--muted);font-size:12px}
+
+.faq{display:grid;gap:10px}
+.qa{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.2s}
+.qa.open{border-color:#FFD5C2;box-shadow:0 8px 20px rgba(255,74,3,.07)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;text-align:left;font-weight:600;font-size:13.5px;color:var(--text)}
+.qa button i{width:28px;height:28px;flex:none;border-radius:8px;background:var(--soft-2);display:grid;place-items:center;font-size:11px;color:var(--ink);transition:.3s}
+.qa.open button i{transform:rotate(45deg);background:var(--orange);color:#fff}
+.qa .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.qa.open .a{grid-template-rows:1fr}
+.qa .a>div{overflow:hidden}
+.qa .a p{padding:0 18px 16px;font-size:13px;color:var(--muted);line-height:1.7}
+.help{background:linear-gradient(135deg,var(--orange),#FF7A2E);color:#fff;border-radius:16px;padding:20px;display:flex;gap:14px;align-items:center;margin-top:14px}
+.help i{font-size:26px}
+.help b{display:block;font-size:15px}
+.help span{font-size:12.5px;opacity:.9}
+
+@media (max-width:1100px){.ci-grid{grid-template-columns:1fr 1fr}.loc{grid-template-columns:1fr}.cf{grid-template-columns:1fr}}
+@media (max-width:640px){
+  .ct-hero{padding:24px 20px}.ct-hero h1{font-size:24px!important}.ct-hero::after{font-size:90px;right:10px}
+  .ci-grid{grid-template-columns:1fr;gap:12px}
+  .ci{flex-direction:row;flex-wrap:wrap;align-items:center;gap:4px 14px;padding:16px}
+  .ci .ic{margin:0;flex:none}
+  .ci > div:not(.ic){flex:1;min-width:0}
+  .ci .lnk{width:100%;padding-top:4px}
+  .branch{padding:20px}
+  .map:not(.br-map .map){min-height:300px}
+  .cf .box{padding:18px}
+}
+/* branches */
+.br-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.bcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;transition:.25s}
+.bcard:hover{box-shadow:var(--shadow-h);border-color:transparent;transform:translateY(-3px)}
+.bc-top{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.bc-top .ic{width:46px;height:46px;flex:none;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff;font-size:18px}
+.bc-top h3{font-size:15.5px;font-weight:600;color:var(--ink)}
+.bst{font-size:11.5px;font-weight:600;color:#D33;display:inline-flex;align-items:center;gap:6px}
+.bst::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.bst.on{color:var(--green)}
+.bcard ul{list-style:none;display:grid;gap:9px;font-size:12.8px;color:var(--muted);flex:1}
+.bcard li{display:flex;gap:10px;line-height:1.6}
+.bcard li>i{color:var(--orange);width:14px;flex:none;margin-top:4px}
+.bcard li b{color:var(--text);font-weight:600}
+.bcard li a:hover{color:var(--orange)}
+.bcard .btns{display:flex;gap:8px;margin-top:16px}
+.bcard .btn{height:40px;padding:0 14px;font-size:13px;flex:1}
+.bcard .btn[data-map]{flex:none;width:40px;padding:0}
+.br-map{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:10px}
+.br-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.br-tabs button{padding:8px 14px;border-radius:10px;font-size:13px;font-weight:500;color:var(--muted);display:flex;gap:7px;align-items:center}
+.br-tabs button.on{background:var(--navy);color:#fff}
+.br-tabs button i{color:var(--orange)}
+.br-map .map{border-radius:12px;overflow:hidden;min-height:0;border:0;box-shadow:none}
+.br-map .map iframe{position:static}
+.br-map iframe{width:100%;height:380px;border:0;display:block}
+@media (max-width:1200px){ .br-grid{grid-template-columns:1fr 1fr} }
+@media (max-width:640px){ .br-grid{grid-template-columns:1fr} .br-map iframe{height:280px} }
+.hl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.hl-grid .hl-card{background:var(--card);border:1px solid var(--line)}
+.hl-grid .hl-card h6{color:var(--orange)}
+.hl-grid .hl-card p,.hl-grid .hl-card a{color:var(--text)}
+.hl-grid .hl-ic{background:var(--navy);color:#fff}
+@media (max-width:1100px){ .hl-grid{grid-template-columns:1fr 1fr} }
+@media (max-width:640px){ .hl-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body data-page="contact">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <nav class="crumb"><a href="index.html"><i class="fa-solid fa-house" style="font-size:11px"></i></a><i class="fa-solid fa-chevron-right"></i><span>Contact Us</span></nav>
+
+  <div class="page-hero ct-hero">
+    <small>WE'RE HERE TO HELP</small>
+    <h1>Contact &amp; Store Locator</h1>
+    <p>Questions about a product, an order or a custom PC build? Call us, drop by our showroom or send us a message.</p>
+    <span class="open"><span class="dot" id="openDot"></span><span id="openTxt">Checking store hours...</span></span>
+  </div>
+
+  <div class="ci-grid">
+    <div class="ci"><div class="ic"><i class="fa-solid fa-phone"></i></div><div><span>Call Us</span><b>01000000000</b></div><a class="lnk" href="tel:01000000000">Call now <i class="fa-solid fa-arrow-right"></i></a></div>
+    <div class="ci"><div class="ic"><i class="fa-solid fa-headset"></i></div><div><span>Hotline</span><b>01000-000001</b></div><a class="lnk" href="tel:01000000001">Call hotline <i class="fa-solid fa-arrow-right"></i></a></div>
+    <div class="ci"><div class="ic"><i class="fa-solid fa-location-dot"></i></div><div><span>4 Locations</span><b>Demo Tower &amp; Sample Plaza, Dhaka</b></div><a class="lnk" href="#map">View branches <i class="fa-solid fa-arrow-right"></i></a></div>
+    <div class="ci"><div class="ic"><i class="fa-regular fa-clock"></i></div><div><span>Business Hour</span><b>11:00 AM – 8:00 PM</b></div><span class="lnk" style="color:var(--muted);text-transform:none;letter-spacing:0">Weekend varies by branch</span></div>
+  </div>
+
+  <section>
+    <div class="shead"><div><h2>Department Hotlines</h2><p>Call the right team directly for faster help</p></div></div>
+    <div class="hl-grid" id="hlGrid"></div>
+  </section>
+
+  <section id="map">
+    <div class="shead"><div><h2>Our Branches</h2><p>Visit any of our outlets for hands-on demos, expert advice and service</p></div></div>
+    <div class="br-grid" id="brGrid"></div>
+    <div class="br-map">
+      <div class="br-tabs" id="brTabs"></div>
+      <div class="map"><iframe id="brFrame" src="https://maps.google.com/maps?q=Dhaka&output=embed" title="TechStore BD on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="cf">
+      <div class="box">
+        <h3>Send Us a Message</h3>
+        <p class="sub">Fill out the form and our team will get back to you within one business day.</p>
+        <form id="cform" novalidate>
+          <div class="two">
+            <div class="field"><label for="fName">Full Name <span class="req-star">*</span></label><div class="ico"><i class="fa-regular fa-user"></i><input id="fName" required placeholder="Your name"></div></div>
+            <div class="field"><label for="fPhone">Phone <span class="req-star">*</span></label><div class="ico"><i class="fa-solid fa-phone"></i><input id="fPhone" type="tel" required placeholder="01XXXXXXXXX" pattern="^(\+?88)?01[3-9]\d{8}$"></div></div>
+          </div>
+          <div class="two">
+            <div class="field"><label for="fEmail">Email</label><div class="ico"><i class="fa-regular fa-envelope"></i><input id="fEmail" type="email" placeholder="you@example.com"></div></div>
+            <div class="field"><label for="fSub">Subject <span class="req-star">*</span></label><div class="ico"><i class="fa-solid fa-tag"></i><select id="fSub" required>
+              <option value="">Select a subject</option><option>Product inquiry</option><option>Order &amp; delivery</option><option>Custom PC build</option><option>Warranty &amp; service</option><option>Corporate purchase</option><option>Other</option></select></div></div>
+          </div>
+          <div class="field"><label for="fMsg">Message <span class="req-star">*</span></label><textarea id="fMsg" required placeholder="How can we help you?" rows="5"></textarea></div>
+          <div class="cf-foot"><small><i class="fa-solid fa-lock"></i> We never share your details.</small><button class="btn primary"><i class="fa-regular fa-paper-plane"></i>Send Message</button></div>
+        </form>
+      </div>
+
+      <div>
+        <div class="shead" style="margin-bottom:14px"><div><h2>FAQ</h2></div></div>
+        <div class="faq" id="faq"></div>
+        <div class="help"><i class="fa-solid fa-headset"></i><div><b>Still have questions?</b><span>Call 01000000000, 11:00 AM – 8:00 PM</span></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+$("#hlGrid").innerHTML = HOTLINES.map(hotlineCard).join("");
+
+// open/closed status (Main Branch) + branch cards + map tabs
+(()=>{
+  const st = branchStatus(BRANCHES[0]);
+  $("#openDot").classList.toggle("off", !st.open);
+  $("#openTxt").textContent = "Main Branch: " + st.text;
+  $("#brGrid").innerHTML = BRANCHES.map((b, i) => {
+    const s2 = branchStatus(b), tel = b.rows[0][2].split(",")[0].replace(/D/g, "");
+    return `<div class="bcard">
+      <div class="bc-top"><div class="ic"><i class="fa-solid ${b.icon}"></i></div><div><h3>${b.name}</h3><span class="bst ${s2.open ? "on" : ""}">${s2.text}</span></div></div>
+      <ul>
+        <li><i class="fa-solid fa-location-dot"></i><span>${b.addr}</span></li>
+        <li><i class="fa-regular fa-clock"></i><span><b>Business Hour:</b> ${hr12(b.open)} to ${hr12(b.close)}</span></li>
+        ${b.rows.map(([ic, l, v]) => `<li><i class="${ic === "fa-whatsapp" ? "fa-brands" : "fa-solid"} ${ic}"></i><span><b>${l}:</b> ${ic === "fa-whatsapp" ? `<a href="https://wa.me/88${v.replace(/D/g, "")}" target="_blank" rel="noopener">${v}</a>` : telLinks(v)}</span></li>`).join("")}
+        <li><i class="fa-regular fa-calendar"></i><span><b>Weekend:</b> ${DAYS[b.off]}</span></li>
+      </ul>
+      <div class="btns">
+        <a class="btn primary" href="https://maps.google.com/?q=${encodeURIComponent(b.map)}" target="_blank" rel="noopener"><i class="fa-solid fa-diamond-turn-right"></i>Directions</a>
+        <a class="btn ghost" href="tel:${tel}"><i class="fa-solid fa-phone"></i>Call</a>
+        <button class="btn ghost" data-map="${i}" aria-label="Show on map"><i class="fa-solid fa-map-location-dot"></i></button>
+      </div>
+    </div>`;
+  }).join("");
+  const maps = [...new Set(BRANCHES.map(b => b.map))];
+  $("#brTabs").innerHTML = maps.map((m, i) => `<button class="${i ? "" : "on"}" data-m="${i}"><i class="fa-solid fa-location-dot"></i>${m.split(",")[0]}</button>`).join("");
+  const show = m => { $("#brFrame").src = "https://maps.google.com/maps?q=Dhaka" + encodeURIComponent(maps[m]) + "&output=embed"; $$("#brTabs button").forEach((b, j) => b.classList.toggle("on", j === m)); };
+  $("#brTabs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) show(+b.dataset.m); });
+  $("#brGrid").addEventListener("click", e => { const b = e.target.closest("[data-map]"); if (!b) return; show(maps.indexOf(BRANCHES[+b.dataset.map].map)); $(".br-map").scrollIntoView({behavior:"smooth", block:"center"}); });
+})();
+
+// form
+$("#cform").addEventListener("submit",e=>{
+  e.preventDefault();
+  const f=e.target, bad=[...f.querySelectorAll("input,select,textarea")].find(x=>!x.checkValidity());
+  if(bad){ bad.focus(); toast(bad.id==="fPhone"?"Please enter a valid phone number":bad.id==="fEmail"?"Please enter a valid email":"Please fill in all required fields"); return; }
+  toast(`Thanks ${$("#fName").value.trim().split(" ")[0]}! We'll contact you soon.`);
+  f.reset();
+});
+
+// FAQ
+const FAQ=[
+  ["Do you deliver outside Dhaka?","Yes. We deliver all over Bangladesh. Inside Dhaka delivery usually takes 24–48 hours, and outside Dhaka 2–5 working days depending on the courier."],
+  ["Are your products covered by official warranty?","All products we sell are 100% original and come with official brand or distributor warranty. Warranty length depends on the product and is shown on each product page."],
+  ["Do you offer EMI?","Yes, 0% EMI is available for up to 12 months on selected bank credit cards. Ask our team or choose EMI at checkout to see eligible banks."],
+  ["Can you assemble a custom PC for me?","Absolutely. Use our PC Builder to pick parts, or visit the Main showroom. Our technicians assemble, test and deliver your build ready to use."],
+  ["How do I claim warranty or service?","Bring the product with its invoice to our Main Branch during opening hours, or call 01000000000 to arrange support."],
+  ["What is your exchange policy?","Eligible products can be exchanged within 7 days of delivery if unused and in original packaging. Contact us before returning any item."]
+];
+$("#faq").innerHTML=FAQ.map(([q,a],i)=>`<div class="qa ${i===0?"open":""}"><button aria-expanded="${i===0}">${q}<i class="fa-solid fa-plus"></i></button><div class="a"><div><p>${a}</p></div></div></div>`).join("");
+$("#faq").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  const q=b.parentElement, open=!q.classList.contains("open");
+  $$("#faq .qa").forEach(x=>{x.classList.remove("open");x.querySelector("button").setAttribute("aria-expanded","false");});
+  if(open){ q.classList.add("open"); b.setAttribute("aria-expanded","true"); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tech Blog | TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* Post media: product shot on a tinted stage */
+.media{position:relative;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.95),#E9EDF8 70%)}
+.media img{width:72%;height:80%;object-fit:contain;mix-blend-mode:multiply;transition:transform .5s}
+.media.cover img{width:100%;height:100%;object-fit:cover;mix-blend-mode:normal}
+
+/* Featured */
+.bl-feat{display:grid;grid-template-columns:1.15fr 1fr;border-radius:22px;overflow:hidden;background:linear-gradient(120deg,var(--navy),var(--navy-3) 60%,#2A1A3E);color:#fff;margin-top:14px;box-shadow:var(--shadow)}
+.bl-feat .media{min-height:340px;background:radial-gradient(circle at 50% 50%,#fff 0,#DCE2F3 75%)}
+.bl-feat:hover .media img{transform:scale(1.05)}
+.bl-feat .txt{padding:36px;display:flex;flex-direction:column;justify-content:center;gap:14px;position:relative}
+.bl-feat .txt::after{content:"";position:absolute;right:-90px;top:-90px;width:280px;height:280px;border-radius:50%;background:radial-gradient(rgba(255,74,3,.4),transparent 65%);pointer-events:none}
+.bl-feat .kick{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:12px;color:#B4BAD8}
+.bl-feat .kick .lab{background:var(--gold);color:var(--ink);font-weight:700;padding:4px 10px;border-radius:8px;font-size:11px;letter-spacing:.5px}
+.bl-feat h1{font-size:30px;line-height:1.2;font-weight:700;letter-spacing:-.4px}
+.bl-feat h1 a:hover{color:var(--orange-2)}
+.bl-feat p{color:#B4BAD8;font-size:14px}
+.bl-feat .btn{align-self:flex-start;position:relative;z-index:1}
+
+/* Chips */
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:30px;background:var(--card);border:1px solid var(--line);font-size:13px;font-weight:500;color:var(--text);transition:.2s;white-space:nowrap}
+.chip i{color:var(--orange)}
+.chip:hover{border-color:var(--orange)}
+.chip.on{background:var(--navy);border-color:var(--ink);color:#fff}
+.chip.on i{color:var(--gold)}
+
+/* Layout */
+.bl-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;margin-top:22px;align-items:start}
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.post{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+.post:hover{box-shadow:var(--shadow-h);transform:translateY(-4px);border-color:transparent}
+.post:hover .media img{transform:scale(1.07)}
+.post .media{aspect-ratio:16/10}
+.post .media .cat{position:absolute;top:12px;left:12px}
+.post .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.meta{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--muted)}
+.meta i{color:var(--orange);margin-right:4px}
+.post h3{font-size:15px;font-weight:600;line-height:1.4}
+.post h3 a:hover{color:var(--orange)}
+.post p{font-size:12.5px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.post .more{margin-top:auto;font-size:12.5px;font-weight:600;color:var(--orange);display:inline-flex;gap:6px;align-items:center;padding-top:4px}
+.cat.pill{background:var(--navy);color:var(--gold)}
+
+/* Pagination */
+.pager{display:flex;justify-content:center;gap:6px;margin-top:26px;flex-wrap:wrap}
+.pager button{min-width:40px;height:40px;padding:0 10px;border-radius:10px;background:var(--card);border:1px solid var(--line);font-weight:600;color:var(--ink);transition:.2s}
+.pager button:hover:not(:disabled){border-color:var(--orange);color:var(--orange)}
+.pager button.on{background:var(--orange);border-color:var(--orange);color:#fff}
+.pager button:disabled{opacity:.4;cursor:default}
+
+/* Sidebar */
+.side{display:grid;gap:18px;position:sticky;top:150px}
+.sbox{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.sbox h4{font-size:15px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.sbox h4::before{content:"";width:4px;height:18px;border-radius:2px;background:var(--orange)}
+.ssearch{display:flex;border:1px solid var(--line);border-radius:11px;overflow:hidden;height:44px;background:var(--soft)}
+.ssearch:focus-within{border-color:var(--orange)}
+.ssearch input{flex:1;border:0;outline:0;background:none;padding:0 12px;font-family:inherit;min-width:0}
+.ssearch button{width:46px;background:var(--navy);color:#fff}
+.pop{display:grid;gap:14px}
+.pop a{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center}
+.pop .media{width:64px;height:64px;border-radius:12px}
+.pop .media img{width:80%}
+.pop b{font-size:12.5px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pop a:hover b{color:var(--orange)}
+.pop span{font-size:11px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags button{font-size:12px;padding:5px 12px;border-radius:20px;background:var(--soft-2);color:var(--text);transition:.2s}
+.tags button:hover{background:var(--orange);color:#fff}
+.nl{background:radial-gradient(circle at 100% 0%,rgba(255,74,3,.45),transparent 50%),linear-gradient(135deg,var(--navy),var(--navy-3));color:#fff;border:0}
+.nl h4{color:#fff}
+.nl p{font-size:12.5px;color:#B4BAD8;margin-bottom:14px}
+.nl input{width:100%;height:44px;border-radius:11px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;padding:0 14px;font-family:inherit;outline:0;margin-bottom:10px}
+.nl input::placeholder{color:#9CA3C7}
+
+@media (max-width:1200px){.posts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:992px){
+  .bl-feat{grid-template-columns:1fr}
+  .bl-feat .media{min-height:240px}
+  .bl-layout{grid-template-columns:1fr}
+  .side{position:static;grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .bl-feat .txt{padding:22px 18px}
+  .bl-feat h1{font-size:21px}
+  .bl-feat .media{min-height:200px}
+  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+  .chips::-webkit-scrollbar{display:none}
+  .posts{grid-template-columns:1fr}
+  .side{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body data-page="blog">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <nav class="crumb"><a href="index.html"><i class="fa-solid fa-house" style="font-size:11px"></i></a><i class="fa-solid fa-chevron-right"></i><span>Blog</span></nav>
+
+  <article class="bl-feat" id="feat"></article>
+
+  <section>
+    <div class="shead"><div><h2>Latest from the Blog</h2><p>Buying guides, reviews and PC building tips from our team</p></div></div>
+    <div class="chips" id="chips"></div>
+
+    <div class="bl-layout">
+      <div>
+        <div class="posts" id="posts"></div>
+        <div id="emptyPosts"></div>
+        <div class="pager" id="pager"></div>
+      </div>
+      <aside class="side">
+        <div class="sbox">
+          <h4>Search</h4>
+          <form class="ssearch" id="sform"><input id="sq" type="search" placeholder="Search articles..." aria-label="Search articles"><button aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button></form>
+        </div>
+        <div class="sbox"><h4>Popular Posts</h4><div class="pop" id="pop"></div></div>
+        <div class="sbox"><h4>Tags</h4><div class="tags" id="tags"></div></div>
+        <div class="sbox nl">
+          <h4>Newsletter</h4>
+          <p>Get new buying guides and exclusive deals in your inbox every week.</p>
+          <form onsubmit="toast('Subscribed! Thank you.');this.reset();return false"><input type="email" required placeholder="Your email address" aria-label="Email"><button class="btn primary block">Subscribe</button></form>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+/* POSTS-START (keep identical in blog.html and blog-post.html) */
+const POSTS = [
+  {id:1,slug:"best-gaming-laptops-130k",cat:"Buying Guide",t:"Best Gaming Laptops Under ৳1,30,000 in 2026",x:"From the ASUS TUF A15 to the HP Victus 15, we compare performance, thermals, display and value to find the best gaming laptop for your budget.",img:"p16.png",d:"2026-10-14",r:8,v:4820,tags:["Laptop","Gaming","ASUS","HP"],pr:[16,17,15,18]},
+  {id:2,slug:"choose-portable-monitor",cat:"Buying Guide",t:"How to Choose a Portable Monitor: Size, Panel, Ports and Power",x:"Portable monitors are the easiest productivity upgrade for laptops. Here is what actually matters before you buy one.",img:"p20.webp",d:"2026-10-09",r:6,v:2610,tags:["Monitor","Productivity","Arzopa"],pr:[20,3,10]},
+  {id:3,slug:"ryzen-7500f-vs-i5-14600k",cat:"PC Build",t:"Ryzen 5 7500F vs Intel i5-14600K for a Budget Gaming PC",x:"Two very different CPUs at two very different prices. We look at gaming FPS, platform cost and upgrade path to pick the smarter buy.",img:"p11.jpeg",d:"2026-10-02",r:9,v:5390,tags:["Processor","AMD","Intel","PC Build"],pr:[11,13,14,12]},
+  {id:4,slug:"rapid-trigger-keyboards",cat:"Reviews",t:"Rapid Trigger Keyboards Explained: MageGee Captain87 Review",x:"Magnetic Hall-effect switches went from esports niche to budget mainstream. Is the MageGee Captain87 worth it?",img:"p6.png",d:"2026-09-27",r:5,v:1980,tags:["Keyboard","Gaming","MageGee"],pr:[6,7,9]},
+  {id:5,slug:"budget-home-cinema-projector",cat:"Tips",t:"Build a Budget Home Cinema with a Portable Projector",x:"Screen size, throw distance, ANSI lumens and sound: a simple checklist for a movie-night setup in a Dhaka apartment.",img:"p1.png",d:"2026-09-20",r:5,v:2240,tags:["Projector","Home Cinema","Wanbo"],pr:[1,2]},
+  {id:6,slug:"xiaomi-g34wq-2026-review",cat:"Reviews",t:"Xiaomi REDMI G34WQ 2026 Review: 180Hz Ultrawide on a Budget",x:"A 34-inch curved UWQHD panel with 180Hz for under ৳40,000. We tested it for gaming, office work and movies.",img:"p3.png",d:"2026-09-12",r:6,v:3150,tags:["Monitor","Ultrawide","Xiaomi"],pr:[3,4,10]},
+  {id:7,slug:"rtx-5060-arrives",cat:"News",t:"RTX 5060 Gaming PCs Now in Stock at TechStore",x:"Pre-built Ryzen 5 7500F + RTX 5060 systems are now available with official warranty and free assembly.",img:"p13.jpeg",d:"2026-09-05",r:3,v:1740,tags:["Graphics Card","NVIDIA","PC Build"],pr:[11,13]},
+  {id:8,slug:"sim-racing-starter-setup",cat:"Gaming",t:"Sim Racing Starter Setup with the Logitech G923",x:"Wheel, pedals, mount and monitor: how to get into sim racing without overspending, and which games to start with.",img:"p5.png",d:"2026-08-29",r:5,v:2075,tags:["Gaming","Logitech","Racing"],pr:[5,4,3]},
+  {id:9,slug:"wireless-gaming-mouse-tips",cat:"Tips",t:"5 Settings to Change on Your New Wireless Gaming Mouse",x:"Polling rate, DPI, lift-off distance and more: quick tweaks that make a budget wireless mouse feel premium.",img:"p8.png",d:"2026-08-21",r:4,v:1530,tags:["Mouse","Gaming","Furycube"],pr:[8,9]}
+];
+/* POSTS-END */
+const BLOG_CATS = [["All","fa-grip"],["Buying Guide","fa-cart-shopping"],["Reviews","fa-star"],["Gaming","fa-gamepad"],["PC Build","fa-screwdriver-wrench"],["Tips","fa-lightbulb"],["News","fa-newspaper"]];
+const fmtDate = d => new Date(d + "T00:00:00").toLocaleDateString("en-GB", {day:"numeric", month:"short", year:"numeric"});
+const media = (p, cls = "") => `<div class="media ${cls}"><img src="img/${p.img}" alt="${esc(p.t)}" loading="lazy"></div>`;
+const link = p => `blog-post.html?id=${p.id}`;
+
+// Featured = newest
+const F = POSTS[0];
+$("#feat").innerHTML = `
+  <a href="${link(F)}" class="media"><img src="img/${F.img}" alt="${esc(F.t)}"></a>
+  <div class="txt">
+    <div class="kick"><span class="lab"><i class="fa-solid fa-star"></i> FEATURED</span><span>${F.cat}</span><span><i class="fa-regular fa-calendar"></i> ${fmtDate(F.d)}</span><span><i class="fa-regular fa-clock"></i> ${F.r} min read</span></div>
+    <h1><a href="${link(F)}">${esc(F.t)}</a></h1>
+    <p>${esc(F.x)}</p>
+    <a href="${link(F)}" class="btn primary">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+  </div>`;
+
+let cat = qp("cat") || "All", q = "", page = 1;
+const PER = 6;
+$("#chips").innerHTML = BLOG_CATS.map(([c, ic]) => `<button class="chip ${c === cat ? "on" : ""}" data-c="${c}"><i class="fa-solid ${ic}"></i>${c}</button>`).join("");
+$("#chips").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  cat = b.dataset.c; page = 1; $$("#chips .chip").forEach(x => x.classList.toggle("on", x === b)); render();
+});
+$("#sform").addEventListener("submit", e => { e.preventDefault(); q = $("#sq").value.trim().toLowerCase(); page = 1; render(); });
+$("#sq").addEventListener("input", e => { if (!e.target.value) { q = ""; page = 1; render(); } });
+
+function render(){
+  const list = POSTS.filter(p => (cat === "All" || p.cat === cat) &&
+    (!q || (p.t + " " + p.x + " " + p.tags.join(" ")).toLowerCase().includes(q)));
+  const pages = Math.max(1, Math.ceil(list.length / PER));
+  page = Math.min(page, pages);
+  $("#posts").innerHTML = list.slice((page - 1) * PER, page * PER).map(p => `
+    <article class="post">
+      <a href="${link(p)}" style="display:block">${media(p)}</a>
+      <div class="body">
+        <div><span class="pill cat">${p.cat}</span></div>
+        <div class="meta"><span><i class="fa-regular fa-calendar"></i>${fmtDate(p.d)}</span><span><i class="fa-regular fa-clock"></i>${p.r} min read</span></div>
+        <h3><a href="${link(p)}">${esc(p.t)}</a></h3>
+        <p>${esc(p.x)}</p>
+        <a href="${link(p)}" class="more">Read more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </article>`).join("");
+  $("#emptyPosts").innerHTML = list.length ? "" : `<div class="empty box"><i class="fa-regular fa-newspaper"></i><h3>No articles found</h3><p>Try another category or search term.</p></div>`;
+  $("#pager").innerHTML = list.length <= PER ? "" :
+    `<button data-p="${page - 1}" ${page === 1 ? "disabled" : ""} aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>` +
+    Array.from({length: pages}, (_, i) => `<button data-p="${i + 1}" class="${i + 1 === page ? "on" : ""}">${i + 1}</button>`).join("") +
+    `<button data-p="${page + 1}" ${page === pages ? "disabled" : ""} aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>`;
+}
+$("#pager").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b || b.disabled) return;
+  page = +b.dataset.p; render(); $("#chips").scrollIntoView({behavior: "smooth", block: "start"});
+});
+render();
+
+$("#pop").innerHTML = [...POSTS].sort((a, b) => b.v - a.v).slice(0, 4).map(p => `
+  <a href="${link(p)}">${media(p)}<div><b>${esc(p.t)}</b><span><i class="fa-regular fa-eye"></i> ${p.v.toLocaleString("en-IN")} views</span></div></a>`).join("");
+const allTags = [...new Set(POSTS.flatMap(p => p.tags))];
+$("#tags").innerHTML = allTags.map(t => `<button data-t="${esc(t)}">#${esc(t)}</button>`).join("");
+$("#tags").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  $("#sq").value = b.dataset.t; q = b.dataset.t.toLowerCase(); cat = "All"; page = 1;
+  $$("#chips .chip").forEach(x => x.classList.toggle("on", x.dataset.c === "All")); render();
+  $("#chips").scrollIntoView({behavior: "smooth", block: "start"});
+});
+</script>
+</body>
+</html>

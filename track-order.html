@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Track Order | TechStore BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.t-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center;padding:40px 44px;position:relative;overflow:hidden}
+.t-hero small{color:var(--gold);font-weight:600;letter-spacing:2px;font-size:12px}
+.t-hero h1{font-size:34px;line-height:1.15;margin:8px 0 10px;font-weight:800}
+.t-hero h1 em{font-style:normal;color:var(--orange-2)}
+.t-form{margin-top:22px;background:var(--card);border-radius:16px;padding:8px;display:grid;grid-template-columns:1fr 1fr auto;gap:8px;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.t-form .iw{position:relative}
+.t-form .iw i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#A0A6C2}
+.t-form input{width:100%;height:50px;border:1px solid transparent;border-radius:11px;background:var(--bg);padding:0 14px 0 40px;font-family:inherit;font-size:14px;outline:0;transition:.2s;color:var(--text)}
+.t-form input:focus{border-color:var(--orange);background:var(--card)}
+.t-form .btn{height:50px}
+.t-hint{font-size:12px;color:#9CA3C7;margin-top:12px}
+.t-hint button{color:var(--gold);font-weight:600;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+/* illustration */
+.ill{position:relative;height:250px}
+.ill .road{position:absolute;left:0;right:0;bottom:30px;height:4px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.35) 0 22px,transparent 22px 40px);border-radius:2px;animation:road 1s linear infinite}
+@keyframes road{to{background-position:-40px 0}}
+.ill .truck{position:absolute;left:50%;bottom:36px;transform:translateX(-50%);font-size:92px;color:#fff;filter:drop-shadow(0 14px 22px rgba(0,0,0,.4));animation:bump .6s ease-in-out infinite alternate}
+.ill .truck::after{content:"";position:absolute}
+@keyframes bump{to{transform:translate(-50%,-3px)}}
+.ill .box1,.ill .box2,.ill .pin{position:absolute;display:grid;place-items:center;border-radius:16px}
+.ill .box1{left:6%;top:16px;width:70px;height:70px;background:linear-gradient(135deg,var(--orange),var(--orange-2));font-size:28px;color:#fff;box-shadow:0 14px 30px rgba(255,74,3,.4);animation:float 3s ease-in-out infinite}
+.ill .box2{right:8%;top:0;width:60px;height:60px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(6px);font-size:22px;color:var(--gold);animation:float 3.6s .4s ease-in-out infinite}
+.ill .pin{right:20%;bottom:120px;width:46px;height:46px;background:var(--card);color:var(--orange);font-size:20px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.ill .pin i{transform:rotate(45deg)}
+.ill .glow{position:absolute;left:50%;top:50%;width:260px;height:260px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(rgba(255,74,3,.35),transparent 65%)}
+.ill .chip{position:absolute;left:0;bottom:90px;background:var(--card);color:var(--text);border-radius:12px;padding:8px 12px;font-size:11.5px;display:flex;gap:8px;align-items:center;box-shadow:0 10px 24px rgba(0,0,0,.25);animation:float 4s .8s ease-in-out infinite}
+.ill .chip i{color:var(--green)}
+@keyframes float{50%{transform:translateY(-10px)}}
+/* how it works */
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.how div{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:flex;gap:12px;align-items:center}
+.how i{width:42px;height:42px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--orange-soft);color:var(--orange);font-size:17px}
+.how b{display:block;font-size:13px;font-weight:600}
+.how span{font-size:11.5px;color:var(--muted)}
+/* result */
+#result{scroll-margin-top:150px}
+.r-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.r-head h3{margin:0;font-size:20px}
+.r-head p{font-size:12.5px;color:var(--muted)}
+.r-head .eta{background:var(--orange-soft);border-radius:12px;padding:10px 16px;display:flex;gap:12px;align-items:center}
+.r-head .eta i{font-size:20px;color:var(--orange)}
+.r-head .eta span{font-size:11.5px;color:var(--muted);display:block}
+.r-head .eta b{font-size:14px}
+.tl{display:grid;grid-template-columns:repeat(5,1fr);position:relative;margin:10px 0 6px}
+.tl::before,.tl .fillbar{content:"";position:absolute;top:24px;left:10%;height:4px;border-radius:2px;background:var(--line)}
+.tl::before{right:10%}
+.tl .fillbar{background:linear-gradient(90deg,var(--green),#2DBE6C);width:0;transition:width 1.2s cubic-bezier(.65,0,.35,1)}
+.ts{text-align:center;position:relative;z-index:1;padding:0 4px}
+.ts .dot{width:52px;height:52px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:2px solid var(--line);color:#B4BAD0;font-size:18px;transition:.4s}
+.ts b{display:block;font-size:13px;font-weight:600;color:var(--muted)}
+.ts span{font-size:11.5px;color:#9AA0BC}
+.ts.done .dot{background:var(--green);border-color:var(--green);color:#fff}
+.ts.done b{color:var(--text)}
+.ts.cur .dot{background:linear-gradient(135deg,var(--orange),var(--orange-2));border-color:transparent;color:#fff;box-shadow:0 0 0 7px rgba(255,74,3,.15);animation:ring 1.8s ease-out infinite}
+.ts.cur b{color:var(--orange)}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(255,74,3,.4)}100%{box-shadow:0 0 0 14px rgba(255,74,3,0)}}
+.r-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-top:18px}
+.oi{display:flex;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.oi:last-of-type{border-bottom:0}
+.oi .im{width:62px;height:62px;flex:none;border-radius:12px;background:var(--soft);border:1px solid var(--line);display:grid;place-items:center}
+.oi .im img{width:82%;height:82%;object-fit:contain;mix-blend-mode:multiply}
+.oi .tx{flex:1;min-width:0}
+.oi .tx a{font-size:13.5px;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.oi .tx a:hover{color:var(--orange)}
+.oi .tx span{font-size:12px;color:var(--muted)}
+.oi > b{font-weight:600;white-space:nowrap}
+.addr{display:grid;gap:14px}
+.addr div{display:flex;gap:12px;align-items:flex-start}
+.addr i{width:36px;height:36px;flex:none;border-radius:10px;display:grid;place-items:center;background:var(--soft-2);color:var(--ink);font-size:14px}
+.addr span{font-size:11.5px;color:var(--muted);display:block}
+.addr b{font-size:13.5px;font-weight:500;overflow-wrap:anywhere}
+.help{margin-top:18px;background:linear-gradient(135deg,var(--navy),var(--navy-3));color:#fff;border-radius:var(--radius);padding:18px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.help p{font-size:12.5px;color:#B4BAD8}
+.help .btn{height:40px;font-size:13px}
+.log{margin-top:6px;border-left:2px dashed var(--line);padding-left:18px;display:grid;gap:14px}
+.log div{position:relative;font-size:13px}
+.log div::before{content:"";position:absolute;left:-24px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px #E6F6EE}
+.log div:first-child::before{background:var(--orange);box-shadow:0 0 0 3px var(--orange-soft)}
+.log span{display:block;font-size:11.5px;color:var(--muted)}
+.notfound{margin-top:22px}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@media (max-width:992px){
+  .t-hero{grid-template-columns:1fr;padding:30px 24px}
+  .ill{display:none}
+  .how{grid-template-columns:1fr 1fr}
+  .r-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .t-hero h1{font-size:26px}
+  .t-form{grid-template-columns:1fr}
+  .how{grid-template-columns:1fr}
+  .tl{grid-template-columns:1fr;gap:0;margin-left:4px}
+  .tl::before,.tl .fillbar{display:none}
+  .ts{display:grid;grid-template-columns:44px 1fr;gap:0 14px;text-align:left;padding:0 0 18px;position:relative}
+  .ts::after{content:"";position:absolute;left:21px;top:44px;bottom:0;width:3px;background:var(--line)}
+  .ts.done::after{background:var(--green)}
+  .ts:last-child::after{display:none}
+  .ts .dot{width:44px;height:44px;margin:0;grid-row:span 2;font-size:15px}
+  .ts b{align-self:end}
+  .r-head .eta{width:100%}
+}
+</style>
+</head>
+<body data-page="track">
+<div id="site-header"></div>
+
+<main class="wrap">
+  <nav class="crumb"><a href="index.html"><i class="fa-solid fa-house" style="font-size:12px;opacity:1"></i></a><i class="fa-solid fa-chevron-right"></i><span>Track Order</span></nav>
+
+  <div class="page-hero t-hero">
+    <div style="position:relative;z-index:1">
+      <small>ORDER TRACKING</small>
+      <h1>Where's my <em>order?</em></h1>
+      <p>Enter your order ID and the phone number used at checkout to see real-time status of your delivery.</p>
+      <form class="t-form" id="tForm" novalidate>
+        <div class="iw"><i class="fa-solid fa-hashtag"></i><input name="oid" placeholder="Order ID e.g. TSD-102938" aria-label="Order ID" autocomplete="off"></div>
+        <div class="iw"><i class="fa-solid fa-phone"></i><input name="phone" type="tel" placeholder="Phone number" aria-label="Phone number"></div>
+        <button class="btn primary"><i class="fa-solid fa-magnifying-glass-location"></i>Track</button>
+      </form>
+      <p class="t-hint">Don't have an order yet? <button type="button" id="demoBtn">Try demo order TSD-102938</button></p>
+    </div>
+    <div class="ill" aria-hidden="true">
+      <div class="glow"></div>
+      <div class="box1"><i class="fa-solid fa-box"></i></div>
+      <div class="box2"><i class="fa-solid fa-laptop"></i></div>
+      <div class="pin"><i class="fa-solid fa-location-dot"></i></div>
+      <div class="chip"><i class="fa-solid fa-circle-check"></i><b>Out for delivery</b></div>
+      <i class="fa-solid fa-truck-fast truck"></i>
+      <div class="road"></div>
+    </div>
+  </div>
+
+  <div class="how" id="how">
+    <div><i class="fa-solid fa-receipt"></i><p><b>Find your order ID</b><span>In your SMS / email confirmation</span></p></div>
+    <div><i class="fa-solid fa-mobile-screen"></i><p><b>Use your phone</b><span>The number used at checkout</span></p></div>
+    <div><i class="fa-solid fa-route"></i><p><b>Live status</b><span>From confirmation to doorstep</span></p></div>
+    <div><i class="fa-solid fa-headset"></i><p><b>Need help?</b><span>Call 01000000000</span></p></div>
+  </div>
+
+  <div id="result"></div>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/app.js"></script>
+<script>
+const STEPS = [
+  ["Order Placed", "fa-receipt"], ["Confirmed", "fa-clipboard-check"], ["Processing", "fa-box-open"], ["Shipped", "fa-truck-fast"], ["Delivered", "fa-house-circle-check"]
+];
+const DEL = {inside: ["Inside Dhaka", 2], outside: ["Outside Dhaka", 5], pickup: ["Store Pickup", 0]};
+const PAY = {cod: "Cash on Delivery", bkash: "bKash", nagad: "Nagad", card: "Card / Online", emi: "0% EMI"};
+
+function demoOrder(){
+  const d = new Date(); d.setDate(d.getDate() - 2); d.setHours(11, 24, 0, 0);
+  return {id: "TSD-102938", date: d.toISOString(), status: "Shipped", delivery: "inside", deliveryFee: 60, payment: "bkash", discount: 0,
+    items: [16, 8, 6].map((id, k) => ({id, n: P[id].n, i: P[id].i, p: P[id].p, q: k === 1 ? 2 : 1})),
+    customer: {name: "Rahim Uddin", phone: "01712345678", email: "rahim@example.com", address: "House 12, Road 7, Block C", area: "Dhanmondi", district: "Dhaka"}};
+}
+const norm = s => s.replace(/[\s-]/g, "").replace(/^\+?88/, "");
+const fmt = (d, t) => d.toLocaleDateString("en-GB", {day: "numeric", month: "short", year: "numeric"}) + (t ? ", " + d.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit"}) : "");
+
+function find(id, phone){
+  id = id.trim().toUpperCase();
+  if (id && !id.startsWith("TSD-") && /^\d{6}$/.test(id)) id = "TSD-" + id;
+  if (id === "TSD-102938") return demoOrder();
+  const o = store.get("orders", []).find(x => x.id === id);
+  if (!o) return null;
+  if (phone && o.customer?.phone && norm(phone) !== norm(o.customer.phone)) return false;
+  return o;
+}
+
+function render(o){
+  const r = $("#result");
+  const cur = Math.max(0, STEPS.findIndex(s => s[0] === o.status));
+  const placed = new Date(o.date);
+  const at = k => { const d = new Date(placed); d.setHours(d.getHours() + [0, 3, 20, 30, 48][k]); return d; };
+  const [dname, days] = DEL[o.delivery] || DEL.inside;
+  const eta = new Date(placed); eta.setDate(eta.getDate() + days);
+  const sub = o.items.reduce((s, i) => s + i.p * i.q, 0);
+  const total = o.total ?? sub - (o.discount || 0) + (o.deliveryFee || 0);
+  const c = o.customer || {};
+  const pillCls = cur === 4 ? "ok" : cur >= 3 ? "info" : "warn";
+  r.innerHTML = `<section>
+    <div class="box">
+      <div class="r-head">
+        <div><h3>Order ${esc(o.id)} <span class="pill ${pillCls}" style="vertical-align:middle;margin-left:6px"><i class="fa-solid fa-circle" style="font-size:7px"></i>${esc(o.status)}</span></h3><p>Placed on ${fmt(placed, true)} · ${o.items.reduce((s, i) => s + i.q, 0)} item(s) · ${PAY[o.payment] || "Cash on Delivery"}</p></div>
+        <div class="eta"><i class="fa-regular fa-calendar-check"></i><div><span>${cur === 4 ? "Delivered on" : "Estimated " + (o.delivery === "pickup" ? "pickup" : "delivery")}</span><b>${fmt(eta)}</b></div></div>
+      </div>
+      <div class="tl"><div class="fillbar" id="fillbar"></div>
+        ${STEPS.map(([n, ic], k) => `<div class="ts ${k < cur ? "done" : k === cur ? (cur === 4 ? "done" : "cur") : ""}"><div class="dot"><i class="fa-solid ${k < cur || cur === 4 ? "fa-check" : ic}"></i></div><b>${n}</b><span>${k <= cur ? fmt(at(k), true) : "Pending"}</span></div>`).join("")}
+      </div>
+    </div>
+    <div class="r-grid">
+      <div class="box">
+        <h3>Items in this order</h3>
+        ${o.items.map(i => `<div class="oi"><a href="product.html?id=${i.id}" class="im"><img src="img/${i.i}" alt=""></a><div class="tx"><a href="product.html?id=${i.id}">${esc(i.n)}</a><span>${tk(i.p)} × ${i.q}</span></div><b>${tk(i.p * i.q)}</b></div>`).join("")}
+        <div class="summary" style="margin-top:10px;border-top:1px solid var(--line);padding-top:8px">
+          <div class="line"><span>Subtotal</span><b>${tk(sub)}</b></div>
+          ${o.discount ? `<div class="line"><span>Discount</span><b style="color:var(--green)">− ${tk(o.discount)}</b></div>` : ""}
+          <div class="line"><span>Delivery (${dname})</span><b>${o.deliveryFee ? tk(o.deliveryFee) : "Free"}</b></div>
+          <div class="line total"><span>Total</span><b>${tk(total)}</b></div>
+        </div>
+      </div>
+      <div>
+        <div class="box">
+          <h3>Shipping Details</h3>
+          <div class="addr">
+            <div><i class="fa-regular fa-user"></i><p><span>Recipient</span><b>${esc(c.name || "-")}</b></p></div>
+            <div><i class="fa-solid fa-phone"></i><p><span>Phone</span><b>${esc(c.phone || "-")}</b></p></div>
+            <div><i class="fa-solid fa-location-dot"></i><p><span>${o.delivery === "pickup" ? "Pickup from" : "Address"}</span><b>${o.delivery === "pickup" ? "TechStore BD, Dhaka-1205" : esc([c.address, c.area, c.district].filter(Boolean).join(", "))}</b></p></div>
+            <div><i class="fa-solid fa-truck"></i><p><span>Delivery method</span><b>${dname}</b></p></div>
+          </div>
+        </div>
+        <div class="box" style="margin-top:18px">
+          <h3>Activity</h3>
+          <div class="log">${STEPS.slice(0, cur + 1).map(([n], k) => `<div><b>${n}</b>${["", " – order verified by our team", " – packed at warehouse", " – handed to courier", " – received by customer"][k]}<span>${fmt(at(k), true)}</span></div>`).reverse().join("")}</div>
+        </div>
+        <div class="help"><div><b>Questions about this order?</b><p>Our support team is here 11 AM – 8 PM</p></div><a href="contact.html" class="btn primary"><i class="fa-solid fa-headset"></i>Contact</a></div>
+      </div>
+    </div>
+  </section>`;
+  requestAnimationFrame(() => setTimeout(() => { const f = $("#fillbar"); if (f) f.style.width = (80 * cur / 4) + "%"; }, 60));
+  r.scrollIntoView({behavior: "smooth", block: "start"});
+}
+
+function notFound(msg){
+  $("#result").innerHTML = `<section><div class="box empty notfound"><i class="fa-solid fa-box-open"></i><h3>${msg[0]}</h3><p>${msg[1]}</p></div></section>`;
+  const f = $("#tForm"); f.classList.remove("shake"); void f.offsetWidth; f.classList.add("shake");
+  $("#result").scrollIntoView({behavior: "smooth", block: "start"});
+}
+
+function track(id, phone){
+  if (!id.trim()) { toast("Please enter your order ID"); $("#tForm").elements.oid.focus(); return; }
+  const o = find(id, phone);
+  if (o) render(o);
+  else if (o === false) notFound(["Phone number doesn't match", "The phone number doesn't match our records for this order. Please use the number you provided at checkout."]);
+  else notFound(["Order not found", `We couldn't find an order with ID “${esc(id)}”. Please check the ID and try again.`]);
+}
+
+$("#tForm").addEventListener("submit", e => {
+  e.preventDefault(); const el = e.target.elements;
+  track(el.oid.value, el.phone.value);
+});
+$("#demoBtn").addEventListener("click", () => {
+  const el = $("#tForm").elements; el.oid.value = "TSD-102938"; el.phone.value = "01712345678"; track("TSD-102938", "");
+});
+
+const pid = qp("id");
+if (pid){ const el = $("#tForm").elements; el.oid.value = pid; el.phone.value = qp("phone") || ""; track(pid, qp("phone") || ""); }
+</script>
+</body>
+</html>
