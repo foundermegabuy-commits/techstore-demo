@@ -389,6 +389,19 @@
   .al-ch{flex-direction:column}
 }
 </style>
+<style>
+/* mobile: compact action links + perks */
+@media (max-width:640px){
+  .secondary{display:grid!important;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+  .secondary a{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:10px 4px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:11px;line-height:1.25;font-weight:500;color:var(--text);white-space:normal;margin:0!important}
+  .secondary a i{font-size:15px;color:var(--orange);margin:0!important}
+  .perks{grid-template-columns:1fr 1fr!important;gap:8px;margin-top:16px}
+  .perks div{flex-direction:column;align-items:flex-start;gap:8px;padding:12px}
+  .perks i{width:32px;height:32px;border-radius:9px;font-size:13px}
+  .perks b{font-size:12.5px}
+  .perks span{font-size:11px}
+}
+</style>
 </head>
 <body>
 <div id="site-header"></div>

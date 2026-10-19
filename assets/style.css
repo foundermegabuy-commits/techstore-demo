@@ -927,3 +927,4 @@ html.no-scroll{overflow:hidden}
 [data-theme="dark"] nav.cats{background:#070D2A}
 [data-theme="dark"] .mc-h{background:#030716}
 [data-theme="dark"] img{color-scheme:light}
+@media (max-width:640px){ .fab a,.chat-fab{width:44px;height:44px;font-size:19px} .fab{right:12px;gap:8px} }
